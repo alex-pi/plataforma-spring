@@ -28,6 +28,9 @@ Icon?
 Thumbs.db
 
 # Targets #
+*/target/*
+*/target/**/*.*
+pom.properties
 
 # IDE's #
 .settings
