@@ -78,7 +78,7 @@
                 <configuration>
                     <warName>sep-sajja-web</warName>
                 </configuration>
-            </plugin>            
+            </plugin>                       
         </plugins>    
   </build>
 </project>
