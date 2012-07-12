@@ -42,5 +42,17 @@
 	    <artifactId>org.springframework.test</artifactId>
 	    <scope>test</scope>
 	</dependency>  
+	<dependency>
+	    <groupId>org.springframework.security</groupId>
+	    <artifactId>org.springframework.security.core</artifactId>
+	</dependency>		
+	<dependency>
+	    <groupId>org.springframework.security</groupId>
+	    <artifactId>org.springframework.security.config</artifactId>
+	</dependency>			
+	<dependency>
+	    <groupId>org.springframework.security</groupId>
+	    <artifactId>org.springframework.security.acls</artifactId>
+	</dependency>		
   </dependencies>
 </project>

@@ -22,15 +22,15 @@
 		require(["dijit/registry", "dijit/layout/BorderContainer",
 		            "dijit/layout/TabContainer", "dijit/layout/ContentPane",
 		            "dijit/layout/AccordionContainer", "dijit/Tree", "dojo/data/ItemFileReadStore", 
-		            "dijit/tree/ForestStoreModel", "dojo/domReady!"],
+		            "dijit/tree/ForestStoreModel", "dijit/form/Button", "dojo/domReady!"],
 		        function(registry, BorderContainer, TabContainer, ContentPane, 
-		        		AccordionContainer, Tree, ItemFileReadStore, ForestStoreModel){
+		        		AccordionContainer, Tree, ItemFileReadStore, ForestStoreModel, Button){
 			
 					function crearTree(){
 						var store = new ItemFileReadStore({
 					        url: "static/json/ejemplos.json"
 					    });
-
+						
 					    var treeModel = new ForestStoreModel({
 					        store: store,
 					        query: {"type": "subModulo"},
@@ -69,6 +69,17 @@
 					    });						
 					};
 					
+			        var btnLogout = new Button({
+			        	id: 'btnLogout',
+		                iconClass: 'dijitIconUsers',
+		                type: 'button',
+		                label: 'Logout',
+		                onClick: function(){
+		                	window.location.href='j_spring_security_logout';
+		                }
+		            });
+			        // btnLogout.startup();					
+					
 					var layoutPrincipal = new BorderContainer({
 					    design: "headline"
 					}, "layoutPrincipal");			
@@ -85,9 +96,10 @@
 					 
 					layoutPrincipal.addChild(
 					    new ContentPane({
+					    	style: 'text-align: right;',
 					        region: "top",
 					        id: "panelEncabezado", 
-					        content: "Contenido del encabezado."
+					        content: btnLogout
 					    })
 					);
 					layoutPrincipal.addChild(

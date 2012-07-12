@@ -64,6 +64,36 @@
 		<groupId>org.mybatis</groupId>
 		<artifactId>mybatis-spring</artifactId>
 		<version>1.1.1</version>
+		<exclusions>
+			<exclusion>
+				<artifactId>spring-tx</artifactId>
+				<groupId>org.springframework</groupId>
+			</exclusion>
+			<exclusion>
+				<artifactId>spring-core</artifactId>
+				<groupId>org.springframework</groupId>
+			</exclusion>
+			<exclusion>
+				<artifactId>spring-context</artifactId>
+				<groupId>org.springframework</groupId>
+			</exclusion>
+			<exclusion>
+				<artifactId>spring-jdbc</artifactId>
+				<groupId>org.springframework</groupId>
+			</exclusion>
+		</exclusions>
+	</dependency>	
+	<dependency>
+	    <groupId>org.springframework.security</groupId>
+	    <artifactId>org.springframework.security.core</artifactId>
+	</dependency>		
+	<dependency>
+	    <groupId>org.springframework.security</groupId>
+	    <artifactId>org.springframework.security.config</artifactId>
+	</dependency>			
+	<dependency>
+	    <groupId>org.springframework.security</groupId>
+	    <artifactId>org.springframework.security.acls</artifactId>
 	</dependency>	
   </dependencies>
 </project>
