@@ -1,7 +1,8 @@
 // Aqui se usa el módulo de ejemplo.
-define(["ejemplos/util_ejemplo"], function(util){
+define(["app/ejemplos/util_ejemplo"], function(util){
 
-	function init(panel){
+	function init(config){
+		config.contenedor.set('content', config.template);
 		// Aqui ya podemos usar el objeto devuelto por nuestro módulo ejemplo.
 	    util.setText("saludo", "Este texto cambiará en 5 segundos.");
 	 		

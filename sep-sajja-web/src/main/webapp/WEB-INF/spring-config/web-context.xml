@@ -18,12 +18,20 @@
     <mvc:annotation-driven />
 	<context:component-scan base-package="mx.sep.sajja.web.controller"/>
 	<mvc:resources mapping="/static/**" location="/static/" />
+	
+    <bean id="simpleController"
+          class="org.springframework.web.servlet.mvc.UrlFilenameViewController" />
+
+    <bean id="proyectoSimpleHandler"
+          class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping"
+          p:mappings="/**=simpleController"
+          p:order="5"/>
               
-	<bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+	<bean id="jspViewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 	    <property name="viewClass" value="org.springframework.web.servlet.view.JstlView" />
 	    <property name="prefix" value="/WEB-INF/" />
 	    <property name="suffix" value=".jsp" />
-	</bean>              
+	</bean>          
 	
 	<bean class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter">
 	    <property name="messageConverters">
@@ -31,5 +39,6 @@
 	            <bean class="org.springframework.http.converter.json.MappingJacksonHttpMessageConverter"/>
 	        </util:list>
 	    </property>
+	    <property name="order" value="0" />
 	</bean>	
 </beans>

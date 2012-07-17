@@ -3,12 +3,13 @@
 	label: 'name',
 	items: [
 	        { id: '1', name:'Ejemplos simples', type:'subModulo',
-	        		opciones:[{_reference:'2'}, {_reference:'3'}] },
+	        		opciones:[{_reference:'2'}, {_reference:'3'}, {_reference:'7'}] },
 	        	{ id: '2', name:'Creación de módulo', type:'opcion', url:'ejemplos/modulo'},
 	        	{ id: '3', name:'Manejo de tabs', type:'opcion', url:'ejemplos/manejoTabs'},
+	        	{ id: '7', name:'Resolución de contenido', type:'opcion', url:'ejemplos/controllerJsp'},
 	        { id: '4', name:'Ejemplos intermedios', type:'subModulo',
 	        		opciones:[{_reference:'5'}, {_reference:'6'}] },
 	        	{ id: '5', name:'Grid simple', type:'opcion', url:'' },
-	        	{ id: '6', name:'Grid con store remoto', type:'opcion', url:''}	        	
+	        	{ id: '6', name:'Grid con store remoto', type:'opcion', url:''}
 
 ]}
