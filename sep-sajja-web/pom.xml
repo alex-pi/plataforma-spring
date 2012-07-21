@@ -17,11 +17,16 @@
   	<java-version>1.6</java-version>
   </properties>
   <dependencies>
-   <dependency>
-	  <groupId>mx.sep.sajja.servicios</groupId>
-	  <artifactId>sep-sajja-servicios</artifactId>
-	  <version>0.0.1-SNAPSHOT-servicios</version>    
-	   </dependency>  
+	<dependency>
+		<groupId>mx.sep.sajja.servicios</groupId>
+		<artifactId>sep-sajja-servicios</artifactId>
+		<version>0.0.1-SNAPSHOT-servicios</version>    
+	</dependency>  
+	<dependency>
+		<groupId>mx.sep.seguridad</groupId>
+		<artifactId>sep-seguridad</artifactId>
+		<version>0.0.1-SNAPSHOT-seguridad</version>	
+	</dependency>
 	<dependency>
 	    <groupId>javax.servlet</groupId>
 	    <artifactId>servlet-api</artifactId>
@@ -51,18 +56,6 @@
 	<dependency>
 	    <groupId>org.springframework</groupId>
 	    <artifactId>org.springframework.web.servlet</artifactId>
-	</dependency>	
-	<dependency>
-	    <groupId>org.springframework.security</groupId>
-	    <artifactId>org.springframework.security.core</artifactId>
-	</dependency>		
-	<dependency>
-	    <groupId>org.springframework.security</groupId>
-	    <artifactId>org.springframework.security.web</artifactId>
-	</dependency>
-	<dependency>
-	    <groupId>org.springframework.security</groupId>
-	    <artifactId>org.springframework.security.config</artifactId>
 	</dependency>	
   </dependencies>
   

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE log4j:configuration SYSTEM "log4j.dtd">
+<log4j:configuration debug="null">
+
+    <appender name="SystemOut" class="org.apache.log4j.ConsoleAppender">
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern"
+                   value="%d{ABSOLUTE} %5.5p %70.40c - %m%n"/>
+        </layout>
+    </appender>
+
+    <appender name="ASYNC" class="org.apache.log4j.AsyncAppender">
+        <param name="Blocking" value="false"/>
+        <param name="BufferSize" value="10480"/>
+        <appender-ref ref="SystemOut"/>
+    </appender>
+
+    <logger name="mx.sep.seguridad"><level value="debug"/></logger>
+    <logger name="org.apache.ibatis"><level value="debug"/></logger>
+
+    <root>
+        <priority value ="warn"/>
+        <appender-ref ref="ASYNC"/>
+    </root>
+</log4j:configuration>

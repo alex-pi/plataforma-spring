@@ -14,6 +14,7 @@
   	<module>sep-sajja-web</module>
   	<module>sep-sajja-servicios</module>
     <module>sep-sajja-datos</module>
+    <module>sep-seguridad</module>
   </modules>
   
   <repositories>	
@@ -50,13 +51,7 @@
             <groupId>org.springframework</groupId>
             <artifactId>org.springframework.expression</artifactId>
             <version>${spring.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>org.springframework.test</artifactId>
-            <version>${spring.version}</version>
-            <scope>test</scope>
-        </dependency>         
+        </dependency>        
 		<dependency>
 		    <groupId>org.springframework</groupId>
 		    <artifactId>org.springframework.jdbc</artifactId>
@@ -138,6 +133,12 @@
 	    <version>1.6.8.RELEASE</version>
 	    <scope>runtime</scope>
 	</dependency>  
+    <dependency>
+        <groupId>org.springframework</groupId>
+        <artifactId>org.springframework.test</artifactId>
+        <version>${spring.version}</version>
+        <scope>test</scope>
+    </dependency> 	
   </dependencies>
   <build>
   	<pluginManagement>
@@ -149,8 +150,8 @@
 		    <configuration>
 		        <redirectTestOutputToFile>false</redirectTestOutputToFile>
 		        <includes>
-		            <include>**/*Tests.java</include>
-		            <include>**/*Test.java</include>
+		            <include>test/**/*Tests.java</include>
+		            <include>test/**/*Test.java</include>
 		        </includes>
 		        <argLine>-Dfile.encoding=UTF-8</argLine>
 		        <useFile>false</useFile>

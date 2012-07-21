@@ -1,4 +1,4 @@
-package mx.sep.sajja.modelo;
+package mx.sep.seguridad.modelo;
 
 import java.util.List;
 

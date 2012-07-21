@@ -1,9 +1,10 @@
-package mx.sep.sajja.servicios;
+package mx.sep.seguridad.servicios;
 
 import java.util.List;
 
-import mx.sep.sajja.dao.ModuloMenuDao;
-import mx.sep.sajja.modelo.ModuloMenu;
+import mx.sep.seguridad.dao.ModuloMenuDao;
+import mx.sep.seguridad.modelo.ModuloMenu;
+import mx.sep.seguridad.servicios.MenuSeguridadServicio;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

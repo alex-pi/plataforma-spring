@@ -1,8 +1,8 @@
-package mx.sep.sajja.servicios;
+package mx.sep.seguridad.servicios;
 
 import java.util.List;
 
-import mx.sep.sajja.modelo.ModuloMenu;
+import mx.sep.seguridad.modelo.ModuloMenu;
 
 public interface MenuSeguridadServicio {
 

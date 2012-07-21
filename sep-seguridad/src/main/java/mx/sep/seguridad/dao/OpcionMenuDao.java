@@ -1,8 +1,8 @@
-package mx.sep.sajja.dao;
+package mx.sep.seguridad.dao;
 
 import java.util.List;
 
-import mx.sep.sajja.modelo.OpcionMenu;
+import mx.sep.seguridad.modelo.OpcionMenu;
 
 public interface OpcionMenuDao {
 

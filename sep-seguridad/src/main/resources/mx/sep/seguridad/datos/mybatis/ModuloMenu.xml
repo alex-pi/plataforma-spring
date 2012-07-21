@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="mx.sep.sajja.dao.ModuloMenuDao">
+<mapper namespace="mx.sep.seguridad.dao.ModuloMenuDao">
 
 	<resultMap type="ModuloMenu" id="resultModuloMenu">
 		<id property="id" column="id_t_modulo"/>
 		<result property="modulo" column="v_modulo"/>
-		<collection property="opcionesMenu" ofType="OpcionMenu" resultMap="mx.sep.sajja.dao.OpcionMenuDao.resultOpcionMenu"></collection>
+		<collection property="opcionesMenu" ofType="OpcionMenu" resultMap="mx.sep.seguridad.dao.OpcionMenuDao.resultOpcionMenu"></collection>
 	</resultMap>
 
 	<select id="consultarTodos" resultMap="resultModuloMenu">

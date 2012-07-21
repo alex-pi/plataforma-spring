@@ -7,15 +7,27 @@
     <groupId>mx.sep.sajja</groupId>
     <version>0.0.1-SNAPSHOT</version>
   </parent>
-  <groupId>mx.sep.sajja.datos</groupId>
-  <artifactId>sep-sajja-datos</artifactId>
-  <version>0.0.1-SNAPSHOT-datos</version>
-  <name>sep-sajja-datos</name>
+  <groupId>mx.sep.seguridad</groupId>
+  <artifactId>sep-seguridad</artifactId>
+  <version>0.0.1-SNAPSHOT-seguridad</version>
+  <name>sep-seguridad</name>
   <url>http://maven.apache.org</url>
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
   </properties>
   <dependencies>
+	<dependency>
+	    <groupId>org.springframework.security</groupId>
+	    <artifactId>org.springframework.security.core</artifactId>
+	</dependency>		
+	<dependency>
+	    <groupId>org.springframework.security</groupId>
+	    <artifactId>org.springframework.security.web</artifactId>
+	</dependency>
+	<dependency>
+	    <groupId>org.springframework.security</groupId>
+	    <artifactId>org.springframework.security.config</artifactId>
+	</dependency>	
 	<dependency>
 		<groupId>commons-dbcp</groupId>
 		<artifactId>commons-dbcp</artifactId>
@@ -25,23 +37,7 @@
 		<groupId>postgresql</groupId>
 		<artifactId>postgresql</artifactId>
 		<version>8.4-702.jdbc4</version>
-	</dependency>	
-	<dependency>
-	    <groupId>org.springframework</groupId>
-	    <artifactId>org.springframework.context</artifactId>
-	</dependency>        
-	<dependency>
-	    <groupId>org.springframework</groupId>
-	    <artifactId>org.springframework.beans</artifactId>
-	</dependency>
-	<dependency>
-	    <groupId>org.springframework</groupId>
-	    <artifactId>org.springframework.core</artifactId>
-	</dependency>	        
-	<dependency>
-	    <groupId>org.springframework</groupId>
-	    <artifactId>org.springframework.expression</artifactId>
-	</dependency>
+	</dependency>		
 	<dependency>
 	    <groupId>org.springframework</groupId>
 	    <artifactId>org.springframework.jdbc</artifactId>
@@ -77,18 +73,6 @@
 				<groupId>org.springframework</groupId>
 			</exclusion>
 		</exclusions>
-	</dependency>	
-	<dependency>
-	    <groupId>org.springframework.security</groupId>
-	    <artifactId>org.springframework.security.core</artifactId>
 	</dependency>		
-	<dependency>
-	    <groupId>org.springframework.security</groupId>
-	    <artifactId>org.springframework.security.config</artifactId>
-	</dependency>			
-	<dependency>
-	    <groupId>org.springframework.security</groupId>
-	    <artifactId>org.springframework.security.acls</artifactId>
-	</dependency>	
   </dependencies>
 </project>

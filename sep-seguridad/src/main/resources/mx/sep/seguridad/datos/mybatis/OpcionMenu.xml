@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="mx.sep.sajja.dao.OpcionMenuDao">
+<mapper namespace="mx.sep.seguridad.dao.OpcionMenuDao">
 
 	<resultMap type="OpcionMenu" id="resultOpcionMenu">
 		<id property="id" column="id_t_opcion"/>
@@ -9,7 +9,7 @@
 		<result property="descripcion" column="v_descripcion"/>
 		<result property="url" column="v_url"/>
 		<association property="moduloMenu" column="id_t_modulo" javaType="ModuloMenu"
-			resultMap="mx.sep.sajja.dao.ModuloMenuDao.resultModuloMenu"/>		
+			resultMap="mx.sep.seguridad.dao.ModuloMenuDao.resultModuloMenu"/>		
 	</resultMap>
 
 	<select id="consultarTodos" resultMap="resultOpcionMenu">

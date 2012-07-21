@@ -1,15 +1,17 @@
-package test.mx.sep.sajja.servicios;
+package test.mx.sep.seguridad.servicios;
 
 import java.util.List;
 
-import mx.sep.sajja.modelo.ModuloMenu;
-import mx.sep.sajja.servicios.MenuSeguridadServicio;
+import mx.sep.seguridad.modelo.ModuloMenu;
+import mx.sep.seguridad.servicios.MenuSeguridadServicio;
 
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.Assert;
 
-public class MenuSeguridadServicioImplTest extends BaseServicioTest {
+import test.mx.sep.seguridad.SeguridadBaseTest;
+
+public class MenuSeguridadServicioImplTest extends SeguridadBaseTest {
 	
 	@Autowired
 	private MenuSeguridadServicio menuSeguridadServicio;

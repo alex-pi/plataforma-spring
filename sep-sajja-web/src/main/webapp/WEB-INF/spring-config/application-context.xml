@@ -17,6 +17,8 @@
 	<import resource="classpath*:mx/sep/sajja/servicios/**/*-config.xml" />
 	<import resource="classpath*:mx/sep/sajja/datos/**/*-config.xml" />
 	<import resource="classpath*:mx/sep/sajja/seguridad/**/*-config.xml" />
+	
+	<import resource="classpath*:mx/sep/seguridad/seguridad-config.xml" />
        
 	<tx:advice id="txAdvice" transaction-manager="transactionManager">
 	    <tx:attributes>

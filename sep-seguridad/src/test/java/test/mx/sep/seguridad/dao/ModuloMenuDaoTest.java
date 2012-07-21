@@ -1,15 +1,17 @@
-package test.mx.sep.sajja.dao;
+package test.mx.sep.seguridad.dao;
 
 import java.util.List;
 
-import mx.sep.sajja.dao.ModuloMenuDao;
-import mx.sep.sajja.modelo.ModuloMenu;
+import mx.sep.seguridad.dao.ModuloMenuDao;
+import mx.sep.seguridad.modelo.ModuloMenu;
 
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.Assert;
 
-public class ModuloMenuDaoTest extends BaseDaoTest {
+import test.mx.sep.seguridad.SeguridadBaseTest;
+
+public class ModuloMenuDaoTest extends SeguridadBaseTest {
 	
 	@Autowired
 	private ModuloMenuDao moduloMenuDao;
