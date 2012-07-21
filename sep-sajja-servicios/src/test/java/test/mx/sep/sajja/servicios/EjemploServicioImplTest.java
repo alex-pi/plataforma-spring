@@ -6,7 +6,7 @@ import org.springframework.util.Assert;
 
 import mx.sep.sajja.servicios.EjemploServicio;
 
-public class EjemploServicioTest extends BaseServicioTest {
+public class EjemploServicioImplTest extends BaseServicioTest {
 	
 	@Autowired
 	private EjemploServicio ejemploServicio;

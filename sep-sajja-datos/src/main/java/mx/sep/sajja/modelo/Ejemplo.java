@@ -1,5 +1,5 @@
 package mx.sep.sajja.modelo;
 
-public class Ejemplo {
+public class Ejemplo extends BaseModelo {
 
 }
