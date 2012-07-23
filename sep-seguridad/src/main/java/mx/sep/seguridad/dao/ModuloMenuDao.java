@@ -9,6 +9,4 @@ public interface ModuloMenuDao {
 	List<ModuloMenu> consultarTodos();
 	
 	ModuloMenu consultarModulo(Long id);
-	
-	ModuloMenu consultarModuloOpciones(Long id);
 }

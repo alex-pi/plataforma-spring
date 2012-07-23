@@ -8,9 +8,16 @@
 		<result property="opcion" column="v_opcion"/>
 		<result property="descripcion" column="v_descripcion"/>
 		<result property="url" column="v_url"/>
-		<association property="moduloMenu" column="id_t_modulo" javaType="ModuloMenu"
-			resultMap="mx.sep.seguridad.dao.ModuloMenuDao.resultModuloMenu"/>		
+		<collection property="opciones" column="id_t_opcion_padre" ofType="OpcionMenu"
+			resultMap="resultSubOpcionMenu"/>		
 	</resultMap>
+	
+	<resultMap type="OpcionMenu" id="resultSubOpcionMenu">
+		<id property="id" column="id_t_opcion_h"/>
+		<result property="opcion" column="v_opcion_h"/>
+		<result property="descripcion" column="v_descripcion_h"/>
+		<result property="url" column="v_url_h"/>		
+	</resultMap>	
 
 	<select id="consultarTodos" resultMap="resultOpcionMenu">
 		select * from seguridad.t_opcion_menu;
@@ -20,14 +27,23 @@
 		select * from seguridad.t_opcion_menu where id_t_opcion = #{id};
 	</select>
 	
-	<select id="consultarOpcionModulo" resultMap="resultOpcionMenu">
-		select * from seguridad.t_opcion_menu op
-		left join seguridad.t_modulo_menu mo on op.id_t_modulo = mo.id_t_modulo
-		where id_t_opcion = #{id};
-	</select>	
-	
 	<select id="consultarOpcionesHijas" resultMap="resultOpcionMenu">
 		select * from seguridad.t_opcion_menu
 		where id_t_opcion_padre = #{idPadre};	
 	</select>	
+	
+	<select id="consultarOpcionSubOpciones" resultMap="resultOpcionMenu">
+		select 
+		op_p.id_t_opcion,
+		op_p.v_descripcion,
+		op_p.v_opcion,
+		op_p.v_url,
+		op_h.id_t_opcion as id_t_opcion_h,
+		op_h.v_descripcion as v_descripcion_h,
+		op_h.v_opcion as v_opcion_h,
+		op_h.v_url as v_url_h
+		from seguridad.t_opcion_menu op_p
+		left join seguridad.t_opcion_menu op_h on op_p.id_t_opcion = op_h.id_t_opcion_padre
+		where op_p.id_t_opcion = #{idPadre};
+	</select>
 </mapper>

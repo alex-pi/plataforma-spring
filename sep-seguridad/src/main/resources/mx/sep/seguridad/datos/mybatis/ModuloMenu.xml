@@ -4,22 +4,15 @@
 <mapper namespace="mx.sep.seguridad.dao.ModuloMenuDao">
 
 	<resultMap type="ModuloMenu" id="resultModuloMenu">
-		<id property="id" column="id_t_modulo"/>
-		<result property="modulo" column="v_modulo"/>
-		<collection property="opcionesMenu" ofType="OpcionMenu" resultMap="mx.sep.seguridad.dao.OpcionMenuDao.resultOpcionMenu"></collection>
+		<id property="id" column="id_t_opcion"/>
+		<result property="modulo" column="v_opcion"/>
 	</resultMap>
 
 	<select id="consultarTodos" resultMap="resultModuloMenu">
-		select * from seguridad.t_modulo_menu;
+		select * from seguridad.t_opcion_menu where id_t_opcion_padre is null;
 	</select>
-	
+
 	<select id="consultarModulo" resultMap="resultModuloMenu">
-		select * from seguridad.t_modulo_menu where id_t_modulo = #{id};
-	</select>
-	
-	<select id="consultarModuloOpciones" resultMap="resultModuloMenu">
-		select * from seguridad.t_modulo_menu mo
-		inner join seguridad.t_opcion_menu op on mo.id_t_modulo = op.id_t_modulo
-		where mo.id_t_modulo = #{id};
+		select * from seguridad.t_opcion_menu where id_t_opcion = #{id};
 	</select>
 </mapper>

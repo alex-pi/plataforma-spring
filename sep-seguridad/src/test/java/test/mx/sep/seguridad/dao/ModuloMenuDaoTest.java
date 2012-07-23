@@ -28,21 +28,13 @@ public class ModuloMenuDaoTest extends SeguridadBaseTest {
 		
 		Assert.notEmpty(opciones);
 	}
-
-	@Test
-	public void consultarModuloTest(){
-		ModuloMenu opcion =
-				moduloMenuDao.consultarModulo(1l);
-		
-		Assert.notNull(opcion);
-	}
 	
 	@Test
-	public void consultarOpcionModulo(){
+	public void consultarModulo(){
 		ModuloMenu opcion =
-				moduloMenuDao.consultarModuloOpciones(1l);
+				moduloMenuDao.consultarModulo(6l);
 		
 		Assert.notNull(opcion);
-		Assert.notEmpty(opcion.getOpcionesMenu());
 	}
+
 }

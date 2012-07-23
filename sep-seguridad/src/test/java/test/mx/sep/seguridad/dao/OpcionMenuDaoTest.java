@@ -36,34 +36,22 @@ public class OpcionMenuDaoTest extends SeguridadBaseTest {
 		
 		Assert.notNull(opcion);
 	}
-
-	@Test
-	public void consultarOpcionModuloTieneModuloTest(){
-		OpcionMenu opcion =
-				opcionMenuDao.consultarOpcionModulo(1l);
-		
-		Assert.notNull(opcion);
-		Assert.notNull(opcion.getModuloMenu());
-	}	
 	
 	@Test
-	public void consultarOpcionModuloNoTieneModuloTest(){
-		OpcionMenu opcion =
-				opcionMenuDao.consultarOpcionModulo(2l);
-		
-		Assert.notNull(opcion);
-		// Sólo las opciones de primer nivel (sub-modulos) tienen módulo asignado.
-		// Pero a consecuencia de la referencia circular el objeto módulo se crea con una lista de
-		// opciones espuria :P
-		Assert.isNull(opcion.getModuloMenu().getId());
-	}	
-	
-	@Test
-	public void consultarOpcionesHijas(){
+	public void consultarOpcionesHijasTest(){
 		List<OpcionMenu> opciones =
 				opcionMenuDao.consultarOpcionesHijas(1l);
 		
 		Assert.notEmpty(opciones);
+	}	
+	
+	@Test
+	public void consultarOpcionSubOpciones(){
+		OpcionMenu opcion =
+				opcionMenuDao.consultarOpcionSubOpciones(1l);
+		
+		Assert.notNull(opcion);
+		Assert.notEmpty(opcion.getOpciones());
 	}	
 	
 }

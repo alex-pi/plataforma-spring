@@ -33,71 +33,53 @@
   	</script>
   	<script src="static/js/libs/dojo/dojo.js"></script>
 	<script>
-		require(["dijit/registry", "dijit/layout/BorderContainer",
+		require(["app/util/TreeMenu", "dojo/_base/xhr", "dojo/_base/array",
+		         "dijit/registry", "dijit/layout/BorderContainer",
 		            "dijit/layout/TabContainer", "dijit/layout/ContentPane",
-		            "dijit/layout/AccordionContainer", "dijit/Tree", "dojo/data/ItemFileReadStore", 
-		            "dijit/tree/ForestStoreModel", "dijit/form/Button", "dojox/widget/Standby", "dojo/domReady!"],
-		        function(registry, BorderContainer, TabContainer, ContentPane, 
-		        		AccordionContainer, Tree, ItemFileReadStore, ForestStoreModel, Button, Standby){
-			
-					function crearTree(){
-						var store = new ItemFileReadStore({
-					        url: "static/json/ejemplos.json"
-					    });
-						
-					    var treeModel = new ForestStoreModel({
-					        store: store,
-					        query: {"type": "subModulo"},
-					        rootId: "root",
-					        rootLabel: "Ejemplos",
-					        childrenAttrs: ["opciones"]
-					    });
-
-					    return new Tree({
-					        model: treeModel,
-					        showRoot: false,
-					        onClick: function(item, node, evt){
-					        	var url = store.getValue(item, "url");
-					        	var idOp = store.getValue(item, "id");
-					        	var titulo = store.getValue(item, "name");
-					        	if(url && url !== ''){
-					        		var idPanel = 'contentTabs_' + idOp;
-					        		if(registry.byId(idPanel)){
-					        			contentTabs.selectChild(registry.byId(idPanel));
-					        			return;
-					        		}
-								    var panel = new ContentPane({
-// 								    	href: dojo.config.app.urlBase + url,
-								        title: titulo,
-								        id: idPanel,
-								        closable: true
-								    });
-									contentTabs.addChild(panel);
-									contentTabs.selectChild(panel);
-									var standby = new Standby({
-									    target: idPanel,
-									    'class': "dijitContentPaneLoading"
-									});
-									document.body.appendChild(standby.domNode);
-									standby.startup();
-									standby.show();
-									
-						        	require(['app/'+url,'dojo/text!content/'+url], function(modulo,template){
-						        		if(modulo.init){
-						        			modulo.init({
-						        				contenedor: panel, 
-						        				idContendor: 'contentTabs_' + idOp,
-						        				template: template
-					        				});
-						        			// Usar aqui deferreds para saber cuándo quitar el standby
-						        			standby.hide();
-						        		}
-						        	});						        						        		
-					        	}
-					        }
-					    });						
-					};									
+		            "dijit/layout/AccordionContainer", "dijit/form/Button", "dojox/widget/Standby", 
+		            "dojo/store/JsonRest", "dojo/string", "dojo/domReady!"],
+		        function(TreeMenu, xhr, arrayUtil, registry, BorderContainer, TabContainer, ContentPane, 
+		        		AccordionContainer, Button, Standby, JsonRest, string){					
 					
+					function onClickOpcion(item, node, evt){
+			        	var url = item.url;
+			        	var idOp = item.id;
+			        	var titulo = item.opcion;
+			        	if(url && string.trim(url) !== ''){
+			        		var idPanel = 'contentTabs_' + idOp;
+			        		if(registry.byId(idPanel)){
+			        			contentTabs.selectChild(registry.byId(idPanel));
+			        			return;
+			        		}
+						    var panel = new ContentPane({
+						        title: titulo,
+						        id: idPanel,
+						        closable: true
+						    });
+							contentTabs.addChild(panel);
+							contentTabs.selectChild(panel);
+							var standby = new Standby({
+							    target: idPanel,
+							    'class': "dijitContentPaneLoading"
+							});
+							document.body.appendChild(standby.domNode);
+							standby.startup();
+							standby.show();
+							
+				        	require(['app/'+url,'dojo/text!content/'+url], function(modulo,template){
+				        		if(modulo.init){
+				        			modulo.init({
+				        				contenedor: panel, 
+				        				idContendor: 'contentTabs_' + idOp,
+				        				template: template
+			        				});
+				        			// Usar aqui deferreds para saber cuándo quitar el standby
+				        			standby.hide();
+				        		}
+				        	});						        						        		
+			        	}
+			        };
+			        
 			        var btnLogout = new Button({
 			        	id: 'btnLogout',
 		                iconClass: 'dijitIconUsers',
@@ -106,8 +88,7 @@
 		                onClick: function(){
 		                	window.location.href='j_spring_security_logout';
 		                }
-		            });
-			        // btnLogout.startup();					
+		            });			
 					
 					var layoutPrincipal = new BorderContainer({
 					    design: "headline"
@@ -148,20 +129,21 @@
 					    })
 					);
 					
-					contentAccordion.addChild(new ContentPane({
-				        title:"Ejemplos",
-				        content: crearTree()
-				    }));	
-					contentAccordion.addChild(new ContentPane({
-				        title:"Módulo 1",
-				        content:"Aqui otro árbol sin raíz"
-				    }));					
-					contentAccordion.addChild(new ContentPane({
-				        title:"Módulo 2",
-				        content:"Aqui otro árbol sin raíz"
-				    }));					 
+					xhr.get({
+						handleAs: "json",
+						url: dojo.config.app.urlBase + "seguridad/menu/modulos",
+						load: function(data){
+							arrayUtil.forEach(data, function(mod){
+								contentAccordion.addChild(new ContentPane({
+							        title: mod.modulo,
+							        idModulo: mod.id,
+							        content: new TreeMenu(mod.id, onClickOpcion).getTree()
+							    }));										
+							});
+							layoutPrincipal.startup();
+						}
+					});				 
 					
-					layoutPrincipal.startup();
 		        });
 	</script>               
 </head>

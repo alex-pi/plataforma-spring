@@ -12,5 +12,5 @@ public interface OpcionMenuDao {
 	
 	OpcionMenu consultarOpcion(Long id);
 	
-	OpcionMenu consultarOpcionModulo(Long id);
+	OpcionMenu consultarOpcionSubOpciones(Long idPadre);
 }

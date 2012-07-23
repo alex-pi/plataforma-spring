@@ -1,11 +1,14 @@
 package mx.sep.seguridad.modelo;
 
+import java.util.List;
+
 public class OpcionMenu extends BaseModelo{
 
 	private String opcion;
 	private String descripcion;
 	private String url;
 	private ModuloMenu moduloMenu;
+	private List<OpcionMenu> opciones;
 
 	public String getOpcion() {
 		return opcion;
@@ -30,6 +33,12 @@ public class OpcionMenu extends BaseModelo{
 	}
 	public void setModuloMenu(ModuloMenu moduloMenu) {
 		this.moduloMenu = moduloMenu;
+	}	
+	public List<OpcionMenu> getOpciones() {
+		return opciones;
+	}
+	public void setOpciones(List<OpcionMenu> opciones) {
+		this.opciones = opciones;
 	}
 	
 	@Override
