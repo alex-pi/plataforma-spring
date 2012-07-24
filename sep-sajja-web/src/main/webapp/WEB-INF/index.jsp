@@ -27,7 +27,8 @@
   	        	name: 'content',
   	        	location: '<c:url value="/mvc"/>'
   	        }],
-  	        async: true,
+  	      	parseOnLoad: false,
+  	        async: 1,
   	      	cacheBust: true
   	    };  		
   	</script>
@@ -75,6 +76,7 @@
 			        				});
 				        			// Usar aqui deferreds para saber cuándo quitar el standby
 				        			standby.hide();
+// 				        			panel.startup();
 				        		}
 				        	});						        						        		
 			        	}

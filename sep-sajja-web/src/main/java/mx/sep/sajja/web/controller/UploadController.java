@@ -1,0 +1,58 @@
+package mx.sep.sajja.web.controller;
+
+import java.io.File;
+import java.io.FileOutputStream;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
+import org.springframework.web.servlet.ModelAndView;
+
+
+
+@Controller
+@RequestMapping(value = "/upload") 
+public class UploadController {   
+	
+	
+/*	@RequestMapping("/cargaArchivos")
+	public String cargaArchivos() throws InterruptedException{		
+		return new String("ejemplos/cargaArchivos");
+	}*/
+	
+	@RequestMapping(value= "/cargaArchivos", method = RequestMethod.POST)   
+	public void create(HttpServletRequest request, HttpServletResponse response) throws Exception {  
+		
+		MultipartFile multipartFile;
+		
+		MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest) request; 
+		multipartFile = multipartRequest.getFile("uploadedfiles[]");
+		FileOutputStream outputStream = null;  
+		if(multipartFile != null){		
+			byte[] file;
+			String filename;   
+			String type;  
+			
+			filename = multipartFile.getOriginalFilename(); 
+			type = multipartFile.getContentType();  
+			file = multipartFile.getBytes();  
+			String filePath = System.getProperty("java.io.tmpdir") + "/" + filename;  
+			try {  
+				outputStream = new FileOutputStream(new File(filePath));  
+				outputStream.write(file);  
+				outputStream.close();  
+			} catch (Exception e) {  
+				System.out.println("Error while saving file");  
+			}
+		}  
+		
+	} 
+
+}
+
