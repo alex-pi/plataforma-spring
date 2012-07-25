@@ -5,10 +5,10 @@
 			<td id="colForm">
 				<form id="cargaForm">
 					<fieldset>
-						<legend>Seleccion de Archivos</legend>
-						Seleccion <input id="uploader" type="file"/>
-						<input id="resetForm" value="Clear1" />
-						<input id="submitGarga" value="Cargar1" />
+						<legend>Selección de Archivos</legend>
+						Selección <div id="uploader"></div>
+						<input id="resetForm" />
+						<input id="submitCarga" />
 						<div id="listaArchivos"></div>
 					</fieldset>
 				</form>
