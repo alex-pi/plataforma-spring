@@ -28,8 +28,8 @@
   	        	location: '<c:url value="/mvc"/>'
   	        }],
   	      	parseOnLoad: false,
-  	        async: true,
-  	      	cacheBust: true
+  	        async: true
+//   	      	cacheBust: new Date()
   	    };  		
   	</script>
   	<script src="static/js/libs/dojo/dojo.js"></script>
@@ -67,7 +67,7 @@
 							standby.startup();
 							standby.show();
 							
-				        	require(['app/'+url,'dojo/text!content/'+url], function(modulo,template){
+				        	require({cacheBust: new Date()},['app/'+url,'dojo/text!content/'+url], function(modulo,template){
 				        		if(modulo.init){
 				        			modulo.init({
 				        				contenedor: panel, 

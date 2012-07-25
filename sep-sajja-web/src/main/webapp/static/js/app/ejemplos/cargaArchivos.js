@@ -10,6 +10,7 @@ define(['dojo/dom','dojo', 'dojo/domReady!', 'dojo/parser', 'dijit/form/Button',
 		list;
 	
 	function init(config){
+		console.log('BBB');
 		config.contenedor.set('content', config.template);
 		modConfig = config;
 		
@@ -42,7 +43,7 @@ define(['dojo/dom','dojo', 'dojo/domReady!', 'dojo/parser', 'dijit/form/Button',
 	    	isDebug: true,
 	    	url: dojo.config.app.urlBase + 'upload/cargaArchivos',
 	    	multiple: true,
-	    	force: 'flash',
+	    	force: '',
 	    	onComplete: function(respuesta){
 	    		// Aqui se puede hacer algo con el objeto de respuesta que se devuelve.
 	    		console.log(respuesta);
