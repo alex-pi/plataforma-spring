@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mx.sep.seguridad.dao.SeguridadDao">
+
+	<resultMap type="UsuarioSeguridad" id="resultUsuario">
+		<id property="id" column="id_t_usuario"/>
+		<result property="username" column="v_username"/>
+		<result property="password" column="v_password"/>
+		<result property="nombre" column="v_nombre_usuario"/>
+		<result property="activo" column="l_usuario_activo"/>
+	</resultMap>
+	
+	<resultMap type="UsuarioSeguridad" id="resultUsuarioConRoles">
+		<id property="id" column="id_t_usuario"/>
+		<result property="username" column="v_username"/>
+		<result property="password" column="v_password"/>
+		<result property="nombre" column="v_nombre_usuario"/>
+		<result property="activo" column="l_usuario_activo"/>
+		<collection property="roles" column="id_tr_usuario" ofType="RolSeguridad"
+			resultMap="resultRol"/>		
+	</resultMap>
+
+	<resultMap type="RolSeguridad" id="resultRol">
+		<id property="id" column="id_t_rol"/>
+		<result property="rol" column="v_rol"/>
+		<result property="activo" column="l_rol_activo"/>
+	</resultMap>
+	
+	<select id="consultarUsarios" resultMap="resultUsuario">
+		select * from seguridad.t_usuario_seguridad;
+	</select>
+
+	<select id="consultarRoles" resultMap="resultRol">
+		select * from seguridad.t_rol_seguridad;
+	</select>
+	
+	<select id="consultarUsuarioConRoles" resultMap="resultUsuarioConRoles">
+		select * from seguridad.t_usuario_seguridad as usu
+		inner join seguridad.t_r_usuario_rol usu_rol on usu.id_t_usuario = usu_rol.id_tr_usuario
+		inner join seguridad.t_rol_seguridad rol on rol.id_t_rol = usu_rol.id_tr_rol
+		where usu.v_username = #{username};
+	</select>
+	
+</mapper>

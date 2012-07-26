@@ -58,6 +58,46 @@ CREATE TABLE t_opcion_menu (
 ALTER TABLE seguridad.t_opcion_menu OWNER TO pruebas;
 
 --
+-- Name: t_r_usuario_rol; Type: TABLE; Schema: seguridad; Owner: pruebas; Tablespace: 
+--
+
+CREATE TABLE t_r_usuario_rol (
+    id_tr_usuario integer NOT NULL,
+    id_tr_rol integer NOT NULL
+);
+
+
+ALTER TABLE seguridad.t_r_usuario_rol OWNER TO pruebas;
+
+--
+-- Name: t_rol_seguridad; Type: TABLE; Schema: seguridad; Owner: pruebas; Tablespace: 
+--
+
+CREATE TABLE t_rol_seguridad (
+    id_t_rol integer NOT NULL,
+    v_rol character varying(30) NOT NULL,
+    l_rol_activo boolean DEFAULT true NOT NULL
+);
+
+
+ALTER TABLE seguridad.t_rol_seguridad OWNER TO pruebas;
+
+--
+-- Name: t_usuario_seguridad; Type: TABLE; Schema: seguridad; Owner: pruebas; Tablespace: 
+--
+
+CREATE TABLE t_usuario_seguridad (
+    id_t_usuario integer NOT NULL,
+    v_username character varying(50) NOT NULL,
+    v_password character varying(25) NOT NULL,
+    v_nombre_usuario character varying(100) NOT NULL,
+    l_usuario_activo boolean DEFAULT true NOT NULL
+);
+
+
+ALTER TABLE seguridad.t_usuario_seguridad OWNER TO pruebas;
+
+--
 -- Data for Name: t_opcion_menu; Type: TABLE DATA; Schema: seguridad; Owner: pruebas
 --
 
@@ -77,11 +117,79 @@ INSERT INTO t_opcion_menu VALUES (13, 'Carga de archivo', 'Carga de archivo', 'e
 
 
 --
+-- Data for Name: t_r_usuario_rol; Type: TABLE DATA; Schema: seguridad; Owner: pruebas
+--
+
+INSERT INTO t_r_usuario_rol VALUES (1, 3);
+INSERT INTO t_r_usuario_rol VALUES (3, 2);
+INSERT INTO t_r_usuario_rol VALUES (2, 1);
+INSERT INTO t_r_usuario_rol VALUES (2, 2);
+
+
+--
+-- Data for Name: t_rol_seguridad; Type: TABLE DATA; Schema: seguridad; Owner: pruebas
+--
+
+INSERT INTO t_rol_seguridad VALUES (1, 'ROL_USUARIO', true);
+INSERT INTO t_rol_seguridad VALUES (2, 'ROL_USUARIO2', true);
+INSERT INTO t_rol_seguridad VALUES (3, 'ROL_ADMIN', true);
+
+
+--
+-- Data for Name: t_usuario_seguridad; Type: TABLE DATA; Schema: seguridad; Owner: pruebas
+--
+
+INSERT INTO t_usuario_seguridad VALUES (1, 'pi', 'pipo', 'Alejandro Pimentel', true);
+INSERT INTO t_usuario_seguridad VALUES (2, 'brian', 'briantu', 'Brian Hernandez', true);
+INSERT INTO t_usuario_seguridad VALUES (3, 'carlos', 'freeman', 'Carlos Urbina', true);
+
+
+--
 -- Name: t_opcion_pkey; Type: CONSTRAINT; Schema: seguridad; Owner: pruebas; Tablespace: 
 --
 
 ALTER TABLE ONLY t_opcion_menu
     ADD CONSTRAINT t_opcion_pkey PRIMARY KEY (id_t_opcion);
+
+
+--
+-- Name: t_r_usuario_rol_pkey; Type: CONSTRAINT; Schema: seguridad; Owner: pruebas; Tablespace: 
+--
+
+ALTER TABLE ONLY t_r_usuario_rol
+    ADD CONSTRAINT t_r_usuario_rol_pkey PRIMARY KEY (id_tr_usuario, id_tr_rol);
+
+
+--
+-- Name: t_rol_seguridad_pkey; Type: CONSTRAINT; Schema: seguridad; Owner: pruebas; Tablespace: 
+--
+
+ALTER TABLE ONLY t_rol_seguridad
+    ADD CONSTRAINT t_rol_seguridad_pkey PRIMARY KEY (id_t_rol);
+
+
+--
+-- Name: t_rol_seguridad_v_rol_key; Type: CONSTRAINT; Schema: seguridad; Owner: pruebas; Tablespace: 
+--
+
+ALTER TABLE ONLY t_rol_seguridad
+    ADD CONSTRAINT t_rol_seguridad_v_rol_key UNIQUE (v_rol);
+
+
+--
+-- Name: t_usuario_seguridad_pkey; Type: CONSTRAINT; Schema: seguridad; Owner: pruebas; Tablespace: 
+--
+
+ALTER TABLE ONLY t_usuario_seguridad
+    ADD CONSTRAINT t_usuario_seguridad_pkey PRIMARY KEY (id_t_usuario);
+
+
+--
+-- Name: t_usuario_seguridad_v_username_key; Type: CONSTRAINT; Schema: seguridad; Owner: pruebas; Tablespace: 
+--
+
+ALTER TABLE ONLY t_usuario_seguridad
+    ADD CONSTRAINT t_usuario_seguridad_v_username_key UNIQUE (v_username);
 
 
 --
@@ -97,6 +205,22 @@ CREATE INDEX fki_t_opcion_padre ON t_opcion_menu USING btree (id_t_opcion);
 
 ALTER TABLE ONLY t_opcion_menu
     ADD CONSTRAINT fk_t_opcion_padre FOREIGN KEY (id_t_opcion) REFERENCES t_opcion_menu(id_t_opcion);
+
+
+--
+-- Name: t_r_usuario_rol_id_tr_rol_fkey; Type: FK CONSTRAINT; Schema: seguridad; Owner: pruebas
+--
+
+ALTER TABLE ONLY t_r_usuario_rol
+    ADD CONSTRAINT t_r_usuario_rol_id_tr_rol_fkey FOREIGN KEY (id_tr_rol) REFERENCES t_rol_seguridad(id_t_rol);
+
+
+--
+-- Name: t_r_usuario_rol_id_tr_usuario_fkey; Type: FK CONSTRAINT; Schema: seguridad; Owner: pruebas
+--
+
+ALTER TABLE ONLY t_r_usuario_rol
+    ADD CONSTRAINT t_r_usuario_rol_id_tr_usuario_fkey FOREIGN KEY (id_tr_usuario) REFERENCES t_usuario_seguridad(id_t_usuario);
 
 
 --

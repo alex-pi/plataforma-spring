@@ -11,15 +11,12 @@
     <http auto-config="true" use-expressions="true">
         <intercept-url pattern="/login.jsp*" access="permitAll"/>
         <intercept-url pattern="/static/**" access="permitAll"/>
-        <intercept-url pattern="/**" access="hasRole('ROLE_USUARIO')" />
+        <intercept-url pattern="/**" access="isAuthenticated()" />
         <form-login login-page="/login.jsp" />
     </http>
     
     <authentication-manager>
-        <authentication-provider>
-          <user-service>
-            <user name="pi" password="pipo" authorities="ROLE_USUARIO" />
-          </user-service>
+        <authentication-provider user-service-ref="sepUserDetailsService">
         </authentication-provider>
     </authentication-manager> 
 		

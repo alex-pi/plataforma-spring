@@ -50,6 +50,9 @@
 	<bean id="txManagerSeguridad" class="org.springframework.jdbc.datasource.DataSourceTransactionManager"
 	    p:dataSource-ref="dataSourceSeguridad" />
 	    
+	<bean id="sepUserDetailsService" class="mx.sep.seguridad.servicios.CustomUserDetailsService">
+	</bean>
+	    
 	<beans profile="desarrollo">
 		<bean id="dataSourceSeguridad" class="org.apache.commons.dbcp.BasicDataSource">
 			<property name="driverClassName" value="org.postgresql.Driver" />
