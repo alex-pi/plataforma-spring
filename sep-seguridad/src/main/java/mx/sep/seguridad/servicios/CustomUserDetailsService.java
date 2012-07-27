@@ -36,7 +36,8 @@ public class CustomUserDetailsService implements UserDetailsService {
 		Set<GrantedAuthority> dbAuthsSet = new HashSet<GrantedAuthority>();
 		
 		for (RolSeguridad rol : us.getRoles()) {
-			dbAuthsSet.add(new CustomGrantedAuthority(rol));
+			if(rol.isActivo())
+				dbAuthsSet.add(new CustomGrantedAuthority(rol));
 		}
 		return new CustomUserDetails(us, dbAuthsSet);
 	}

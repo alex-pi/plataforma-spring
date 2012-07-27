@@ -5,9 +5,9 @@ import java.util.List;
 import mx.sep.seguridad.dao.OpcionMenuDao;
 import mx.sep.seguridad.modelo.OpcionMenu;
 
+import org.junit.Assert;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.util.Assert;
 
 import test.mx.sep.seguridad.SeguridadBaseTest;
 
@@ -18,7 +18,7 @@ public class OpcionMenuDaoTest extends SeguridadBaseTest {
 	
 	@Test
 	public void dependenciaTest(){
-		Assert.notNull(opcionMenuDao);
+		Assert.assertNotNull(opcionMenuDao);
 	}
 	
 	@Test
@@ -26,7 +26,7 @@ public class OpcionMenuDaoTest extends SeguridadBaseTest {
 		List<OpcionMenu> opciones =
 				opcionMenuDao.consultarTodos();
 		
-		Assert.notEmpty(opciones);
+		Assert.assertFalse(opciones.isEmpty());
 	}
 
 	@Test
@@ -34,7 +34,7 @@ public class OpcionMenuDaoTest extends SeguridadBaseTest {
 		OpcionMenu opcion =
 				opcionMenuDao.consultarOpcion(1l);
 		
-		Assert.notNull(opcion);
+		Assert.assertNotNull(opcion);
 	}
 	
 	@Test
@@ -42,7 +42,7 @@ public class OpcionMenuDaoTest extends SeguridadBaseTest {
 		List<OpcionMenu> opciones =
 				opcionMenuDao.consultarOpcionesHijas(1l);
 		
-		Assert.notEmpty(opciones);
+		Assert.assertFalse(opciones.isEmpty());
 	}	
 	
 	@Test
@@ -50,8 +50,8 @@ public class OpcionMenuDaoTest extends SeguridadBaseTest {
 		OpcionMenu opcion =
 				opcionMenuDao.consultarOpcionSubOpciones(1l);
 		
-		Assert.notNull(opcion);
-		Assert.notEmpty(opcion.getOpciones());
+		Assert.assertNotNull(opcion);
+		Assert.assertFalse(opcion.getOpciones().isEmpty());
 	}	
 	
 }

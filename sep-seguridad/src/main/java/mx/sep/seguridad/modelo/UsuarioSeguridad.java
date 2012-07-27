@@ -10,6 +10,16 @@ public class UsuarioSeguridad extends BaseModelo{
 	private boolean activo;
 	private List<RolSeguridad> roles;	
 	
+	public UsuarioSeguridad(){}
+	
+	public UsuarioSeguridad(String username, String password, String nombre,
+			boolean activo) {
+		this.username = username;
+		this.password = password;
+		this.nombre = nombre;
+		this.activo = activo;
+	}	
+	
 	public String getUsername() {
 		return username;
 	}

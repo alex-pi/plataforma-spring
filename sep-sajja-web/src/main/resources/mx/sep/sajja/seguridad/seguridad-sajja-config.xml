@@ -19,5 +19,9 @@
         <authentication-provider user-service-ref="sepUserDetailsService">
         </authentication-provider>
     </authentication-manager> 
-		
+    
+	<global-method-security secured-annotations="enabled" pre-post-annotations="enabled">
+		<expression-handler ref="expressionHandler"/>
+	</global-method-security>    
+    
 </beans:beans>

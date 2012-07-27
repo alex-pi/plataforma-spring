@@ -5,9 +5,9 @@ import java.util.List;
 import mx.sep.seguridad.dao.SeguridadDao;
 import mx.sep.seguridad.modelo.UsuarioSeguridad;
 
+import org.junit.Assert;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.util.Assert;
 
 import test.mx.sep.seguridad.SeguridadBaseTest;
 
@@ -18,7 +18,7 @@ public class SeguridadDaoTest extends SeguridadBaseTest {
 	
 	@Test
 	public void dependenciaTest(){
-		Assert.notNull(seguridadDao);
+		Assert.assertNotNull(seguridadDao);
 	}
 	
 	@Test
@@ -26,7 +26,7 @@ public class SeguridadDaoTest extends SeguridadBaseTest {
 		List<UsuarioSeguridad> usuarios =
 				seguridadDao.consultarUsarios();
 		
-		Assert.notEmpty(usuarios);
+		Assert.assertFalse(usuarios.isEmpty());
 	}
 	
 	@Test
@@ -34,8 +34,8 @@ public class SeguridadDaoTest extends SeguridadBaseTest {
 		UsuarioSeguridad usuario =
 				seguridadDao.consultarUsuarioConRoles("brian");
 		
-		Assert.notNull(usuario);
-		Assert.notEmpty(usuario.getRoles());
-		Assert.isTrue(usuario.getRoles().size() == 2);
+		Assert.assertNotNull(usuario);
+		Assert.assertFalse(usuario.getRoles().isEmpty());
+		Assert.assertEquals(2 ,usuario.getRoles().size());
 	}
 }

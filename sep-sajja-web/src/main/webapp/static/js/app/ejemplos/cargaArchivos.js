@@ -1,6 +1,6 @@
-define(['dojo/dom','dojo', 'dojo/domReady!', 'dojo/parser', 'dijit/form/Button', 'dijit/form/Form', 'dijit/registry',
+define(['dojo/dom','dojo/cookie', 'dojo/domReady!', 'dojo/parser', 'dijit/form/Button', 'dijit/form/Form', 'dijit/registry',
         'dojox/form/Uploader', 'dojox/form/uploader/FileList', 'dojox/form/uploader/plugins/Flash'],
-		function(util, dojo, dr, parser, Button, Form, registry, FileList){
+		function(util, cookie, dr, parser, Button, Form, registry, FileList){
 		
 	var modConfig,
 		forma,
@@ -10,7 +10,6 @@ define(['dojo/dom','dojo', 'dojo/domReady!', 'dojo/parser', 'dijit/form/Button',
 		list;
 	
 	function init(config){
-		console.log('BBB');
 		config.contenedor.set('content', config.template);
 		modConfig = config;
 		

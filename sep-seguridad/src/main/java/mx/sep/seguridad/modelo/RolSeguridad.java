@@ -5,6 +5,13 @@ public class RolSeguridad extends BaseModelo{
 	private String rol;
 	private boolean activo;
 	
+	public RolSeguridad(){}
+			
+	public RolSeguridad(String rol, boolean activo) {
+		this.rol = rol;
+		this.activo = activo;
+	}
+	
 	public String getRol() {
 		return rol;
 	}
