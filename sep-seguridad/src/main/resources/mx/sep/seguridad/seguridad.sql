@@ -358,8 +358,9 @@ INSERT INTO t_opcion_menu VALUES (10, 'Ejercicios Qtx', 'Ejercicios Qtx', NULL, 
 INSERT INTO t_opcion_menu VALUES (11, 'Configuraciones', 'Configuraciones', NULL, NULL);
 INSERT INTO t_opcion_menu VALUES (7, 'Seguridad', 'Seguridad', NULL, 11);
 INSERT INTO t_opcion_menu VALUES (12, 'Resolución de contenido', 'Resolución de contenido', 'ejemplos/controllerJsp', 1);
-INSERT INTO t_opcion_menu VALUES (6, 'Ejemplos', 'Ejemplos Dojo', NULL, NULL);
 INSERT INTO t_opcion_menu VALUES (13, 'Carga de archivo', 'Carga de archivo', 'ejemplos/cargaArchivos', 4);
+INSERT INTO t_opcion_menu VALUES (14, 'Manejo de errores', 'Manejo de errores', 'ejemplos/manejoErrores', 1);
+INSERT INTO t_opcion_menu VALUES (6, 'Ejemplos Qtx', 'Ejemplos Qtx', NULL, NULL);
 
 
 --

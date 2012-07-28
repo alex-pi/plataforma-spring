@@ -1,17 +1,14 @@
 define(["dojo/_base/xhr", "dojo/_base/array",
-		         "dijit/registry", "dijit/layout/ContentPane", "dijit/Tree",  
-		            "dijit/tree/TreeStoreModel", "dojox/widget/Standby", 
-		            "dojo/store/JsonRest", "dojo/string"],
-	function(xhr, arrayUtil, registry, ContentPane, 
-			Tree, TreeStoreModel, 
-			Standby, JsonRest, string){
+        "dijit/registry", "dijit/Tree", "dijit/tree/TreeStoreModel", "dojo/store/JsonRest"],
+	function(xhr, arrayUtil, registry, 
+			Tree, TreeStoreModel, JsonRest){
 	
 		function TreeMenu(idModulo, onClickOpcion){
 			
 			var storeMenu = new JsonRest({
 			    target: dojo.config.app.urlBase + "seguridad/menu/",
-			    mayHaveChildren: function(object){
-			        return !!object.opciones;
+			    mayHaveChildren: function(opcion){
+			        return !!opcion.opciones;
 			    },
 			    getChildren: function(object, onComplete, onError){
 			        this.get(object.id).then(function(fullObject){

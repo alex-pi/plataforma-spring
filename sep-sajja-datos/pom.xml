@@ -16,7 +16,12 @@
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
   </properties>
   <dependencies>
-	<dependency>
+  	<dependency>
+		<groupId>mx.sep.sajja.modelo</groupId>
+		<artifactId>sep-sajja-modelo</artifactId>
+		<version>0.0.1-SNAPSHOT-modelo</version>  	
+  	</dependency>
+  	<dependency>
 		<groupId>commons-dbcp</groupId>
 		<artifactId>commons-dbcp</artifactId>
 		<version>1.4</version>

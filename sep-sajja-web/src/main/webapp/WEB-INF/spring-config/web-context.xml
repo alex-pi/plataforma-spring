@@ -43,6 +43,39 @@
 	</bean>	
 	
 	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">     
-		<property name="maxUploadSize" value="900000"/>
+		<property name="maxUploadSize" value="-1"/>
 	</bean> 	
+	
+	<bean id="localeResolver" class="org.springframework.web.servlet.i18n.AcceptHeaderLocaleResolver"/>
+	
+    <bean class="mx.sep.sajja.web.util.ManejadorErroresJson">
+        <property name="nombreProfileDesarrollo" value="desarrollo" />
+        <property name="mapeoExcepciones">
+            <map>
+                <!-- Para asignar un notificador a una Excepción. Si no se establece un notificador
+                para una excepción más específica se elige el notificador de la super clase más cercana
+                en la jerarquía de herencia.-->
+                <entry key="mx.sep.sajja.servicios.util.ErrorNegocio" value-ref="notificacionLog"></entry>
+
+                <!-- En este caso no se elige notificador. Si se especifica un servicioNotificaciónDefault
+                se usará este, de otro modo no se notificará el error. El error hacia presentación siempre
+                se genera.-->
+                <entry key="mx.sep.sajja.servicios.util.ErrorInfraestructura" value=""></entry>
+
+                <entry key="java.lang.RuntimeException" value=""></entry>
+            </map>
+        </property>
+        <property name="mapeoNivelErrores">
+            <map>
+                <!-- Se coloca en value el nivel del error generado. En realidad se puede colocar la
+                leyenda que se desee -->
+                <entry key="mx.sep.sajja.servicios.util.ErrorNegocio" value="ERROR DE NEGOCIO"></entry>
+                <entry key="mx.sep.sajja.servicios.util.ErrorInfraestructura" value="ERROR GRAVE"></entry>
+                <entry key="java.lang.RuntimeException" value="ERROR"></entry>
+            </map>
+        </property>
+        <property name="servicioNotificacionDefault" ref="notificacionLog" />
+    </bean>
+
+    <bean id="notificacionLog" class="mx.sep.sajja.web.util.ServicioNotificacionLog" />
 </beans>

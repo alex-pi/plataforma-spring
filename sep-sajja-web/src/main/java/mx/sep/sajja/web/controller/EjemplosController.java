@@ -30,4 +30,9 @@ public class EjemplosController {
 	public ModelAndView vistaDesdeController() {
 		return new ModelAndView("ejemplos/controllerJsp","datoModelo", "Despachado por controller");
 	}
+	
+	@RequestMapping(value= "/error/simple", method = RequestMethod.GET)
+	public void ejemploManejoErrorNegocio() {
+		ejemploServicio.ejemploManejoErrorNegocio();
+	}	
 }

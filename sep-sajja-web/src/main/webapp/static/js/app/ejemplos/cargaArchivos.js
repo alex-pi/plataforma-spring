@@ -1,6 +1,6 @@
-define(['dojo/dom','dojo/cookie', 'dojo/domReady!', 'dojo/parser', 'dijit/form/Button', 'dijit/form/Form', 'dijit/registry',
-        'dojox/form/Uploader', 'dojox/form/uploader/FileList', 'dojox/form/uploader/plugins/Flash'],
-		function(util, cookie, dr, parser, Button, Form, registry, FileList){
+define(['dojo/dom','dojo/cookie', 'dojo/parser', 'dijit/form/Button', 'dijit/form/Form', 'dijit/registry',
+        'dojox/form/uploader/FileList', 'dojox/form/Uploader', 'dojox/form/uploader/plugins/Flash'],
+		function(dom, cookie, parser, Button, Form, registry, FileList){
 		
 	var modConfig,
 		forma,

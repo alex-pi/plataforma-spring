@@ -26,9 +26,14 @@
   	        },{
   	        	name: 'content',
   	        	location: '<c:url value="/mvc"/>'
+  	        },{
+  	        	name: 'static',
+  	        	location: '<c:url value="/static"/>'
   	        }],
   	      	parseOnLoad: false,
-  	        async: true
+  	        async: true,
+  	      	debugAtAllCosts: true,
+  	      	ioPublish: true
 //   	      	cacheBust: new Date()
   	    };  		
   	</script>
@@ -38,7 +43,7 @@
 		         "dijit/registry", "dijit/layout/BorderContainer",
 		            "dijit/layout/TabContainer", "dijit/layout/ContentPane",
 		            "dijit/layout/AccordionContainer", "dijit/form/Button", "dojox/widget/Standby", 
-		            "dojo/store/JsonRest", "dojo/string", "dojo/domReady!"],
+		            "dojo/store/JsonRest", "dojo/string", "app/util/errorHandler", "dojo/domReady!"],
 		        function(TreeMenu, xhr, arrayUtil, registry, BorderContainer, TabContainer, ContentPane, 
 		        		AccordionContainer, Button, Standby, JsonRest, string){					
 					
@@ -68,15 +73,15 @@
 							standby.show();
 							
 				        	require({cacheBust: new Date()},['app/'+url,'dojo/text!content/'+url], function(modulo,template){
+				        		standby.hide();
 				        		if(modulo.init){
 				        			modulo.init({
 				        				contenedor: panel, 
 				        				idContendor: 'contentTabs_' + idOp,
 				        				template: template
 			        				});
-				        			// Usar aqui deferreds para saber cuándo quitar el standby
-				        			standby.hide();
-				        			panel.startup();
+				        			// Usar aqui deferreds para saber cuándo quitar el standby				        			
+// 				        			panel.startup();
 				        		}
 				        	});						        						        		
 			        	}
@@ -144,7 +149,7 @@
 							});
 							layoutPrincipal.startup();
 						}
-					});				 
+					});								
 					
 		        });
 	</script>               
