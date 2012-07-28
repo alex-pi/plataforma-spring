@@ -4,6 +4,7 @@ import mx.sep.sajja.servicios.EjemploServicio;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
@@ -31,8 +32,13 @@ public class EjemplosController {
 		return new ModelAndView("ejemplos/controllerJsp","datoModelo", "Despachado por controller");
 	}
 	
-	@RequestMapping(value= "/error/simple", method = RequestMethod.GET)
-	public void ejemploManejoErrorNegocio() {
-		ejemploServicio.ejemploManejoErrorNegocio();
+	@RequestMapping(value= "/error/simple/{ejemplo}", method = RequestMethod.GET)
+	public void ejemploManejoErrorNegocio(@PathVariable Integer ejemplo) {
+		
+		if(ejemplo.equals(1)){
+			ejemploServicio.ejemploMensajeErrorNegocio();
+		} else if(ejemplo.equals(2)){
+			ejemploServicio.ejemploCodigoMensajeErrorNegocio();
+		}
 	}	
 }

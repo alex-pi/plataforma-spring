@@ -2,5 +2,7 @@ package mx.sep.sajja.servicios;
 
 public interface EjemploServicio {
 
-	void ejemploManejoErrorNegocio();
+	void ejemploMensajeErrorNegocio();
+	
+	void ejemploCodigoMensajeErrorNegocio();
 }

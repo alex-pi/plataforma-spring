@@ -19,7 +19,6 @@ public class MenuSeguridadServicioImpl implements MenuSeguridadServicio {
 	@Autowired
 	private OpcionMenuDao opcionMenuDao;
 
-	@PostFilter("hasPermission(filterObject, 'read')")
 	public List<ModuloMenu> consultarModulos() {
 		List<ModuloMenu> modulos = moduloMenuDao.consultarTodos();
 		
