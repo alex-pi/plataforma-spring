@@ -16,7 +16,12 @@
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
   </properties>
   <dependencies>
-	<dependency>
+  	<dependency>
+		<groupId>mx.sep.sajja.modelo</groupId>
+		<artifactId>sep-sajja-modelo</artifactId>
+		<version>0.0.1-SNAPSHOT-modelo</version>  	
+  	</dependency>
+  	<dependency>
 		<groupId>commons-dbcp</groupId>
 		<artifactId>commons-dbcp</artifactId>
 		<version>1.4</version>
@@ -77,18 +82,6 @@
 				<groupId>org.springframework</groupId>
 			</exclusion>
 		</exclusions>
-	</dependency>	
-	<dependency>
-	    <groupId>org.springframework.security</groupId>
-	    <artifactId>org.springframework.security.core</artifactId>
-	</dependency>		
-	<dependency>
-	    <groupId>org.springframework.security</groupId>
-	    <artifactId>org.springframework.security.config</artifactId>
-	</dependency>			
-	<dependency>
-	    <groupId>org.springframework.security</groupId>
-	    <artifactId>org.springframework.security.acls</artifactId>
 	</dependency>	
   </dependencies>
 </project>

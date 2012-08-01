@@ -50,7 +50,67 @@
 	<bean id="txManagerSeguridad" class="org.springframework.jdbc.datasource.DataSourceTransactionManager"
 	    p:dataSource-ref="dataSourceSeguridad" />
 	    
-	<beans profile="desarrollo">
+	<bean id="sepUserDetailsService" class="mx.sep.seguridad.servicios.CustomUserDetailsService">
+	</bean>
+	
+    <bean id="expressionHandler" class="org.springframework.security.access.expression.method.DefaultMethodSecurityExpressionHandler">
+        <property name="permissionEvaluator" ref="permissionEvaluator"/>
+    </bean>
+    
+    <bean id="permissionEvaluator" class="org.springframework.security.acls.AclPermissionEvaluator">
+        <constructor-arg ref="aclService"/>
+    </bean>    
+    
+    <bean id="aclService" class="org.springframework.security.acls.jdbc.JdbcAclService">
+        <constructor-arg ref="dataSourceSeguridad"/>
+        <constructor-arg ref="lookupStrategy"/>
+<!--         <property name="sidIdentityQuery" value="SELECT currval('acl_sid_id_seq')"/> -->
+<!--         <property name="classIdentityQuery" value="SELECT currval('acl_class_id_seq')"/> -->
+    </bean>  	
+	    
+	<bean id="lookupStrategy" class="org.springframework.security.acls.jdbc.BasicLookupStrategy">
+		<constructor-arg ref="dataSourceSeguridad"/>
+		<constructor-arg ref="aclCache"/>
+		<constructor-arg ref="aclAuthzStrategy"/>
+		<constructor-arg ref="grantingStrategy"/>
+	</bean>
+	
+	<bean id="aclCache" class="org.springframework.security.acls.domain.EhCacheBasedAclCache">
+        <constructor-arg>
+            <bean class="org.springframework.cache.ehcache.EhCacheFactoryBean">
+                <property name="cacheManager">
+                    <bean class="org.springframework.cache.ehcache.EhCacheManagerFactoryBean"/>
+                </property>
+                <property name="cacheName" value="aclCache"/>
+            </bean>
+        </constructor-arg>	
+		<constructor-arg ref="grantingStrategy"/>    
+		<constructor-arg ref="aclAuthzStrategy"/>    
+	</bean>
+	
+    <bean id="aclAuthzStrategy" class="org.springframework.security.acls.domain.AclAuthorizationStrategyImpl">
+        <constructor-arg>
+            <list>
+                <bean class="org.springframework.security.core.authority.GrantedAuthorityImpl">
+                    <constructor-arg value="ROLE_ADMINISTRADOR"/>
+                </bean>
+                <bean class="org.springframework.security.core.authority.GrantedAuthorityImpl">
+                    <constructor-arg value="ROLE_ADMINISTRADOR"/>
+                </bean>
+                <bean class="org.springframework.security.core.authority.GrantedAuthorityImpl">
+                    <constructor-arg value="ROLE_ADMINISTRADOR"/>
+                </bean>
+            </list>
+        </constructor-arg>
+    </bean>	
+    
+    <bean id="grantingStrategy" class="org.springframework.security.acls.domain.DefaultPermissionGrantingStrategy">
+    	<constructor-arg>
+    		<bean class="org.springframework.security.acls.domain.ConsoleAuditLogger"/>
+    	</constructor-arg>
+    </bean>
+	    
+	<beans profile="desarrollo,testing">
 		<bean id="dataSourceSeguridad" class="org.apache.commons.dbcp.BasicDataSource">
 			<property name="driverClassName" value="org.postgresql.Driver" />
 			<property name="url" value="jdbc:postgresql://localhost/seguridad" />
@@ -59,7 +119,13 @@
 			<property name="initialSize" value="2" />
 			<property name="maxActive" value="5" />
 		</bean>
-	</beans>	    
+	</beans>	  
+	
+	<beans profile="testing">	
+		<security:global-method-security secured-annotations="enabled" pre-post-annotations="enabled">
+			<security:expression-handler ref="expressionHandler"/>
+		</security:global-method-security> 			
+	</beans>  
 	
 	<beans profile="produccion">
 		<!-- Aqui se podría agregar un datasource a un recurso JNDI -->

@@ -5,9 +5,9 @@ import java.util.List;
 import mx.sep.seguridad.dao.ModuloMenuDao;
 import mx.sep.seguridad.modelo.ModuloMenu;
 
+import org.junit.Assert;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.util.Assert;
 
 import test.mx.sep.seguridad.SeguridadBaseTest;
 
@@ -18,7 +18,7 @@ public class ModuloMenuDaoTest extends SeguridadBaseTest {
 	
 	@Test
 	public void dependenciaTest(){
-		Assert.notNull(moduloMenuDao);
+		Assert.assertNotNull(moduloMenuDao);
 	}
 	
 	@Test
@@ -26,7 +26,7 @@ public class ModuloMenuDaoTest extends SeguridadBaseTest {
 		List<ModuloMenu> opciones =
 				moduloMenuDao.consultarTodos();
 		
-		Assert.notEmpty(opciones);
+		Assert.assertFalse(opciones.isEmpty());
 	}
 	
 	@Test
@@ -34,7 +34,7 @@ public class ModuloMenuDaoTest extends SeguridadBaseTest {
 		ModuloMenu opcion =
 				moduloMenuDao.consultarModulo(6l);
 		
-		Assert.notNull(opcion);
+		Assert.assertNotNull(opcion);
 	}
 
 }

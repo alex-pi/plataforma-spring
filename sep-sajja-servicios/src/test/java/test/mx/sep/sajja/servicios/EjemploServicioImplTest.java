@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.Assert;
 
 import mx.sep.sajja.servicios.EjemploServicio;
+import mx.sep.sajja.servicios.util.ErrorNegocio;
 
 public class EjemploServicioImplTest extends BaseServicioTest {
 	
@@ -14,5 +15,10 @@ public class EjemploServicioImplTest extends BaseServicioTest {
 	@Test
 	public void ejemploServicioDependenciaTest(){
 		Assert.notNull(ejemploServicio);
+	}
+	
+	@Test(expected=ErrorNegocio.class)
+	public void ejemploMensajeErrorNegocioTest(){
+		ejemploServicio.ejemploCodigoMensajeErrorNegocio();
 	}
 }

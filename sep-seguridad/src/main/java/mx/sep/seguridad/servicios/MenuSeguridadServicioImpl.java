@@ -8,6 +8,7 @@ import mx.sep.seguridad.modelo.ModuloMenu;
 import mx.sep.seguridad.modelo.OpcionMenu;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PostFilter;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -19,7 +20,9 @@ public class MenuSeguridadServicioImpl implements MenuSeguridadServicio {
 	private OpcionMenuDao opcionMenuDao;
 
 	public List<ModuloMenu> consultarModulos() {
-		return moduloMenuDao.consultarTodos();
+		List<ModuloMenu> modulos = moduloMenuDao.consultarTodos();
+		
+		return modulos;
 	}
 
 	public OpcionMenu consultarOpcionSubOpciones(Long idPadre) {
