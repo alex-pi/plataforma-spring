@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mx.sep.seguridad.dao.FormularioDao">
+
+	<resultMap type="Formulario" id="formularioResult">
+		<id property="id" column="id_t_formulario"/>
+		<result property="nombre" column="v_nombre"/>
+		<result property="apellido" column="v_apellido_pat"/>
+		<result property="email" column="v_correo"/>
+		<result property="password" column="v_password"/>
+		<result property="telefono" column="v_telefono"/>
+	</resultMap>
+
+	<select id="consultarTodos" resultMap="formularioResult">
+		select * from sajja.t_formulario;
+	</select>
+
+
+	<insert id="guardarFormulario" parameterType="mx.sep.sajja.modelo.Formulario" timeout="20000" >
+		insert into sajja.t_formulario (v_nombre,v_apellido_pat,v_correo,v_password,v_telefono)
+		values (#{nombre},#{apellido},#{email},#{password},#{telefono})
+	<selectKey keyProperty="id" resultType="int" order="AFTER"> 
+        select last_insert_id() as id 
+      </selectKey> 	
+	</insert>
+</mapper>
