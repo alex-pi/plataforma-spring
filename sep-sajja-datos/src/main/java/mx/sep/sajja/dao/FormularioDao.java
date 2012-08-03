@@ -7,6 +7,7 @@ import mx.sep.sajja.modelo.Formulario;
 public interface FormularioDao {
 	
 	List<Formulario> consultarTodos();
-	void guardarFormulario(Formulario formulario);
+	Formulario consultarFormulario(Long id);
+	Integer guardarFormulario(Formulario formulario);
 
 }

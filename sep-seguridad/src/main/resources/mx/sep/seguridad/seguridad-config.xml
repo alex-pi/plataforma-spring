@@ -113,7 +113,7 @@
 	<beans profile="desarrollo,testing">
 		<bean id="dataSourceSeguridad" class="org.apache.commons.dbcp.BasicDataSource">
 			<property name="driverClassName" value="org.postgresql.Driver" />
-			<property name="url" value="jdbc:postgresql://localhost/seguridad" />
+			<property name="url" value="jdbc:postgresql://localhost:5432/seguridad" />
 			<property name="username" value="pruebas" />
 			<property name="password" value="pruebas" />
 			<property name="initialSize" value="2" />

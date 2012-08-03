@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="mx.sep.seguridad.dao.FormularioDao">
+<mapper namespace="mx.sep.sajja.dao.FormularioDao">
 
 	<resultMap type="Formulario" id="formularioResult">
 		<id property="id" column="id_t_formulario"/>
@@ -17,11 +17,15 @@
 	</select>
 
 
-	<insert id="guardarFormulario" parameterType="mx.sep.sajja.modelo.Formulario" timeout="20000" >
-		insert into sajja.t_formulario (v_nombre,v_apellido_pat,v_correo,v_password,v_telefono)
-		values (#{nombre},#{apellido},#{email},#{password},#{telefono})
-	<selectKey keyProperty="id" resultType="int" order="AFTER"> 
-        select last_insert_id() as id 
-      </selectKey> 	
+	<select id="consultarFormulario" resultMap="formularioResult">
+		select * from sajja.t_formulario where id_t_formulario = #{id};
+	</select>
+
+	<insert id="guardarFormulario" parameterType="Formulario" keyProperty="id">
+  		<selectKey keyProperty="id" resultType="long" order="BEFORE">
+  		     SELECT nextVal('sajja.t_formulario_seq')
+  		</selectKey> 	  		
+		insert into sajja.t_formulario (id_t_formulario,v_nombre,v_apellido_pat,v_correo,v_password,v_telefono)
+		values (#{id},#{nombre},#{apellido},#{email},#{password},#{telefono})
 	</insert>
 </mapper>
