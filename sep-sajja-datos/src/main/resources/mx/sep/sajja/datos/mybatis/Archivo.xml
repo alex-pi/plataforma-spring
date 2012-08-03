@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mx.sep.sajja.dao.ArchivoDao">
+
+	<resultMap type="Archivo" id="ArchivoResult">
+		<id property="id" column="id_t_archivo"/>
+		<result property="nombre" column="v_nombre"/>
+		<result property="datos" column="v_datos"/>
+		<result property="ruta" column="v_ruta"/>
+	</resultMap>
+
+	<select id="consultarTodos" resultMap="ArchivoResult">
+		select * from sajja.t_archivo;
+	</select>
+
+
+	<insert id="guardarArchivo" parameterType="Archivo" keyProperty="id">
+  		<selectKey keyProperty="id" resultType="long" order="BEFORE">
+  		     SELECT nextVal('sajja.t_archivo_seq')
+  		</selectKey> 
+		insert into sajja.t_archivo (id_t_archivo,v_nombre,v_datos,v_ruta)
+		values (#{id},#{nombre},#{datos},#{ruta})	
+	</insert>
+</mapper>

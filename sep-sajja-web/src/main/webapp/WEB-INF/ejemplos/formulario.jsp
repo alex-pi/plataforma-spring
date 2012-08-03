@@ -4,45 +4,32 @@
 <table class="pageTable">
 		<tr>
 			<td id="colForm">
-				<form dojoType="dijit.form.Form" method="post" id="formularioForm" >
-		<script type="dojo/method" event="onSubmit">
-			if(this.validate()){
-				return confirm('El formulario es válido, favor de presionar ok para continuar');
-			}else{
-				alert('El formulario contiene datos incorrectos, favor de corregirlos');
-				return false;
-			}
-			return true;
-		</script>
+				<form id="formularioForm" >
 				<div>
-					<label for="lfirstName">Nombre(s)*</label>
-					<input type="text" required="true" name="firstName" id="firstName" placeholder="Nombre" 
-							dojoType="dijit.form.ValidationTextBox" missingMessage="Ingresa tú nombre" />					
+					<label for="lNombre">Nombre(s)*: </label>
+					<input name="nombre" id="nombre"/>					
 				</div>
 				<div>
-					<label for="lastName">Apellidos*</label>
-					<input type="text" required="true" name="lastName" id="lastName" placeholder="Apellidos" 
-							dojoType="dijit.form.ValidationTextBox" missingMessage="Ingresa tus Apellidos" />			
+					<label for="lApellido">Apellido Paterno*:</label>
+					<input name="apellido" id="apellido"/>			
 				<div>
 				</div>
 					<label for="lemail">E-mail*:</label>
-					<input type="text" required="true" name="email" id="email" dojoType="dijit.form.ValidationTextBox" 
+					<input name="email" id="email" 
 								validator="dojox.validate.isEmailAddress"/>					
 				</div>
 				<div>
 					<label for="lpassword">Contraseña*:</label>
-					<input type="password" required="true" name="password" id="password" dojoType="dijit.form.ValidationTextBox" 
-								missingMessage="Ingresa tú password" />					
+					<input name="password" id="password" />					
 
 				</div>
 				<div>
-					<label for="lphone">Telefono:</label>
-					<input type="text name="phone" id="phone"
-							dojoType="dijit.form.ValidationTextBox" missingMessage="Ingresa tú teléfono" />
+					<label for="lTelefono">Telefono:</label>
+					<input name="telefono" id="telefono"/>
 				</div>
-
-				<input type="submit" value="Enviar" label="Enviar" id="submitButton" dojoType="dijit.form.Button" />
-				
+				<div>
+				<input id="submitEnviar"/>
+				</div>
 			</form>
 			</td>
 			<td id="colImages">

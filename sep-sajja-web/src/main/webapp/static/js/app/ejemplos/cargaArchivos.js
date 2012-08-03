@@ -45,14 +45,16 @@ define(['dojo/dom','dojo/cookie', 'dojo/parser', 'dijit/form/Button', 'dijit/for
 	    	force: '',
 	    	onComplete: function(respuesta){
 	    		// Aqui se puede hacer algo con el objeto de respuesta que se devuelve.
-	    		console.log(respuesta);
+	    		console.log("Esta es la respuesta: " + respuesta);
 	    	},
 	    	onChange: function(archivos){
 	    		// Aquí se podrían listar los archivos en alguna tabla. 
 	    		console.log(archivos);
 	    	}
 	    }, 'uploader');
-	    uploader.startup();	    
+	    uploader.startup();
+	    
+	    
 	}
 
 	return{
