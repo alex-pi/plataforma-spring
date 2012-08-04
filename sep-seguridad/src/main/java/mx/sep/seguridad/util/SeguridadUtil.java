@@ -5,8 +5,22 @@ import mx.sep.seguridad.servicios.CustomUserDetails;
 
 import org.springframework.security.core.context.SecurityContextHolder;
 
+/**
+ * Métodos de utilería para interactuar con el módulo de seguridad.
+ * 
+ * @author Alejandro Pimentel
+ *
+ */
 public class SeguridadUtil {
 
+	/**
+	 * Trata de obtener la información del usuario autenticado para el hilo
+	 * de ejecución actual.
+	 * 
+	 * Si no le es posible obtenerlo lanza un {@link RuntimeException}
+	 * 
+	 * @return Un objeto tipo {@link UsuarioSeguridad}
+	 */
     public static UsuarioSeguridad getUsuarioActual() {
         if(SecurityContextHolder.getContext().
                 getAuthentication() == null

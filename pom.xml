@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
+  <name>Sistema de Administración de Juicios Jurídico Administrativos</name>
   <groupId>mx.sep.sajja</groupId>
   <artifactId>sep-sajja</artifactId>
   <version>0.0.1-SNAPSHOT</version>
@@ -17,7 +18,7 @@
     <module>sep-seguridad</module>
     <module>sep-sajja-modelo</module>
   </modules>
-  
+ 
   <repositories>	
 	<repository>
 	    <id>com.springsource.repository.bundles.release</id>
@@ -172,6 +173,28 @@
 		        <junitArtifactName>org.junit:com.springsource.org.junit</junitArtifactName>
 		    </configuration>
 		</plugin>  
+		<plugin>
+			<groupId>org.apache.maven.plugins</groupId>
+			<artifactId>maven-javadoc-plugin</artifactId>
+			<version>2.8.1</version>
+			<configuration>
+	          <quiet>true</quiet>	  
+	          <detectLinks>true</detectLinks>
+	          <detectOfflineLinks>true</detectOfflineLinks>	                 
+	        </configuration>
+	        <executions>
+	          <execution>
+	            <id>aggregate</id>
+	            <goals>
+	              <goal>aggregate</goal>	              
+	            </goals>
+	            <phase>site</phase>
+	            <configuration>
+	              <!-- Configuraciones específicas -->
+	            </configuration>
+	          </execution>
+	        </executions>	        
+		</plugin>		
 		</plugins> 	
   	</pluginManagement>
   </build>  

@@ -8,6 +8,14 @@ import mx.sep.seguridad.modelo.UsuarioSeguridad;
 
 import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 
+/**
+ * Las instancias de esta clase contienen toda la información que sucedió dentro de la
+ * aplicación. Es usada por alguna implementación de {@link ServicioNotificacion} para
+ * publicar la información en algún medio (p.e. Logger o email).
+ * 
+ * @author Alejandro Pimentel
+ *
+ */
 @JsonIgnoreProperties( { "excepcion" } )
 public class InformacionError
         implements Serializable {
@@ -43,42 +51,42 @@ public class InformacionError
     private String statusText;
 
     /**
-     * @return the claseExcepción
+     * @return La clase de la Excepción que fue lanzada.
      */
     public Class<?> getClaseExcepcion() {
         return claseExcepcion;
     }
 
     /**
-     * @param claseExcepción the claseExcepción to set
+     * @param La clase de la Excepción que fue lanzada.
      */
     public void setClaseExcepcion(Class<?> claseExcepcion) {
         this.claseExcepcion = claseExcepcion;
     }
 
     /**
-     * @return the excepción
+     * @return El objeto de la Excepción o Error lanzados
      */
     public Throwable getExcepcion() {
         return excepcion;
     }
 
     /**
-     * @param excepción the excepción to set
+     * @param El objeto de la Excepción o Error lanzados
      */
     public void setExcepcion(Throwable excepcion) {
         this.excepcion = excepcion;
     }
 
     /**
-     * @return the momentoError
+     * @return El momento en que sucedió la excepción.
      */
     public Date getMomentoError() {
         return momentoError;
     }
 
     /**
-     * @param momentoError the momentoError to set
+     * @param momentoError El momento en que sucedió la excepción.
      */
     public void setMomentoError(Date momentoError) {
         this.momentoError = momentoError;
@@ -89,147 +97,147 @@ public class InformacionError
     }
 
     /**
-     * @return the usuario
+     * @return Información del usuario al momento que sucedió la excepción.
      */
     public UsuarioSeguridad getUsuario() {
         return usuario;
     }
 
     /**
-     * @param usuario the usuario to set
+     * @param usuario Información del usuario al momento que sucedió la excepción.
      */
     public void setUsuario(UsuarioSeguridad usuario) {
         this.usuario = usuario;
     }
 
     /**
-     * @return the mensaje
+     * @return El mensaje que detalla el error 
      */
     public String getMensaje() {
         return mensaje;
     }
 
     /**
-     * @param mensaje the mensaje to set
+     * @param mensaje El mensaje que detalla el error 
      */
     public void setMensaje(String mensaje) {
         this.mensaje = mensaje;
     }
 
     /**
-     * @return the claseHandler
+     * @return El tipo de objeto del cual provino la excepción.
      */
     public Class<?> getClaseHandler() {
         return claseHandler;
     }
 
     /**
-     * @param claseHandler the claseHandler to set
+     * @param claseHandler El tipo de objeto del cual provino la excepción.
      */
     public void setClaseHandler(Class<?> claseHandler) {
         this.claseHandler = claseHandler;
     }
 
     /**
-     * @return the host
+     * @return La dirección del cliente o del último proxy por el que la petición salió.
      */
     public String getHost() {
         return host;
     }
 
     /**
-     * @param host the host to set
+     * @param host La dirección del cliente o del último proxy por el que la petición salió.
      */
     public void setHost(String host) {
         this.host = host;
     }
 
     /**
-     * @return the urlPetición
+     * @return El url reconstruido (completo) que el cliente solicitó.
      */
     public String getUrlPeticion() {
         return urlPeticion;
     }
 
     /**
-     * @param urlPetición the urlPetición to set
+     * @param urlPetición El url reconstruido (completo) que el cliente solicitó.
      */
     public void setUrlPeticion(String urlPeticion) {
         this.urlPeticion = urlPeticion;
     }
 
     /**
-     * @return the nivelError
+     * @return Una cadena que clasifica la gravedad del error sucedido.
      */
     public String getNivelError() {
         return nivelError;
     }
 
     /**
-     * @param nivelError the nivelError to set
+     * @param nivelError Una cadena que clasifica la gravedad del error sucedido.
      */
     public void setNivelError(String nivelError) {
         this.nivelError = nivelError;
     }
 
     /**
-     * @return the momentoErrorFrmt
+     * @return El momento del error con un formato más amigable.
      */
     public String getMomentoErrorFrmt() {
         return momentoErrorFrmt;
     }
 
     /**
-     * @return the extraInfo
+     * @return Objeto arbitrario con información adicional del error. O información que deba ser procesada dado el error sucedido.
      */
     public Object getExtraInfo() {
         return extraInfo;
     }
 
     /**
-     * @param extraInfo the extraInfo to set
+     * @param extraInfo Objeto arbitrario con información adicional del error. O información que deba ser procesada dado el error sucedido.
      */
     public void setExtraInfo(Object extraInfo) {
         this.extraInfo = extraInfo;
     }
 
     /**
-     * @return
+     * @return Una clave única del error. Puede ser usada para rastrear el error dentro de los archivos de log.
      */
     public String getClaveError() {
         return claveError;
     }
 
     /**
-     * @param claveError
+     * @param claveError Una clave única del error. Puede ser usada para rastrear el error dentro de los archivos de log.
      */
     public void setClaveError(String claveError) {
         this.claveError = claveError;
     }
 
     /**
-     * @return the status
+     * @return Un código de error entregado al cliente. Si el cliente es HTTP se entregará un código de error 503. 
      */
     public Integer getStatus() {
         return status;
     }
 
     /**
-     * @param status the status to set
+     * @param status Un código de error entregado al cliente. Si el cliente es HTTP se entregará un código de error 503. 
      */
     public void setStatus(Integer status) {
         this.status = status;
     }
 
     /**
-     * @return the statusText
+     * @return Por default es el mensaje de la excepción original. Típicamente un detalle técnico.
      */
     public String getStatusText() {
         return statusText;
     }
 
     /**
-     * @param statusText the statusText to set
+     * @param statusText Por default es el mensaje de la excepción original. Típicamente un detalle técnico.
      */
     public void setStatusText(String statusText) {
         this.statusText = statusText;

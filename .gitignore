@@ -28,6 +28,7 @@ Icon?
 Thumbs.db
 
 # Targets #
+target/*
 */target/*
 */target/**/*.*
 pom.properties

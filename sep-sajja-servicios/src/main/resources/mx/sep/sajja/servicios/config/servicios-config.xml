@@ -11,7 +11,10 @@
        http://www.springframework.org/schema/context
        http://www.springframework.org/schema/context/spring-context-3.1.xsd">
 
+	<!-- Se buscará dentro de este paquete y sus subpaquetes beans con algún estereotipo para crearlos como beans.
+		La declaración de esta etiqueta tambien activa todo lo incluido por context:annotation-config -->
 	<context:component-scan base-package="mx.sep.sajja.servicios"/>
+	<!-- Activamos la creación de aspectos que usen @AspectJ -->
 	<aop:aspectj-autoproxy />
 	
 </beans>

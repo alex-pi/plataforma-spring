@@ -9,7 +9,7 @@
   </parent>
   <groupId>mx.sep.seguridad</groupId>
   <artifactId>sep-seguridad</artifactId>
-  <version>0.0.1-SNAPSHOT-seguridad</version>
+  <version>1.0.0-seguridad</version>
   <name>sep-seguridad</name>
   <url>http://maven.apache.org</url>
   <properties>

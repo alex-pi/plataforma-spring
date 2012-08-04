@@ -16,23 +16,32 @@
        http://www.springframework.org/schema/util/spring-util-3.1.xsd">
               
     <mvc:annotation-driven />
+    <!-- Indicamos el paquete base bajo el cual se encontrarán todos nuestros Controllers. -->
 	<context:component-scan base-package="mx.sep.sajja.web.controller"/>
+	
+	<!-- Evita conflictos de URL en caso de que se opte por usar el path raíz en la configuración del DispatcherServlet de Spring -->
 	<mvc:resources mapping="/static/**" location="/static/" />
 	
+	<!-- Un pequeño Controller que define Spring para intentar resolver vistas con el path de la petición que se atiende. -->
     <bean id="simpleController"
           class="org.springframework.web.servlet.mvc.UrlFilenameViewController" />
 
+	<!-- Le indicamos a Spring que UrlFilenameViewController intentará hacer su trabajo para todos los url's que se atiendan.
+			Indicamos el orden en este debe intervenir. Con un orden de 5 basta para darle prioridad a todos los controller que creemos
+			por sobre el UrlFilenameViewController. -->
     <bean id="proyectoSimpleHandler"
           class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping"
           p:mappings="/**=simpleController"
           p:order="5"/>
               
+    <!-- Definimos que nuestras vistas serán JSP's con soporte a JSTL bajo el directorio WEB-INF y con extensión .jsp -->
 	<bean id="jspViewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 	    <property name="viewClass" value="org.springframework.web.servlet.view.JstlView" />
 	    <property name="prefix" value="/WEB-INF/" />
 	    <property name="suffix" value=".jsp" />
 	</bean>          
 	
+	<!-- Añadimos un convertidor de mensajes json que entran y salen de nuestros controllers. -->
 	<bean class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter">
 	    <property name="messageConverters">
 	        <util:list>
@@ -42,12 +51,15 @@
 	    <property name="order" value="0" />
 	</bean>	
 	
+	<!-- Utilería de spring para aceptar subida de archivos. -->
 	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">     
 		<property name="maxUploadSize" value="-1"/>
 	</bean> 	
 	
+	<!-- El locale será resuelto con los encabezados de cada petición. En este caso dependerá de la configuración del navegador. -->
 	<bean id="localeResolver" class="org.springframework.web.servlet.i18n.AcceptHeaderLocaleResolver"/>
 	
+	<!-- Un manejador de errores propio con mecanismos de notificación y soporte a mensajes json. -->
     <bean class="mx.sep.sajja.web.util.ManejadorErroresJson">
         <property name="nombreProfileDesarrollo" value="desarrollo" />
         <property name="mapeoExcepciones">

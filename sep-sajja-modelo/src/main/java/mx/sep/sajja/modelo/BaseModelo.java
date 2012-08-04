@@ -1,5 +1,14 @@
 package mx.sep.sajja.modelo;
 
+/**
+ * Clase base para las clases de modelo/dominio.
+ * 
+ * Establece que el id de debe ser de tipo {@link Long} y sobrecargas
+ * de {@link Object#equals(Object)} y {@link Object#hashCode()}
+ * 
+ * @author Alejandro Pimentel
+ *
+ */
 public abstract class BaseModelo {
 
 	private Long id;

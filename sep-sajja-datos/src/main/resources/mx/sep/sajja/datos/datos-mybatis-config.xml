@@ -9,24 +9,37 @@
        http://www.springframework.org/schema/context
        http://www.springframework.org/schema/context/spring-context-3.1.xsd">
 
-	<context:component-scan base-package="mx.sep.sajja.daos"/>
+	<!-- spring-mybatis crea implementaciones de los daos a partir de la interfaz,
+			sin embargo, si se requieren implementaciones específicas, podrán colocarse dentro
+			de este paquete p.e. mx.sep.sajja.dao.impl.JdbcTemplateEjemploDao -->
+	<context:component-scan base-package="mx.sep.sajja.dao.impl"/>
 	
+	<!-- Este bean que provee mybatis es el encargado de crear implementaciones de nuestros daos al
+		 vuelo -->
 	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
 		<property name="basePackage" value="mx.sep.sajja.dao" />
 		<property name="sqlSessionFactory" ref="sqlSessionFactory" />
 	</bean>
 	
+	<!-- Bean para configurar mybatis -->
 	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
 		<property name="dataSource" ref="dataSource" />
+		<!-- Archivo de principales configuraciones de mybatis. Settings como el cache van en este archivo. -->
 		<property name="configLocation" value="classpath:mx/sep/sajja/datos/mybatis-sqlmap.xml" />
+		<!-- Con esta propiedad pedimos al SessionFactory que al referir a una clase de nuestro modelo
+			sólo tengamos que mencionar su nombre (y no le paquete completo). -->
 		<property name="typeAliasesPackage" value="mx.sep.sajja.modelo" />
+		<!-- La ubicación de todos mapeos de SQL que mybatis tomará. -->
 		<property name="mapperLocations" value="classpath*:mx/sep/sajja/datos/mybatis/**/*.xml" />
 	</bean>
 	
+	<!-- Bean que maneja la transacción de conexiones que provienen de un DataSource para drives JDBC2.0
+		o JDBC3.0. Recomendable este último pues soporta transacciones anidadas (nested transactions) entre otros beneficios.-->
 	<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager"
 	    p:dataSource-ref="dataSource" />
-	    
-	<beans profile="desarrollo">
+	
+	<!-- Aqui especificamos de dónde provendrán las conexiones a base de datos cuando ejecutemos en "profile" desarrollo. -->    
+	<beans profile="desarrollo,testing">
 		<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
 			<property name="driverClassName" value="org.postgresql.Driver" />
 			<property name="url" value="jdbc:postgresql://localhost/sajja" />
@@ -37,6 +50,7 @@
 		</bean>
 	</beans>	    
 	
+	<!-- Podemos agregar otros profiles si requerimos de otros ambientes aplicativos. -->
 	<beans profile="produccion">
 		<!-- Aqui se podría agregar un datasource a un recurso JNDI -->
 	</beans>
