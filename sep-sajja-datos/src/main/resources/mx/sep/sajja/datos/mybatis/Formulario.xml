@@ -13,19 +13,19 @@
 	</resultMap>
 
 	<select id="consultarTodos" resultMap="formularioResult">
-		select * from sajja.t_formulario;
+		select * from t_formulario;
 	</select>
 
 
 	<select id="consultarFormulario" resultMap="formularioResult">
-		select * from sajja.t_formulario where id_t_formulario = #{id};
+		select * from t_formulario where id_t_formulario = #{id};
 	</select>
 
 	<insert id="guardarFormulario" parameterType="Formulario" keyProperty="id">
   		<selectKey keyProperty="id" resultType="long" order="BEFORE">
-  		     SELECT nextVal('sajja.t_formulario_seq')
+  		     SELECT nextVal('t_formulario_seq')
   		</selectKey> 	  		
-		insert into sajja.t_formulario (id_t_formulario,v_nombre,v_apellido_pat,v_correo,v_password,v_telefono)
+		insert into t_formulario (id_t_formulario,v_nombre,v_apellido_pat,v_correo,v_password,v_telefono)
 		values (#{id},#{nombre},#{apellido},#{email},#{password},#{telefono})
 	</insert>
 </mapper>

@@ -8,9 +8,14 @@ import mx.sep.seguridad.modelo.ModuloMenu;
 import mx.sep.seguridad.modelo.OpcionMenu;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.access.prepost.PostFilter;
 import org.springframework.stereotype.Service;
 
+/**
+ * Clase de servicio que permite acceder a la información del Menú de opciones.
+ * 
+ * @author Alejandro Pimentel
+ *
+ */
 @Service
 public class MenuSeguridadServicioImpl implements MenuSeguridadServicio {
 
@@ -19,6 +24,10 @@ public class MenuSeguridadServicioImpl implements MenuSeguridadServicio {
 	@Autowired
 	private OpcionMenuDao opcionMenuDao;
 
+	/**
+	 * 
+	 * {@inheritDoc}
+	 */
 	public List<ModuloMenu> consultarModulos() {
 		List<ModuloMenu> modulos = moduloMenuDao.consultarTodos();
 		

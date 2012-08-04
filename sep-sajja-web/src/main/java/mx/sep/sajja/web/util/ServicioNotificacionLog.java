@@ -4,8 +4,14 @@ import org.slf4j.LoggerFactory;
 import org.slf4j.Logger;
 
 /**
+ * Implementación de {@link ServicioNotificacion} que publica la información por medio
+ * de slf4j.
+ * 
+ * Se recomienda usar configuración asíncrona del logger para no afectar el desempeño de la
+ * aplicación. 
  *
- ** @author Alejandro Pimentel 
+ * @author Alejandro Pimentel
+ *  
  */
 public class ServicioNotificacionLog implements ServicioNotificacion{
     Logger log = LoggerFactory.getLogger(ServicioNotificacionLog.class);

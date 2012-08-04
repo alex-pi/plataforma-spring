@@ -62,7 +62,7 @@ import org.springframework.web.util.WebUtils;
  *                    leyenda que se desee -->
  *                    <entry key="mx.sep.sajja.servicios.util.ErrorNegocio" value="ERROR DE NEGOCIO"></entry>
  *                    <entry key="mx.sep.sajja.servicios.util.ErrorInfraestructura" value="ERROR GRAVE"></entry>
- *                    <entry key="java.lang.RuntimeException" value="ERROR"></entry>
+ *                    <entry key="java.lang.RuntimeException" value="ERROR NO IDENTIFICADO"></entry>
  *                </map>
  *            </property>
  *            <property name="servicioNotificacionDefault" ref="notificacionLog" />
@@ -71,7 +71,7 @@ import org.springframework.web.util.WebUtils;
  * }
  * </pre>
  *
- ** @author Alejandro Pimentel 
+ * @author Alejandro Pimentel 
  */
 public class ManejadorErroresJson
         extends AbstractHandlerExceptionResolver implements ApplicationContextAware{

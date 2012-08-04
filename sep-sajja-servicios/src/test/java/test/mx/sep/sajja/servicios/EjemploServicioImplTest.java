@@ -1,11 +1,11 @@
 package test.mx.sep.sajja.servicios;
 
+import mx.sep.sajja.servicios.EjemploServicio;
+import mx.sep.sajja.servicios.util.ErrorNegocio;
+
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.Assert;
-
-import mx.sep.sajja.servicios.EjemploServicio;
-import mx.sep.sajja.servicios.util.ErrorNegocio;
 
 public class EjemploServicioImplTest extends BaseServicioTest {
 	

@@ -40,7 +40,7 @@ public class FormularioDaoTest extends BaseDaoTest {
 	public void consultarFormularioByIdTest(){
 		
 	
-		Formulario formulario = formularioDao.consultarFormulario(new Long(9));
+		Formulario formulario = formularioDao.consultarFormulario(new Long(1));
 		Assert.assertNotNull(formulario);
 		
 	}

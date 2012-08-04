@@ -11,22 +11,34 @@
        http://www.springframework.org/schema/aop
        http://www.springframework.org/schema/aop/spring-aop-3.1.xsd
        http://www.springframework.org/schema/context
-       http://www.springframework.org/schema/context/spring-context-3.1.xsd">
-       
+       http://www.springframework.org/schema/context/spring-context-3.1.xsd"
+       profile="testing">
+     
+    <!-- con esto indicamos a Spring que tome en cuenta todas las anotaciones  @Required,
+	@Autowired, @PostConstruct, @PreDestroy and @Resource que coloquemos en nuestros beans de servicios. -->  
 	<context:annotation-config />
+	<!-- Se buscan todos los archivos de configuración de beans de servicios. Si el módulo maven de los servicios es
+			demasiado grande o se desea dividir por razones de control, los beans de servicio serán tomados automáticamente
+			siempre y cuando vivan dentro del paquete base mx.sep.sajja.servicios-->
 	<import resource="classpath*:mx/sep/sajja/servicios/**/*-config.xml" />
+	<!-- Usamos el mismo truco para obtener los archivos de configuración de beans de obtención de datos (típicamente Daos) -->
 	<import resource="classpath*:mx/sep/sajja/datos/**/*-config.xml" />
-       
+
+	<!-- Creamos un "advice" para indicar cómo se comportará la transacción según los métodos que se llamen.
+		Igualmente, por default, si estos métodos lanzan un RuntimeException o un Error se hará rollback a la transacción. 
+		Si para cierto tipo de excepciones NO se desea hacer rollback se debe especificar en no-rollback-for -->       
 	<tx:advice id="txAdvice" transaction-manager="transactionManager">
 	    <tx:attributes>
-	        <!-- Los métodos de consulta -->
+	        <!-- Los métodos de consulta crea transacciones de sólo lectura. -->
 	        <tx:method name="busca*" read-only="true"/>            
 	        <tx:method name="consulta*" read-only="true"/>
 	        <!-- todo lo demás tiene configuración default -->
-	        <tx:method name="*"/>
+	        <tx:method name="*" />	        
 	    </tx:attributes>
 	</tx:advice>
 	
+	<!-- Por último indicamos cuándo debe entrar en acción nuestro advice. En este caso será al ejecutar
+		cualquier método dentro de cualquier clase que en su línea de paquetes incluya uno que se llame "servicios" -->
 	<aop:config>
 	    <aop:pointcut id="pointcutServicios" expression="execution(* mx..*servicios..*.*(..))"/>
 	    <aop:advisor advice-ref="txAdvice" pointcut-ref="pointcutServicios" order="1"/>

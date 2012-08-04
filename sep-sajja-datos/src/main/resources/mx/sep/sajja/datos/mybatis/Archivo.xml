@@ -11,15 +11,15 @@
 	</resultMap>
 
 	<select id="consultarTodos" resultMap="ArchivoResult">
-		select * from sajja.t_archivo;
+		select * from t_archivo;
 	</select>
 
 
 	<insert id="guardarArchivo" parameterType="Archivo" keyProperty="id">
   		<selectKey keyProperty="id" resultType="long" order="BEFORE">
-  		     SELECT nextVal('sajja.t_archivo_seq')
+  		     SELECT nextVal('t_archivo_seq')
   		</selectKey> 
-		insert into sajja.t_archivo (id_t_archivo,v_nombre,v_datos,v_ruta)
+		insert into t_archivo (id_t_archivo,v_nombre,v_datos,v_ruta)
 		values (#{id},#{nombre},#{datos},#{ruta})	
 	</insert>
 </mapper>
