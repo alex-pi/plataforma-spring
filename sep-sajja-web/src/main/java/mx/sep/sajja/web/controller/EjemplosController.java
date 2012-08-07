@@ -55,7 +55,7 @@ public class EjemplosController {
 	 */
 //	@RequestMapping("/controllerJsp")
 	public ModelAndView vistaDesdeController() {
-		return new ModelAndView("ejemplos/controllerJsp","datoModelo", "Despachado por controller");
+		return new ModelAndView("ejemplos/controllerJsp","datoModelo", "Pasé por el controller");
 	}
 	
 	/**

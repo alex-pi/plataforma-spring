@@ -7,6 +7,7 @@ import mx.sep.sajja.modelo.Formulario;
 public interface FormularioServicio {
 	
 	List<Formulario> consultarModulos();
-	void guardarFormulario(Formulario formulario);
+	
+	Long guardarFormulario(Formulario formulario);
 
 }

@@ -10,6 +10,7 @@
   	<title>Sistema de Administración de Juicios Jurídico Administrativos.</title>
 	<link rel="stylesheet" href="static/css/style.css" media="screen">
   	<link rel="stylesheet" href="static/js/libs/dijit/themes/soria/soria.css" media="screen">  
+  	<link rel="stylesheet" href="static/js/libs/dojox/widget/Toaster/Toaster.css" />
   	<script>
   		dojoConfig= {
 			has: {
@@ -33,8 +34,8 @@
   	      	parseOnLoad: false,
   	        async: true,
   	      	debugAtAllCosts: true,
-  	      	ioPublish: true
-//   	      	cacheBust: new Date()
+  	      	ioPublish: true,
+  	      	cacheBust: true
   	    };  		
   	</script>
   	<script src="static/js/libs/dojo/dojo.js"></script>
@@ -43,9 +44,10 @@
 		         "dijit/registry", "dijit/layout/BorderContainer",
 		            "dijit/layout/TabContainer", "dijit/layout/ContentPane",
 		            "dijit/layout/AccordionContainer", "dijit/form/Button", "dojox/widget/Standby", 
-		            "dojo/store/JsonRest", "dojo/string", "app/util/errorHandler", "dojo/domReady!"],
+		            "dojo/store/JsonRest", "dojo/string", "dojox/widget/Toaster", "app/util/errorHandler", 
+		            "dojo/domReady!"],
 		        function(TreeMenu, xhr, arrayUtil, registry, BorderContainer, TabContainer, ContentPane, 
-		        		AccordionContainer, Button, Standby, JsonRest, string){					
+		        		AccordionContainer, Button, Standby, JsonRest, string, Toaster){					
 					
 					function onClickOpcion(item, node, evt){
 			        	var url = item.url;
@@ -71,14 +73,14 @@
 							document.body.appendChild(standby.domNode);
 							standby.startup();
 							standby.show();
-							
-				        	require({cacheBust: new Date()},['app/'+url,'dojo/text!content/'+url], function(modulo,template){
+				        	require(['app/'+url,'app/util/text!content/'+url + '!strip;no-cache'], function(modulo,template){
 				        		standby.hide();
 				        		if(modulo.init){
 				        			modulo.init({
 				        				contenedor: panel, 
-				        				idContendor: 'contentTabs_' + idOp,
-				        				template: template
+				        				idContenedor: 'contentTabs_' + idOp,
+				        				template: template,
+				        				urlBase: dojo.config.app.urlBase
 			        				});
 				        			// Usar aqui deferreds para saber cuándo quitar el standby				        			
 // 				        			panel.startup();
@@ -131,8 +133,8 @@
 					 
 					contentTabs.addChild(
 					    new ContentPane({
-					        content: "Contenido de Tab1",
-					        title: "Tab 1"
+					        content: "<pre>Al dar click en las opciones del menú se mostrarán nuevos tabs.</pre>",
+					        title: "Bienvenido"
 					    })
 					);
 					
@@ -149,12 +151,19 @@
 							});
 							layoutPrincipal.startup();
 						}
-					});								
+					});
+					
+					new Toaster({
+						id: 'panelMensaje',
+						positionDirection: 'tl-down',
+						messageTopic: '/app/notificacion'
+					}, 'panelNotificaciones');
 					
 		        });
 	</script>               
 </head>
 	<body class="soria">
+		<div id="panelNotificaciones"></div>	
         <div id="layoutPrincipal">
 
         </div>

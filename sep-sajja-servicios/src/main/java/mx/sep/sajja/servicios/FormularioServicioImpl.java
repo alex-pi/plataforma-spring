@@ -22,8 +22,10 @@ public class FormularioServicioImpl implements FormularioServicio {
 		return formularioDao.consultarTodos();
 	}
 
-	public void guardarFormulario(Formulario formulario) {
-		formularioDao.guardarFormulario(formulario);		
+	public Long guardarFormulario(Formulario formulario) {
+		formularioDao.guardarFormulario(formulario);
+		
+		return formulario.getId();
 	}	
 
 }

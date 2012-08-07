@@ -11281,9 +11281,9 @@ define(["./_base/kernel", "require", "./has", "./_base/xhr"], function(dojo, req
 					};
 				if(absMid in theCache){
 					text = theCache[absMid];
-				}else if(url in require.cache){
+				}else if(url in require.cache){				
 					text = require.cache[url];
-				}else if(url in theCache){
+				}else if(url in theCache){					
 					text = theCache[url];
 				}
 				if(text===notFound){
