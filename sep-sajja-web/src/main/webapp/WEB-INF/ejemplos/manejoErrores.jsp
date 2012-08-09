@@ -16,7 +16,7 @@ Este ejemplo muestra las posibilidades que se tienen en cuanto a manejo de error
 	e.setCampo1("Información adicional del error.");
 	throw new ErrorNegocio(new Object[]{}, "codigo.mensaje.ejemplo", e);
 	
-	El objeto llamado 'e' contiene información adicional y específica para el error que a sucedido. De este modo desearíamos
+	El objeto llamado 'e' contiene información adicional y específica para el error que ha sucedido. De este modo desearíamos
 	procesar el error nosotros mismos, de ahi que para esta petición sí declaremos un 'handler' para error.
 	
 		error: function(resp){

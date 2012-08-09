@@ -17,4 +17,15 @@
 	<!-- Activamos la creación de aspectos que usen @AspectJ -->
 	<aop:aspectj-autoproxy />
 	
+	<bean id="serviciosSistemaArchivos" class="mx.sep.sajja.servicios.SistemaArchivosServicioImpl">
+		<property name="dirBase" value="file:/tmp/sajja/"></property>
+		<property name="paths">
+			<map>
+				<entry key="juiciosAbiertos" value="juicios/abiertos/"></entry>
+				<entry key="juiciosCerrados" value="juicios/cerrados/"></entry>
+				<entry key="personal" value="archivo/personal/"></entry>
+			</map>
+		</property>
+	</bean>
+	
 </beans>

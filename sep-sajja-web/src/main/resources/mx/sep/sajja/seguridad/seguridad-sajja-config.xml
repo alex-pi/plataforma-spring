@@ -14,7 +14,7 @@
         <intercept-url pattern="/login.jsp*" access="permitAll"/>
         <intercept-url pattern="/static/**" access="permitAll"/>
         <intercept-url pattern="/**" access="isAuthenticated()" />
-        <form-login login-page="/login.jsp" />
+        <form-login login-page="/login.jsp" default-target-url="/" always-use-default-target="true" />
     </http>
     
     <!-- Al indicar que usaremos el bean sepUserDetailsService decimos que usaremos el modo 
@@ -24,7 +24,7 @@
         </authentication-provider>
     </authentication-manager> 
     
-    <!-- Indicamos que anotaciones @Secured y @PostFilter deben ser tomadas en cuenta cuando aparezcan dentro de nuestros beans. -->
+    <!-- Indicamos que anotaciones como @Secured y @PostFilter deben ser tomadas en cuenta cuando aparezcan dentro de nuestros beans. -->
 	<global-method-security secured-annotations="enabled" pre-post-annotations="enabled">
 		<expression-handler ref="expressionHandler"/>
 	</global-method-security>    
