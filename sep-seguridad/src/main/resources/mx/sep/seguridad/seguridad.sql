@@ -10,24 +10,6 @@ SET client_min_messages = warning;
 SET escape_string_warning = off;
 
 --
--- Name: seguridad; Type: DATABASE; Schema: -; Owner: pruebas
---
-
-CREATE DATABASE seguridad WITH TEMPLATE = template0 ENCODING = 'UTF8' LC_COLLATE = 'en_US.UTF-8' LC_CTYPE = 'en_US.UTF-8';
-
-
-ALTER DATABASE seguridad OWNER TO pruebas;
-
-\connect seguridad
-
-SET statement_timeout = 0;
-SET client_encoding = 'UTF8';
-SET standard_conforming_strings = off;
-SET check_function_bodies = false;
-SET client_min_messages = warning;
-SET escape_string_warning = off;
-
---
 -- Name: seguridad; Type: SCHEMA; Schema: -; Owner: pruebas
 --
 
@@ -361,6 +343,8 @@ INSERT INTO t_opcion_menu VALUES (12, 'Resolución de contenido', 'Resolución d
 INSERT INTO t_opcion_menu VALUES (13, 'Carga de archivo', 'Carga de archivo', 'ejemplos/cargaArchivos', 4);
 INSERT INTO t_opcion_menu VALUES (14, 'Manejo de errores', 'Manejo de errores', 'ejemplos/manejoErrores', 1);
 INSERT INTO t_opcion_menu VALUES (6, 'Ejemplos Qtx', 'Ejemplos Qtx', NULL, NULL);
+INSERT INTO t_opcion_menu VALUES (15, 'Formulario', 'Formulario', 'ejemplos/formulario', 1);
+INSERT INTO t_opcion_menu VALUES (16, 'Descarga archivo', 'Descarga archivo', 'ejemplos/descargaArchivo', 4);
 
 
 --

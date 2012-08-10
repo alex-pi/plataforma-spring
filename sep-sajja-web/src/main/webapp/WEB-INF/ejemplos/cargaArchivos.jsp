@@ -7,7 +7,10 @@ Uploader de dojo.
 - La pantalla obtiene la lista de directorios que se tienen configurados (ver SistemaArchivosServicioImpl)
   y los muestra en un Select.
 - Se puede indicar si los archivos deben o no ser guardados en la base de datos.
-- El controller encargado del lado del servidor es UploadController.
+- El controller encargado del lado del servidor es ArchivosController.
+
+Se mostrará un error si ninguno de los directorios configurados para SistemaArchivosServicioImpl existe.
+
 </pre>
 <table>
 	<tr>
@@ -16,7 +19,7 @@ Uploader de dojo.
 				<fieldset>
 					<legend>Selección de Archivos</legend>
 					<input id="chkGuardarEnBase" type="checkbox"> <label for="chkGuardarEnBase">Guardar también en Base de datos</label> <br/>
-					Directorio: <select id="sltDirectorio"></select> <br/>
+					Directorio: <select id="sltDirectorioCarga"></select> <br/>
 					Selección <div id="uploader"></div>
 					<input id="resetForm" />
 					<input id="submitCarga" />

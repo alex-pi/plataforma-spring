@@ -1,5 +1,6 @@
 package mx.sep.sajja.servicios;
 
+import java.util.List;
 import java.util.Map;
 
 import mx.sep.sajja.servicios.util.ErrorInfraestructura;
@@ -41,4 +42,23 @@ public interface SistemaArchivosServicio {
 	 * @return path en formato absoluto
 	 */
 	String obtenerPathAbsoluto(String pathId);
+	
+	/**
+	 * Genera un lista con los nombres de archivos que existene el directorio
+	 * relacionado al identificador que se da como parámetro.
+	 * 
+	 * @param pathId
+	 * @return List<String> Lista de nombres de archivos
+	 */
+	List<String> obtenerNombresArchivos(String pathId);
+	
+	/**
+	 * genera un arreglo de bytes a partir del path y el nombre de archivo enviados. Este arreglo se obtiene
+	 * por medio de un buffer por si el archivo es muy grande. 
+	 * 
+	 * @param pathId
+	 * @param nombreArchivo
+	 * @return
+	 */
+	byte[] leerArchivo(String pathId, String nombreArchivo);
 }

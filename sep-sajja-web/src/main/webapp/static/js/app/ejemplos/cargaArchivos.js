@@ -1,6 +1,6 @@
 define(['dojo/dom','dojo/cookie', 'dojo/parser', 'dijit/form/Button', 'dijit/form/Select', 'dijit/form/CheckBox', 'dijit/form/Form', 'dijit/registry',
-        'dojox/form/uploader/FileList', 'dojo/_base/xhr', 'dojox/form/Uploader', 'dojox/form/uploader/plugins/Flash'],
-		function(dom, cookie, parser, Button, Select, CheckBox, Form, registry, FileList, xhr){
+        'dojox/form/uploader/FileList', 'dojo/_base/xhr', 'app/util/jsUtils', 'dojox/form/Uploader', 'dojox/form/uploader/plugins/Flash'],
+		function(dom, cookie, parser, Button, Select, CheckBox, Form, registry, FileList, xhr, jsUtils){
 		
 	var modConfig,
 		forma,
@@ -17,6 +17,15 @@ define(['dojo/dom','dojo/cookie', 'dojo/parser', 'dijit/form/Button', 'dijit/for
 			handleAs: "json",
 			url: dojo.config.app.urlBase + "archivos/paths",
 			load: function(paths){
+				if(jsUtils.isEmpty(paths)){
+					btnCargar.set('disabled', true);
+		    		dojo.publish("/app/notificacion",[{
+		    			message: 'No se encontró ningún directorio.',
+		    			type: "error",
+		    			duration: 4000
+		    		}]);			
+		    		return;
+				}
 				var opciones = [];
 				for (var prop in paths) {
 					opciones.push({
@@ -26,9 +35,10 @@ define(['dojo/dom','dojo/cookie', 'dojo/parser', 'dijit/form/Button', 'dijit/for
 				}
 				opciones[0].selected =  true;
 				new Select({
+					id: 'sltDirectorioCarga',
 	                name: "path",
 	                options: opciones,
-				}, 'sltDirectorio');
+				}, 'sltDirectorioCarga');
 			}
 		});		
 		
@@ -68,13 +78,20 @@ define(['dojo/dom','dojo/cookie', 'dojo/parser', 'dijit/form/Button', 'dijit/for
 	    	multiple: true,
 	    	force: '',
 	    	onComplete: function(respuesta){
+	    		console.log(respuesta);
+	    		if(respuesta.claveError){
+		    		dojo.publish("/app/notificacion",[{
+		    			message: respuesta.mensaje,
+		    			type: "error",
+		    			duration: 4000
+		    		}]);	    			
+		    		return;
+	    		}
 	    		dojo.publish("/app/notificacion",[{
 	    			message: "Archivos guardados correctamente.",
 	    			type: "message",
 	    			duration: 4000
-	    		}]);	    		
-	    		// Aqui se puede hacer algo con el objeto de respuesta que se devuelve.
-	    		console.log(respuesta);
+	    		}]);
 	    	},
 	    	onChange: function(archivos){
 	    		// Aquí se podrían listar los archivos en alguna tabla. 
