@@ -333,7 +333,6 @@ INSERT INTO t_opcion_menu VALUES (2, 'Creación de módulo', 'Creación de módu
 INSERT INTO t_opcion_menu VALUES (4, 'Ejemplos intermedios', 'Ejemplos intermedios', NULL, 6);
 INSERT INTO t_opcion_menu VALUES (1, 'Ejemplos simples', 'Ejemplos simples', NULL, 6);
 INSERT INTO t_opcion_menu VALUES (3, 'Manejo de Tabs', 'Manejo de Tabs', ' ', 1);
-INSERT INTO t_opcion_menu VALUES (5, 'Grid simple', 'Grid simple', ' ', 4);
 INSERT INTO t_opcion_menu VALUES (8, 'Usuarios y roles', 'Usuarios y roles', ' ', 7);
 INSERT INTO t_opcion_menu VALUES (9, 'Control de accesos', 'Control de accesos', ' ', 7);
 INSERT INTO t_opcion_menu VALUES (10, 'Ejercicios Qtx', 'Ejercicios Qtx', NULL, NULL);
@@ -345,6 +344,8 @@ INSERT INTO t_opcion_menu VALUES (14, 'Manejo de errores', 'Manejo de errores', 
 INSERT INTO t_opcion_menu VALUES (6, 'Ejemplos Qtx', 'Ejemplos Qtx', NULL, NULL);
 INSERT INTO t_opcion_menu VALUES (15, 'Formulario', 'Formulario', 'ejemplos/formulario', 1);
 INSERT INTO t_opcion_menu VALUES (16, 'Descarga archivo', 'Descarga archivo', 'ejemplos/descargaArchivo', 4);
+INSERT INTO t_opcion_menu VALUES (5, 'Grid simple', 'Grid simple', 'ejemplos/gridSimple', 4);
+INSERT INTO t_opcion_menu VALUES (17, 'Grid paginado', 'Grid paginado', 'ejemplos/gridPaginado', 4);
 
 
 --

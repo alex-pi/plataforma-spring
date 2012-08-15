@@ -1,9 +1,7 @@
 package test.mx.sep.sajja.dao;
 
 import mx.sep.sajja.dao.ArchivoDao;
-import mx.sep.sajja.dao.FormularioDao;
 import mx.sep.sajja.modelo.Archivo;
-import mx.sep.sajja.modelo.Formulario;
 
 import org.junit.Assert;
 import org.junit.Test;
@@ -20,7 +18,7 @@ public class ArchivoDaoTest extends BaseDaoTest {
 	}
 	
 	@Test
-	public void guardarFormularioTest(){
+	public void guardarArchivoTest(){
 		
 		Archivo archivo = new Archivo();
 

@@ -1,11 +1,12 @@
 define(["dijit/form/ValidationTextBox", "dojox/validate/web", 
-        "dijit/form/Button", "dijit/form/Form", "dojo/dom", "dojo/query"], function(ValidationTextBox, validate, Button, Form, dom, query) {
+        "dijit/form/Button", "dijit/form/Form", "dojo/dom", "dojo/query"], 
+        		function(ValidationTextBox, validate, Button, Form, dom, query) {
 
 	var contenedor;
 	
 	function registroCorrecto(data){
 		dojo.publish("/app/notificacion",[{
-			message: "Formulario registrado con id: " + data,
+			message: "Usuario registrado con id: " + data,
 			type: "message",
 			duration: 4000
 		}]);		
@@ -21,7 +22,7 @@ define(["dijit/form/ValidationTextBox", "dojox/validate/web",
 		
 		var forma = new Form({
 			method: 'post',
-			action: dojo.config.app.urlBase + 'formulario/guardar'
+			action: dojo.config.app.urlBase + 'usuarios/guardar'
 		}, query('#formularioForm', config.idContenedor)[0]);
 		
 		var txtNombre = new ValidationTextBox({
@@ -94,7 +95,7 @@ define(["dijit/form/ValidationTextBox", "dojox/validate/web",
 				}
 				console.log('Objeto json a enviar : ' + dojo.formToJson(forma.domNode));
 					({
-					url: dojo.config.app.urlBase + 'formulario/guardar/json',
+					url: dojo.config.app.urlBase + 'usuarios/guardar/json',
 					postData: dojo.formToJson(forma.domNode),
 					headers : {
 					     "Content-Type" : "application/json; charset=UTF-8"

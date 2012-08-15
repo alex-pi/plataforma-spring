@@ -10,6 +10,8 @@
   	<title>Sistema de Administración de Juicios Jurídico Administrativos.</title>
 	<link rel="stylesheet" href="static/css/style.css" media="screen">
   	<link rel="stylesheet" href="static/js/libs/dijit/themes/soria/soria.css" media="screen">  
+  	<link rel="stylesheet" href="static/js/libs/dojox/widget/Toaster/Toaster.css" />
+  	<link rel="stylesheet" href="static/js//libs/dojox/grid/resources/soriaGrid.css">
   	<script>
   		dojoConfig= {
 			has: {
@@ -26,24 +28,59 @@
   	        },{
   	        	name: 'content',
   	        	location: '<c:url value="/mvc"/>'
+  	        },{
+  	        	name: 'static',
+  	        	location: '<c:url value="/static"/>'
   	        }],
   	      	parseOnLoad: false,
-  	        async: 1,
-  	      	cacheBust: true,
-  	      	publishRequireResult: true,
-  	      	uploaderPath: '<c:url value="/static/"/>js/libs/dojox/form/resources/uploader.swf'
+  	        async: true,
+  	      	debugAtAllCosts: true,
+  	      	ioPublish: true,
+  	      	cacheBust: true
   	    };  		
   	</script>
   	<script src="static/js/libs/dojo/dojo.js"></script>
 	<script>
-		require(["dojo/_base/xhr", "dojo/_base/array", "dojox/form/uploader/plugins/IFrame", "dojo/domReady!"],
-		        function(xhr, arrayUtil){					
+	require(["dojox/grid/DataGrid", "dojo/store/Memory","dojo/data/ObjectStore", 
+	         "dojo/store/JsonRest", "dojox/data/QueryReadStore", "dojox/data/JsonRestStore", "dojo/_base/xhr", "dojo/domReady!"], 
+			function(DataGrid, Memory, ObjectStore, JsonRest, QueryReadStore, JsonRestStore, xhr){
+		
+		var gridSimple,
+			store,
+			dataStore,
+			qrs;
+		
+		function crearGrid(){
 
-		        });
+			gridSimple = new DataGrid({
+				store: store,
+				structure: [
+					{ name: "Nombre", field: "nombre", width: "84px" },
+					{ name: "Apellido", field: "apellido", width: "84px" },
+					{ name: "e-mail", field: "email", width: "120px" },
+					{ name: "Password", field: "password", width: "70px" },
+					{ name: "Teléfono", field: "telefono", width: "90px" }
+				],
+				style: 'height: 200px;'
+			}, dojo.byId("gridPaginado"));
+			
+			gridSimple.startup();
+		}
+		
+		function init(){
+// 			store = new JsonRest({target: dojo.config.app.urlBase + "usuarios"});
+// 			dataStore = ObjectStore({objectStore: store});	
+// 			qrs = new QueryReadStore({url: dojo.config.app.urlBase + "usuarios"});
+			store = new JsonRestStore({target: dojo.config.app.urlBase + "usuarios"});
+			crearGrid();
+		}
+		
+		init();
+	});
 	</script>               
 </head>
 	<body class="soria">
-        <div id="layoutPrincipal">
+        <div id="gridPaginado">
 
         </div>
     </body>

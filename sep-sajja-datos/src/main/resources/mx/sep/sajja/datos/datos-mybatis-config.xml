@@ -39,7 +39,7 @@
 	    p:dataSource-ref="dataSource" />
 	
 	<!-- Aqui especificamos de dónde provendrán las conexiones a base de datos cuando ejecutemos en "profile" desarrollo. -->    
-	<beans profile="desarrollo,testing">
+	<beans profile="desarrollo">
 		<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
 			<property name="driverClassName" value="org.postgresql.Driver" />
 			<property name="url" value="jdbc:postgresql://localhost/sajja" />
@@ -49,6 +49,17 @@
 			<property name="maxActive" value="5" />
 		</bean>
 	</beans>	    
+	
+	<beans profile="testing">
+		<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
+			<property name="driverClassName" value="org.postgresql.Driver" />
+			<property name="url" value="jdbc:postgresql://localhost/sajja_test" />
+			<property name="username" value="pruebas" />
+			<property name="password" value="pruebas" />
+			<property name="initialSize" value="2" />
+			<property name="maxActive" value="5" />
+		</bean>
+	</beans>		
 	
 	<!-- Podemos agregar otros profiles si requerimos de otros ambientes aplicativos. -->
 	<beans profile="produccion">

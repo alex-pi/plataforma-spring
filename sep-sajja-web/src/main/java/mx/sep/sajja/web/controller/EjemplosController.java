@@ -1,7 +1,7 @@
 package mx.sep.sajja.web.controller;
 
 import mx.sep.sajja.servicios.EjemploServicio;
-import mx.sep.sajja.servicios.FormularioServicio;
+import mx.sep.sajja.servicios.UsuarioServicio;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

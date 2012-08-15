@@ -11,6 +11,10 @@
 	<link rel="stylesheet" href="static/css/style.css" media="screen">
   	<link rel="stylesheet" href="static/js/libs/dijit/themes/soria/soria.css" media="screen">  
   	<link rel="stylesheet" href="static/js/libs/dojox/widget/Toaster/Toaster.css" />
+  	<link rel="stylesheet" href="static/js//libs/dojox/grid/resources/soriaGrid.css" />
+  	<link rel="stylesheet" href="static/js//libs/dojox/grid/enhanced/resources/EnhancedGrid.css" />
+  	<link rel="stylesheet" href="static/js//libs/dojox/grid/enhanced/resources/EnhancedGrid_rtl.css" />
+  	
   	<script>
   		dojoConfig= {
 			has: {
@@ -44,10 +48,10 @@
 		         "dijit/registry", "dijit/layout/BorderContainer",
 		            "dijit/layout/TabContainer", "dijit/layout/ContentPane",
 		            "dijit/layout/AccordionContainer", "dijit/form/Button", "dojox/widget/Standby", 
-		            "dojo/store/JsonRest", "dojo/string", "dojox/widget/Toaster", "app/util/errorHandler", 
+		            "dojo/string", "dojox/widget/Toaster", "app/util/errorHandler", 
 		            "dojo/domReady!"],
 		        function(TreeMenu, xhr, arrayUtil, registry, BorderContainer, TabContainer, ContentPane, 
-		        		AccordionContainer, Button, Standby, JsonRest, string, Toaster){					
+		        		AccordionContainer, Button, Standby, string, Toaster){					
 					
 					function onClickOpcion(item, node, evt){
 			        	var url = item.url;

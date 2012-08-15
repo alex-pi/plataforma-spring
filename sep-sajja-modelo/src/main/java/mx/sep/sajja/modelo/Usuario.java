@@ -1,6 +1,6 @@
 package mx.sep.sajja.modelo;
 
-public class Formulario extends BaseModelo {
+public class Usuario extends BaseModelo {
 	
 	String nombre;
 	String apellido;

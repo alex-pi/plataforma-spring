@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mx.sep.sajja.dao.UsuarioDao">
+
+	<resultMap type="Usuario" id="usuarioResult">
+		<id property="id" column="id_t_usuario"/>
+		<result property="nombre" column="v_nombre"/>
+		<result property="apellido" column="v_apellido_pat"/>
+		<result property="email" column="v_correo"/>
+		<result property="password" column="v_password"/>
+		<result property="telefono" column="v_telefono"/>
+	</resultMap>
+
+	<select id="consultarTodos" resultMap="usuarioResult">
+		select * from t_usuario;
+	</select>
+
+	<select id="consultarPaginados" resultMap="usuarioResult" parameterType="mx.sep.sajja.datos.vo.FiltroBusquedaVO" >
+		select * from t_usuario 
+		 <if test="nombreCampo != null and ascDesc != null">
+		 	order by
+		 		<choose>  
+			 		<when test="nombreCampo == 'nombre'">
+			 			v_nombre 
+			 		</when>		 	
+			 		<when test="nombreCampo == 'apellido'">
+			 			v_apellido_pat 
+			 		</when>	
+			 		<when test="nombreCampo == 'email'">
+			 			v_correo 
+			 		</when>	
+			 		<when test="nombreCampo == 'password'">
+			 			v_password 
+			 		</when>	
+			 		<when test="nombreCampo == 'telefono'">
+			 			v_telefono 
+			 		</when>				 					 					 		
+		 		</choose>		 		
+		 		<if test="ascDesc == 'asc'">
+		 			asc 
+		 		</if>			 
+		 		<if test="ascDesc == 'desc'">
+		 			desc 
+		 		</if>	
+		 </if>
+		limit #{limite} offset #{desde};
+	</select>
+	
+	<select id="consultar" resultMap="usuarioResult">
+		select * from t_usuario where id_t_usuario = #{id};
+	</select>
+
+	<select id="contar" resultType="int">
+		select count(*) from t_usuario;
+	</select>
+	
+	<insert id="guardar" parameterType="Usuario" keyProperty="id">
+  		<selectKey keyProperty="id" resultType="long" order="BEFORE">
+  		     SELECT nextVal('t_usuario_seq')
+  		</selectKey> 	  		
+		insert into t_usuario (id_t_usuario,v_nombre,v_apellido_pat,v_correo,v_password,v_telefono)
+		values (#{id},#{nombre},#{apellido},#{email},#{password},#{telefono})
+	</insert>
+</mapper>
