@@ -9,6 +9,7 @@ define(["app/ejemplos/util_ejemplo"], function(util){
 	    setTimeout(function(){
 	        util.restoreText("saludo");
 	    }, 5000);
+	    
 	}
     
     return{

@@ -23,7 +23,9 @@ define(['dojo/dom','dojo/cookie', 'dojo/parser', 'dijit/form/Button', 'dijit/for
 		    			message: 'No se encontró ningún directorio.',
 		    			type: "error",
 		    			duration: 4000
-		    		}]);			
+		    		}]);		
+		    		// Sin directorios no podemos hacer nada, así que cerramos el Tab.
+		    		modConfig.cerrarTab();
 		    		return;
 				}
 				var opciones = [];

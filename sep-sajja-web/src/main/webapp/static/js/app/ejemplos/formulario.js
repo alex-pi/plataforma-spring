@@ -1,10 +1,11 @@
-define(["dijit/form/ValidationTextBox", "dojox/validate/web", 
-        "dijit/form/Button", "dijit/form/Form", "dojo/dom", "dojo/query"], 
-        		function(ValidationTextBox, validate, Button, Form, dom, query) {
+define(["dijit/form/ValidationTextBox", "dojox/validate/web", "dojo/_base/xhr",
+        "dijit/form/Button", "dijit/form/Form", "dojo/dom", "dojo/query", "dojo/dom-form"], 
+        		function(ValidationTextBox, validate, xhr, Button, Form, dom, query, domForm) {
 
-	var contenedor;
+	var modConfig;
 	
 	function registroCorrecto(data){
+		modConfig.standby.hide();
 		dojo.publish("/app/notificacion",[{
 			message: "Usuario registrado con id: " + data,
 			type: "message",
@@ -17,15 +18,15 @@ define(["dijit/form/ValidationTextBox", "dojox/validate/web",
 	}
 	
 	function init(config) {
+		modConfig = config;
 		config.contenedor.set('content', config.template);
-		contenedor = config.contenedor;
 		
 		var forma = new Form({
 			method: 'post',
 			action: dojo.config.app.urlBase + 'usuarios/guardar'
-		}, query('#formularioForm', config.idContenedor)[0]);
+		}, dom.byId('usuarioForm'));
 		
-		var txtNombre = new ValidationTextBox({
+		new ValidationTextBox({
 	    	name: 'nombre',
 			placeHolder: 'Nombre',
 			missingMessage: 'Obligatorio',
@@ -33,7 +34,7 @@ define(["dijit/form/ValidationTextBox", "dojox/validate/web",
 			type: 'text'
 		}, 'nombre');		
 		 
-		var txtApellido = new ValidationTextBox({
+		new ValidationTextBox({
 	    	name: 'apellido',
 			placeHolder: 'Apellido',
 			missingMessage: 'Obligatorio',
@@ -41,7 +42,7 @@ define(["dijit/form/ValidationTextBox", "dojox/validate/web",
 			type: 'text'
 		}, 'apellido');
 		 
-		var txtEmail = new ValidationTextBox({
+		new ValidationTextBox({
 	    	name: 'email',
 			placeHolder: 'Ingresa tu correo electrónico',
 			missingMessage: 'Obligatorio',
@@ -50,7 +51,7 @@ define(["dijit/form/ValidationTextBox", "dojox/validate/web",
 			validator: validate.isEmailAddress
 		}, 'email');
 		 
-		var txtBoxPass = new ValidationTextBox({
+		new ValidationTextBox({
 	    	name: 'password',
 			placeHolder: 'Contraseña',
 			missingMessage: 'Obligatorio',
@@ -58,11 +59,12 @@ define(["dijit/form/ValidationTextBox", "dojox/validate/web",
 			type: 'password'	    	
 		}, 'password');			
 		
-		var txtTelefono = new ValidationTextBox({
+		new ValidationTextBox({
 			id: 'telefono',
         	name: 'telefono',
             placeHolder: '(##) ####-####',
-            missingMessage: 'Teléfono: (##) ####-####',
+            missingMessage: 'Obligatorio',
+            invalidMessage: 'Teléfono: (##) ####-####',
             required: true,
             type: 'text',
             constraints: {format: "(##) ####-####"},
@@ -76,7 +78,7 @@ define(["dijit/form/ValidationTextBox", "dojox/validate/web",
 		    	if(!forma.validate()){
 					return;
 				}
-				dojo.xhrPost({
+		    	xhr.post({
 					form: forma.domNode,
 					handleAs: 'json',
 					load: registroCorrecto,
@@ -93,8 +95,9 @@ define(["dijit/form/ValidationTextBox", "dojox/validate/web",
 				if(!forma.validate()){
 					return;
 				}
-				console.log('Objeto json a enviar : ' + dojo.formToJson(forma.domNode));
-					({
+				config.standby.show();
+				console.log('Objeto json a enviar : ' + domForm.toJson(forma.domNode));
+				xhr.post({
 					url: dojo.config.app.urlBase + 'usuarios/guardar/json',
 					postData: dojo.formToJson(forma.domNode),
 					headers : {
@@ -106,7 +109,7 @@ define(["dijit/form/ValidationTextBox", "dojox/validate/web",
 			}
 		
 		}, 'btnEnviarJson');	
-			
+		forma.startup();	
 			
 	};
 

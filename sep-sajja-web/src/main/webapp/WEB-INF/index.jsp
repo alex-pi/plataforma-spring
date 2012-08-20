@@ -44,21 +44,21 @@
   	</script>
   	<script src="static/js/libs/dojo/dojo.js"></script>
 	<script>
-		require(["app/util/TreeMenu", "dojo/_base/xhr", "dojo/_base/array",
+		require(["app/util/TreeMenu", "dojo/_base/xhr", "dojo/_base/array", "dojo/_base/lang",
 		         "dijit/registry", "dijit/layout/BorderContainer",
 		            "dijit/layout/TabContainer", "dijit/layout/ContentPane",
 		            "dijit/layout/AccordionContainer", "dijit/form/Button", "dojox/widget/Standby", 
-		            "dojo/string", "dojox/widget/Toaster", "app/util/errorHandler", 
-		            "dojo/domReady!"],
-		        function(TreeMenu, xhr, arrayUtil, registry, BorderContainer, TabContainer, ContentPane, 
-		        		AccordionContainer, Button, Standby, string, Toaster){					
+		            "dojo/string", "dojox/widget/Toaster", "dojo/_base/Deferred", 
+		            "app/util/errorHandler", "dojo/domReady!"],
+		        function(TreeMenu, xhr, arrayUtil, lang, registry, BorderContainer, TabContainer, ContentPane, 
+		        		AccordionContainer, Button, Standby, string, Toaster, Deferred){					
 					
 					function onClickOpcion(item, node, evt){
 			        	var url = item.url;
 			        	var idOp = item.id;
 			        	var titulo = item.opcion;
 			        	if(url && string.trim(url) !== ''){
-			        		var idPanel = 'contentTabs_' + idOp;
+			        		var idPanel = 'contentTab_' + idOp;
 			        		if(registry.byId(idPanel)){
 			        			contentTabs.selectChild(registry.byId(idPanel));
 			        			return;
@@ -66,11 +66,16 @@
 						    var panel = new ContentPane({
 						        title: titulo,
 						        id: idPanel,
-						        closable: true
+						        closable: true,
+						        onClose: function(){
+ 						        	standby.destroy();
+ 						        	return true;
+						        }
 						    });
 							contentTabs.addChild(panel);
 							contentTabs.selectChild(panel);
 							var standby = new Standby({
+								id: 'standby_contentTab_' + idOp,
 							    target: idPanel,
 							    'class': "dijitContentPaneLoading"
 							});
@@ -78,18 +83,32 @@
 							standby.startup();
 							standby.show();
 				        	require(['app/'+url,'app/util/text!content/'+url + '!strip;no-cache'], function(modulo,template){
-				        		standby.hide();
-				        		if(modulo.init){
-				        			modulo.init({
+				        		
+				        		if(modulo.init && lang.isFunction(modulo.init)){
+				        			var deferred = modulo.init({
 				        				contenedor: panel, 
 				        				idContenedor: 'contentTabs_' + idOp,
 				        				template: template,
-				        				urlBase: dojo.config.app.urlBase
+				        				urlBase: dojo.config.app.urlBase,
+				        				standby: standby,
+				        				cerrarTab: function(){
+				        					contentTabs.closeChild(panel);
+				        				}
 			        				});
-				        			// Usar aqui deferreds para saber cuándo quitar el standby				        			
-// 				        			panel.startup();
+				        			
+				        			if(deferred && lang.isFunction(deferred.then)){
+					        			deferred.then(function(result){
+					        				standby.hide();
+					        			}); 				        			
+				        			} else {
+				        				//si no se devolvió algún deferred quitamos el bloqueo de inmediato
+				        				standby.hide();
+				        			}
+				        		} else {
+				        			// si no hay init quitamos el bloqueo de inmediato
+				        			standby.hide();
 				        		}
-				        	});						        						        		
+				        	});	
 			        	}
 			        };
 			        

@@ -14,7 +14,7 @@ Adicionalmente muestra dos formas asíncronas de enviar un formulario:
 Cuando el registro tiene éxito se usa nuestro mecanismo de notificación de mensajes:
 	dojo.publish("/app/notificacion" ... );
 </pre>
-<form id="formularioForm">			
+<form id="usuarioForm">			
 <table class="pageTable">		
 		<tr>
 			<td><label for="lNombre">Nombre(s)*: </label></td>
@@ -34,7 +34,7 @@ Cuando el registro tiene éxito se usa nuestro mecanismo de notificación de men
 
 		</tr>
 		<tr>
-			<td><label for="lTelefono">Teléfono:</label></td>
+			<td><label for="lTelefono">Teléfono*:</label></td>
 			<td><input name="telefono" id="telefono"/></td>
 		</tr>
 		<tr>
