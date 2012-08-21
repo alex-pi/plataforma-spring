@@ -10,7 +10,7 @@
     </context-param>  
 	<context-param>
 	    <param-name>spring.profiles.active</param-name>
-	    <param-value>desarrollo</param-value>
+	    <param-value>${nombre.profile}</param-value>
 	</context-param>    
 	<filter>
 		<filter-name>springSecurityFilterChain</filter-name>
@@ -34,7 +34,7 @@
         </init-param>
 		<init-param>
 	        <param-name>spring.profiles.active</param-name>
-	        <param-value>desarrollo</param-value>
+	        <param-value>${nombre.profile}</param-value>
 	    </init-param>        
         <load-on-startup>1</load-on-startup>
     </servlet>

@@ -44,7 +44,7 @@ public class OpcionMenu extends BaseModelo{
 	@Override
 	public String toString() {
 		return "OpcionMenu [opcion=" + opcion + ", descripcion=" + descripcion
-				+ ", url=" + url + ", moduloMenu=" + moduloMenu.getId() + ", getId()="
+				+ ", url=" + url + ", getId()="
 				+ getId() + "]";
 	}
 	

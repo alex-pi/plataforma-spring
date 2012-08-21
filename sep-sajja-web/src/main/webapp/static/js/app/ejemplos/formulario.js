@@ -20,7 +20,7 @@ define(["dijit/form/ValidationTextBox", "dojox/validate/web", "dojo/_base/xhr",
 	function init(config) {
 		modConfig = config;
 		config.contenedor.set('content', config.template);
-		
+			
 		var forma = new Form({
 			method: 'post',
 			action: dojo.config.app.urlBase + 'usuarios/guardar'
@@ -43,7 +43,7 @@ define(["dijit/form/ValidationTextBox", "dojox/validate/web", "dojo/_base/xhr",
 		}, 'apellido');
 		 
 		new ValidationTextBox({
-	    	name: 'email',
+	    	name: 'extra.email',
 			placeHolder: 'Ingresa tu correo electrónico',
 			missingMessage: 'Obligatorio',
 			required: true,
@@ -109,7 +109,7 @@ define(["dijit/form/ValidationTextBox", "dojox/validate/web", "dojo/_base/xhr",
 			}
 		
 		}, 'btnEnviarJson');	
-		forma.startup();	
+		forma.startup();
 			
 	};
 

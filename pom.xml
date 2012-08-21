@@ -18,6 +18,30 @@
     <module>sep-seguridad</module>
     <module>sep-sajja-modelo</module>
   </modules>
+  
+  <profiles>
+    <profile>
+      <id>testing</id>
+      <properties>     
+        <nombre-profile>testing</nombre-profile>
+        <modo-debug>debug</modo-debug>
+      </properties>
+    </profile>
+    <profile>
+      <id>produccion</id>
+      <properties>      
+        <nombre-profile>produccion</nombre-profile>
+        <modo-debug>error</modo-debug>
+      </properties>
+    </profile>
+    <profile>
+      <id>desarrollo</id>
+      <properties>
+        <nombre-profile>desarrollo</nombre-profile>
+        <modo-debug>debug</modo-debug>
+      </properties>
+    </profile>    
+  </profiles>
  
   <repositories>	
 	<repository>

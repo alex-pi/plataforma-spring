@@ -13,9 +13,31 @@
   <packaging>war</packaging>
   <name>sep-sajja-web</name>
   <url>http://maven.apache.org</url>
-  <properties>
-  	<java-version>1.6</java-version>
-  </properties>
+
+  <profiles>
+    <profile>
+      <id>testing</id>
+      <properties>     
+        <nombre.profile>testing</nombre.profile>
+        <modo.log>debug</modo.log>
+      </properties>
+    </profile>
+    <profile>
+      <id>produccion</id>
+      <properties>      
+        <nombre.profile>produccion</nombre.profile>
+        <modo.log>error</modo.log>
+      </properties>
+    </profile>
+    <profile>
+      <id>desarrollo</id>
+      <properties>
+        <nombre.profile>desarrollo</nombre.profile>
+        <modo.log>debug</modo.log>
+      </properties>      
+    </profile>       
+  </profiles>
+  
   <dependencies>
 	<dependency>
 		<groupId>mx.sep.sajja.servicios</groupId>
@@ -71,6 +93,13 @@
   </dependencies>
   
   <build>
+  	<resources>
+	    <resource>
+	        <filtering>true</filtering>
+	        <directory>src/main/resources</directory>
+	        <targetPath>.</targetPath>
+	    </resource>   	
+  	</resources>
     <finalName>sep-sajja-web</finalName>
         <plugins>
             <plugin>
@@ -93,6 +122,16 @@
                 <version>2.1.1</version>
                 <configuration>
                     <warName>sep-sajja-web</warName>
+                    <webResources>                    
+                    <resource>
+                        <filtering>true</filtering>
+                        <directory>src/main/webapp/WEB-INF</directory>
+                        <targetPath>WEB-INF</targetPath>
+                        <includes>
+                            <include>**/*.xml</include>
+                        </includes>
+                    </resource>
+                    </webResources>
                 </configuration>
             </plugin>                       
         </plugins>    
