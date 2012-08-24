@@ -34,6 +34,7 @@ define(['dojo/dom', 'dijit/form/Button', 'dojo/on',
 		return xhr.get({
 			handleAs: "json",
 			url: dojo.config.app.urlBase + "archivos/listar/" + pathId,
+			preventCache: true,
 			load: function(archivos){
 				sltArchivos.removeOption(sltArchivos.getOptions());
 				if(!archivos || archivos.length === 0){

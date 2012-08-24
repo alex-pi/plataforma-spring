@@ -42,4 +42,11 @@
 		where usu.v_username = #{username};
 	</select>
 	
+	<insert id="registrar" parameterType="UsuarioSeguridad" keyProperty="id">
+  		<selectKey keyProperty="id" resultType="long" order="BEFORE">
+  		     SELECT nextVal('seguridad.t_usuario_seguridad_seq')
+  		</selectKey> 	  		
+		insert into seguridad.t_usuario_seguridad (id_t_usuario,v_username,v_password,v_nombre_usuario,l_usuario_activo)
+		values (#{id},#{username},#{password},#{nombre},#{activo})
+	</insert>	
 </mapper>

@@ -32,7 +32,7 @@ define(["dijit/form/ValidationTextBox", "dojox/validate/web", "dojo/_base/xhr",
 			missingMessage: 'Obligatorio',
 			required: true,
 			type: 'text'
-		}, 'nombre');		
+		}, 'nombre');
 		 
 		new ValidationTextBox({
 	    	name: 'apellido',
@@ -43,7 +43,7 @@ define(["dijit/form/ValidationTextBox", "dojox/validate/web", "dojo/_base/xhr",
 		}, 'apellido');
 		 
 		new ValidationTextBox({
-	    	name: 'extra.email',
+	    	name: 'email',
 			placeHolder: 'Ingresa tu correo electrónico',
 			missingMessage: 'Obligatorio',
 			required: true,

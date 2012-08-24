@@ -55,6 +55,6 @@ public class UsuarioDaoTest extends BaseDaoTest {
 	public void contarTest(){
 		Integer cuenta = usuarioDao.contar();
 		
-		Assert.assertEquals(new Integer(3), cuenta);
+		Assert.assertEquals(new Integer(4), cuenta);
 	}
 }

@@ -25,7 +25,8 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
  * @author Alejandro Pimentel
  *
  */
-public class CustomUserDetailsService implements UserDetailsService {
+public class CustomUserDetailsService 
+		implements UserDetailsService, SeguridadServicio {
 
 	@Autowired
 	private SeguridadDao seguridadDao;
@@ -57,6 +58,13 @@ public class CustomUserDetailsService implements UserDetailsService {
 				dbAuthsSet.add(new CustomGrantedAuthority(rol));
 		}
 		return new CustomUserDetails(us, dbAuthsSet);
+	}
+	
+	public void registrarUsuario(UsuarioSeguridad usuario){
+		if(usuario.getUsername().equals("administrador")){
+			throw new RuntimeException("No puede usar username: administrador");
+		}
+		seguridadDao.registrar(usuario);
 	}
 
 }

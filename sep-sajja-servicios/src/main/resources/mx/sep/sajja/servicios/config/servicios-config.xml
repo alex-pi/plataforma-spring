@@ -19,6 +19,7 @@
 	
 	<bean id="serviciosSistemaArchivos" class="mx.sep.sajja.servicios.SistemaArchivosServicioImpl">
 		<constructor-arg value="file:/tmp/sajja/" />
+<!-- 		<constructor-arg value="file:///C:/Users/User1/tmp/sajja/" /> -->
 		<constructor-arg>
 			<map>
 				<entry key="juiciosAbiertos" value="juicios/abiertos/"></entry>

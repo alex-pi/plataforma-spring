@@ -18,4 +18,6 @@ public interface SeguridadDao {
 	List<RolSeguridad> consultarRoles();
 	
 	UsuarioSeguridad consultarUsuarioConRoles(String username);
+	
+	Integer registrar(UsuarioSeguridad usuario);
 }
