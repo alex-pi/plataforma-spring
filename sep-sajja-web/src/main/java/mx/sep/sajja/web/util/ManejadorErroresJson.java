@@ -89,15 +89,15 @@ public class ManejadorErroresJson
 
     private ServicioNotificacion servicioNotificacionDefault;
 
-    private Map<Class, Object> mapeoExcepciones;
+    private Map<Class<?>, Object> mapeoExcepciones;
 
-    private Map<Class, String> mapeoNivelErrores;
+    private Map<Class<?>, String> mapeoNivelErrores;
 
     private static final Logger log = LoggerFactory.getLogger(ManejadorErroresJson.class);
 
     private String[] filtrados = { "excepcion" };
 
-    private Integer códigoErrorHttpDefualt = 503;
+    private Integer codigoErrorHttpDefualt = 503;
 
     private boolean esProfileDesarrollo;
     
@@ -133,7 +133,7 @@ public class ManejadorErroresJson
         Map infoMap = prepararMapaInformacion(info);
         Map infoFiltrada = filtrarInfoError(infoMap);
 
-        aplicarCódigoErrorHttp(request, response, códigoErrorHttpDefualt);
+        aplicarCódigoErrorHttp(request, response, codigoErrorHttpDefualt);
 
         JsonGenerator generator = null;
         try {
@@ -162,7 +162,7 @@ public class ManejadorErroresJson
      * @param exLanzada
      * @return El servicio de n
      */
-    protected ServicioNotificacion resolverNotificador(Class exLanzada) {
+    protected ServicioNotificacion resolverNotificador(Class<?> exLanzada) {
         // Si se encuentra un match exacto.
         if(mapeoExcepciones.containsKey(exLanzada)) {
             return (ServicioNotificacion) mapeoExcepciones.get(exLanzada);
@@ -171,7 +171,7 @@ public class ManejadorErroresJson
         int distanciaSuperClaseAnterior = 1000;
         int distanciaSuperClase = 1;
 
-        for(Class exMapeada: mapeoExcepciones.keySet()) {
+        for(Class<?> exMapeada: mapeoExcepciones.keySet()) {
             if(exMapeada.isAssignableFrom(exLanzada)) {
                 distanciaSuperClase = calcularDistanciaSuperClase(exLanzada, exMapeada);
                 if(distanciaSuperClase <= distanciaSuperClaseAnterior) {
@@ -191,7 +191,7 @@ public class ManejadorErroresJson
      * @param exLanzada
      * @return
      */
-    protected String resolverNivelError(Class exLanzada) {
+    protected String resolverNivelError(Class<?> exLanzada) {
         if(mapeoNivelErrores.containsKey(exLanzada)) {
             return mapeoNivelErrores.get(exLanzada);
         }
@@ -199,7 +199,7 @@ public class ManejadorErroresJson
         int distanciaSuperClaseAnterior = 1000;
         int distanciaSuperClase = 1;
 
-        for(Class exMapeada: mapeoNivelErrores.keySet()) {
+        for(Class<?> exMapeada: mapeoNivelErrores.keySet()) {
             if(exMapeada.isAssignableFrom(exLanzada)) {
                 distanciaSuperClase = calcularDistanciaSuperClase(exLanzada, exMapeada);
                 if(distanciaSuperClase <= distanciaSuperClaseAnterior) {
@@ -220,7 +220,7 @@ public class ManejadorErroresJson
      * @param exMapeada
      * @return 0 si son del mismo tipo. -1 Si exLanzada y exMapeada no tienen relación de herencia.
      */
-    protected int calcularDistanciaSuperClase(Class exLanzada, Class exMapeada) {
+    protected int calcularDistanciaSuperClase(Class<?> exLanzada, Class<?> exMapeada) {
         return calcularDistanciaSuperClase(exLanzada, exMapeada, 0);
     }
 
@@ -233,7 +233,7 @@ public class ManejadorErroresJson
      * @param distancia
      * @return
      */
-    private int calcularDistanciaSuperClase(Class exLanzada, Class exMapeada, int distancia) {
+    private int calcularDistanciaSuperClase(Class<?> exLanzada, Class<?> exMapeada, int distancia) {
         if(exLanzada.equals(exMapeada)) {
             return distancia;
         }
@@ -286,7 +286,7 @@ public class ManejadorErroresJson
         UsuarioSeguridad usuario = SeguridadUtil.getUsuarioActual();
         info.setUsuario(usuario);
         info.setClaseExcepcion(ex.getClass());
-        info.setStatus(códigoErrorHttpDefualt);
+        info.setStatus(codigoErrorHttpDefualt);
 
         String mensaje = messageSource.getMessage("general.mensajeError.default", new Object[]{},
                                                   "Ocurrió un error inesperado. Consulte con el administrador usando la clave del error.", LocaleUtil.getLocale());
@@ -353,11 +353,11 @@ public class ManejadorErroresJson
      * Esto ayuda a reducir la información enviada al cliente. Los campos que se
      * pueden filtrar al momento son los de la clase {@link InformacionError}.
      *
-     * @param información Mapa con la información del error.
+     * @param informacion Mapa con la información del error.
      * @return Un objeto de tipo BeanMap con toda la información del error.
      */
-    protected Map filtrarInfoError(Map información) {
-        Map result = new HashMap(información);
+    protected Map filtrarInfoError(Map informacion) {
+        Map result = new HashMap(informacion);
 
         for(String filtro: filtrados) {
             result.remove(filtro);
@@ -407,7 +407,7 @@ public class ManejadorErroresJson
     /**
      * @param mapeoExcepciones the mapeoExcepciones to set
      */
-    public void setMapeoExcepciones(Map<Class, Object> mapeoExcepciones) {
+    public void setMapeoExcepciones(Map<Class<?>, Object> mapeoExcepciones) {
         this.mapeoExcepciones = mapeoExcepciones;
     }
 
@@ -422,13 +422,13 @@ public class ManejadorErroresJson
      * @param códigoErrorHttpDefualt the códigoErrorHttpDefualt to set
      */
     public void setCódigoErrorHttpDefualt(Integer códigoErrorHttpDefualt) {
-        this.códigoErrorHttpDefualt = códigoErrorHttpDefualt;
+        this.codigoErrorHttpDefualt = códigoErrorHttpDefualt;
     }
 
     /**
      * @param mapeoNivelErrores the mapeoNivelErrores to set
      */
-    public void setMapeoNivelErrores(Map<Class, String> mapeoNivelErrores) {
+    public void setMapeoNivelErrores(Map<Class<?>, String> mapeoNivelErrores) {
         this.mapeoNivelErrores = mapeoNivelErrores;
     }
 

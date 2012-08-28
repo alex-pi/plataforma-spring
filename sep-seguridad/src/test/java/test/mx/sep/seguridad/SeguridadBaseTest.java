@@ -17,6 +17,8 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.test.context.transaction.TransactionConfiguration;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  * Configuración base para las pruebas del componente de seguridad.
@@ -27,6 +29,8 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration("classpath:/mx/sep/seguridad/seguridad-config.xml")
 @ActiveProfiles("testing")
+@TransactionConfiguration(transactionManager="txManagerSeguridad", defaultRollback=true)
+@Transactional
 public abstract class SeguridadBaseTest {
 
 	@Before

@@ -9,6 +9,8 @@ define(['dojo/dom', 'dijit/form/Button', 'dojo/on',
 		sltArchivos,
 		sltDirectorio;
 	
+	// No se usa en el ejemplo, pero muestra una configuración básica
+	// de iframe que puede ser usada para cargar y descargar archivos.
 	function descargar(){
 		iframe.send({
 		    form: forma.domNode,
@@ -34,6 +36,7 @@ define(['dojo/dom', 'dijit/form/Button', 'dojo/on',
 		return xhr.get({
 			handleAs: "json",
 			url: dojo.config.app.urlBase + "archivos/listar/" + pathId,
+			preventCache: true,
 			load: function(archivos){
 				sltArchivos.removeOption(sltArchivos.getOptions());
 				if(!archivos || archivos.length === 0){
@@ -58,6 +61,7 @@ define(['dojo/dom', 'dijit/form/Button', 'dojo/on',
 		xhr.get({
 			handleAs: "json",
 			url: dojo.config.app.urlBase + "archivos/paths",
+			preventCache: true,
 			load: function(paths){
 				if(jsUtils.isEmpty(paths)){
 					btnDescarga.set('disabled', true);

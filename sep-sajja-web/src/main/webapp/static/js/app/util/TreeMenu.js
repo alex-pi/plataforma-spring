@@ -1,3 +1,14 @@
+/**
+ * Crea un árbol sin nodo raíz con el componente dijit/Tree para representar las opciones de un módulo
+ * de la aplicación.
+ * 
+ * Se debe proporcionar el id del módulo cuyas opciones se quieren mostrar y un callback para
+ * ejecutar cuando el usuario da click en alguna rama del árbol.
+ * 
+ * Se usa un store tipo JsonRest para obtener las opciones bajo demanda y evitar cargar toda la información
+ * de inicio.
+ * 
+ */
 define(["dojo/_base/xhr", "dojo/_base/array",
         "dijit/registry", "dijit/Tree", "dijit/tree/TreeStoreModel", "dojo/store/JsonRest"],
 	function(xhr, arrayUtil, registry, 

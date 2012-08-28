@@ -1,3 +1,13 @@
+/**
+ * Al ser cargado, este módulo suscribe al evento "/dojo/io/error" publicado por dojo
+ * cuando una petición vuelve con error.
+ * 
+ * Sólo si la petición realizada desde cualquier lugar de la aplicación no define un callback de
+ * error se mostrará un diálogo con la información del error.
+ * 
+ * Al colocar un callback de error para nuestras peticiones provocamos que este diálogo no se muestre-
+ * 
+ */
 define(["dojo/_base/xhr", "dojo/_base/array", "dojo/dom",
 		         "dijit/registry", "dijit/Dialog", "dojo/topic", "dojo/_base/json", 
 		         "dojo/text!static/html/util/mensaje.html", "dijit/form/Button"],

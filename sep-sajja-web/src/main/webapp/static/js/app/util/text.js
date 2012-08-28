@@ -4,7 +4,7 @@
  * Soporta la misma funcionalidad que dojo/text pero además reconoce un parámetro 'no-cache' que obliga a siempre
  * cargar el contenido que corresponda a la url enviada.
  * 
- * Esto es útil si se espera que el contenido sea generado dinámicamente del lado del servidor.
+ * Esto es útil si se espera que el contenido sea generado dinámicamente del lado del servidor, por ejemplo por un JSP.
  * 
  */
 define(["dojo/_base/kernel", "require", "dojo/has", "dojo/_base/xhr", "dojo/_base/array"], function(dojo, require, has, xhr, array){

@@ -53,16 +53,22 @@
 		        function(TreeMenu, xhr, arrayUtil, lang, registry, BorderContainer, TabContainer, ContentPane, 
 		        		AccordionContainer, Button, Standby, string, Toaster, Deferred){					
 					
+					/**
+					 * Callback para el evento de click sobre las opciones del menú
+					 */
 					function onClickOpcion(item, node, evt){
 			        	var url = item.url;
 			        	var idOp = item.id;
 			        	var titulo = item.opcion;
+			        	// se verifica que la opción tenga un url
 			        	if(url && string.trim(url) !== ''){
 			        		var idPanel = 'contentTab_' + idOp;
+			        		// Si ya existe un panel con ese id, simplemente se muestra.
 			        		if(registry.byId(idPanel)){
 			        			contentTabs.selectChild(registry.byId(idPanel));
 			        			return;
 			        		}
+			        		// Creamos el panel principal para la opción de menú seleccionada.
 						    var panel = new ContentPane({
 						        title: titulo,
 						        id: idPanel,
@@ -72,8 +78,11 @@
  						        	return true;
 						        }
 						    });
+			        		// Se agrega y se muestra el nuevo panel en el contenedor de tabs.
 							contentTabs.addChild(panel);
 							contentTabs.selectChild(panel);
+							// Creamos y mostramos un bloqueo en pantalla para esperar la carga del
+							// contenido del panel.
 							var standby = new Standby({
 								id: 'standby_contentTab_' + idOp,
 							    target: idPanel,
@@ -82,8 +91,11 @@
 							document.body.appendChild(standby.domNode);
 							standby.startup();
 							standby.show();
+							// Cargamos el módulo responsable de la opción seleccionada y el template que le corresponde.
 				        	require(['app/'+url,'app/util/text!content/'+url + '!strip;no-cache'], function(modulo,template){
 				        		
+				        		// Si el módulo devuelve un objeto con una función init la llamamos pasando
+				        		// al módulo un objeto con información útil.
 				        		if(modulo.init && lang.isFunction(modulo.init)){
 				        			var deferred = modulo.init({
 				        				contenedor: panel, 
@@ -96,6 +108,8 @@
 				        				}
 			        				});
 				        			
+				        			// Si el init devuelve un objeto deferred válido lo utilizamos
+				        			// para saber cupando retirar el bloqueo visual del panel.
 				        			if(deferred && lang.isFunction(deferred.then)){
 					        			deferred.then(function(result){
 					        				standby.hide();
@@ -112,6 +126,7 @@
 			        	}
 			        };
 			        
+			        // Botón para provocar un logout de la aplicación. 
 			        var btnLogout = new Button({
 			        	id: 'btnLogout',
 		                iconClass: 'dijitIconUsers',
@@ -122,12 +137,16 @@
 		                }
 		            });			
 					
+			        // Layout principal de la aplicación.
 					var layoutPrincipal = new BorderContainer({
 					    design: "headline"
 					}, "layoutPrincipal");			
+			        
+			        // Cada sección del acordeón contendrá un objeto Tree para mostrar las opciones
+			        // de un módulo de la aplicación.
 					var contentAccordion = new AccordionContainer();
 					 
-					 
+					// En la parte dentral del layout se mostrará un contenedor de tabs.
 					var contentTabs = new TabContainer({
 					    region: "center",
 					    id: "contenedorTabs",
@@ -144,6 +163,8 @@
 					        content: btnLogout
 					    })
 					);
+					
+					// Del la izquierdo se coloca el panel tipo acordeón como parte de nuestro menú principal.
 					layoutPrincipal.addChild(
 					    new ContentPane({
 					        region: "left",
@@ -153,7 +174,8 @@
 					        minSize: 200
 					    })
 					);
-					 
+					
+					// Agregamos un panel de bienvenida al contenedor de tabs. 
 					contentTabs.addChild(
 					    new ContentPane({
 					        content: "<pre>Al dar click en las opciones del menú se mostrarán nuevos tabs.</pre>",
@@ -161,14 +183,18 @@
 					    })
 					);
 					
+					// Obtenemos todos los módulos que el usuario podrá visualizar.
 					xhr.get({
 						handleAs: "json",
 						url: dojo.config.app.urlBase + "seguridad/menu/modulos",
 						load: function(data){
+							// Por cada módulo agregamos un panel al acordeón.
 							arrayUtil.forEach(data, function(mod){
 								contentAccordion.addChild(new ContentPane({
 							        title: mod.modulo,
 							        idModulo: mod.id,
+							        // Dentro de cada panel del acordeón creamos un menú en forma de árbol para
+							        // mostrar las opciones del módulo.
 							        content: new TreeMenu(mod.id, onClickOpcion).getTree()
 							    }));										
 							});
@@ -176,6 +202,8 @@
 						}
 					});
 					
+					// Publicamos un mecanismo para generar mensajes no intrusivos en la aplicación,
+					// estos pueden ser utilizados desde cualquier módulo de la aplicación.
 					new Toaster({
 						id: 'panelMensaje',
 						positionDirection: 'tl-down',

@@ -16,6 +16,7 @@ define(['dojo/dom','dojo/cookie', 'dojo/parser', 'dijit/form/Button', 'dijit/for
 		xhr.get({
 			handleAs: "json",
 			url: dojo.config.app.urlBase + "archivos/paths",
+			preventCache: true,
 			load: function(paths){
 				if(jsUtils.isEmpty(paths)){
 					btnCargar.set('disabled', true);
@@ -39,7 +40,7 @@ define(['dojo/dom','dojo/cookie', 'dojo/parser', 'dijit/form/Button', 'dijit/for
 				new Select({
 					id: 'sltDirectorioCarga',
 	                name: "path",
-	                options: opciones,
+	                options: opciones
 				}, 'sltDirectorioCarga');
 			}
 		});		
