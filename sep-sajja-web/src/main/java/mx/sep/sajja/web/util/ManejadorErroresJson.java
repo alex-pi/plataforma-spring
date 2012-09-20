@@ -97,7 +97,7 @@ public class ManejadorErroresJson
 
     private String[] filtrados = { "excepcion" };
 
-    private Integer codigoErrorHttpDefualt = 503;
+    private Integer codigoErrorHttpDefault = 503;
 
     private boolean esProfileDesarrollo;
     
@@ -133,7 +133,7 @@ public class ManejadorErroresJson
         Map infoMap = prepararMapaInformacion(info);
         Map infoFiltrada = filtrarInfoError(infoMap);
 
-        aplicarCódigoErrorHttp(request, response, codigoErrorHttpDefualt);
+        aplicarCodigoErrorHttp(request, response, codigoErrorHttpDefault);
 
         JsonGenerator generator = null;
         try {
@@ -286,7 +286,7 @@ public class ManejadorErroresJson
         UsuarioSeguridad usuario = SeguridadUtil.getUsuarioActual();
         info.setUsuario(usuario);
         info.setClaseExcepcion(ex.getClass());
-        info.setStatus(codigoErrorHttpDefualt);
+        info.setStatus(codigoErrorHttpDefault);
 
         String mensaje = messageSource.getMessage("general.mensajeError.default", new Object[]{},
                                                   "Ocurrió un error inesperado. Consulte con el administrador usando la clave del error.", LocaleUtil.getLocale());
@@ -373,7 +373,7 @@ public class ManejadorErroresJson
      * @param response
      * @param statusCode
      */
-    protected void aplicarCódigoErrorHttp(HttpServletRequest request, HttpServletResponse response, int statusCode) {
+    protected void aplicarCodigoErrorHttp(HttpServletRequest request, HttpServletResponse response, int statusCode) {
         if(!WebUtils.isIncludeRequest(request)) {
             if(log.isDebugEnabled()) {
                 log.debug("Aplicando código de error HTTP " + statusCode);
@@ -419,10 +419,10 @@ public class ManejadorErroresJson
     }
 
     /**
-     * @param códigoErrorHttpDefualt the códigoErrorHttpDefualt to set
+     * @param codigoErrorHttpDefualt the codigoErrorHttpDefualt to set
      */
-    public void setCódigoErrorHttpDefualt(Integer códigoErrorHttpDefualt) {
-        this.codigoErrorHttpDefualt = códigoErrorHttpDefualt;
+    public void setCodigoErrorHttpDefault(Integer codigoErrorHttpDefault) {
+        this.codigoErrorHttpDefault = codigoErrorHttpDefault;
     }
 
     /**
