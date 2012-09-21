@@ -8,10 +8,20 @@
                    value="%d{ABSOLUTE} %5.5p %70.40c - %m%n"/>
         </layout>
     </appender>
+    
+	<appender name="Roller" class="org.apache.log4j.RollingFileAppender">
+		<param name="File" value="${dir.log}/sep-sajja.log"/>
+		<param name="MaxFileSize" value="5000KB"/>
+		<param name="MaxBackupIndex" value="10"/>
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%d{ABSOLUTE} %5.5p %70.40c - %m%n" />
+		</layout>
+	</appender>       
 
     <appender name="ASYNC" class="org.apache.log4j.AsyncAppender">
         <param name="Blocking" value="false"/>
         <param name="BufferSize" value="10480"/>
+        <appender-ref ref="Roller"/>
         <appender-ref ref="SystemOut"/>
     </appender>
 
@@ -28,7 +38,7 @@
     <logger name="mx.sep.sajja.web"><level value="${modo.log}"/></logger>
 
     <root>
-        <priority value ="warn"/>
+        <priority value ="${modo.log}"/>
         <appender-ref ref="ASYNC"/>
     </root>
 </log4j:configuration>

@@ -20,6 +20,7 @@
       <properties>     
         <nombre.profile>testing</nombre.profile>
         <modo.log>debug</modo.log>
+        <dir.log>/tmp</dir.log>
       </properties>
     </profile>
     <profile>
@@ -27,6 +28,7 @@
       <properties>      
         <nombre.profile>produccion</nombre.profile>
         <modo.log>error</modo.log>
+        <dir.log>/tmp</dir.log>
       </properties>
     </profile>
     <profile>
@@ -34,6 +36,7 @@
       <properties>
         <nombre.profile>desarrollo</nombre.profile>
         <modo.log>debug</modo.log>
+        <dir.log>/tmp</dir.log>
       </properties>      
     </profile>       
   </profiles>

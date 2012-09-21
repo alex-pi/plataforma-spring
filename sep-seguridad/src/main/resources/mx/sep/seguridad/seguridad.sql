@@ -335,13 +335,13 @@ INSERT INTO t_opcion_menu VALUES (1, 'Ejemplos simples', 'Ejemplos simples', NUL
 INSERT INTO t_opcion_menu VALUES (3, 'Manejo de Tabs', 'Manejo de Tabs', ' ', 1);
 INSERT INTO t_opcion_menu VALUES (8, 'Usuarios y roles', 'Usuarios y roles', ' ', 7);
 INSERT INTO t_opcion_menu VALUES (9, 'Control de accesos', 'Control de accesos', ' ', 7);
-INSERT INTO t_opcion_menu VALUES (10, 'Ejercicios Qtx', 'Ejercicios Qtx', NULL, NULL);
+INSERT INTO t_opcion_menu VALUES (10, 'Ejercicios SmartSol', 'Ejercicios SmartSol', NULL, NULL);
 INSERT INTO t_opcion_menu VALUES (11, 'Configuraciones', 'Configuraciones', NULL, NULL);
 INSERT INTO t_opcion_menu VALUES (7, 'Seguridad', 'Seguridad', NULL, 11);
 INSERT INTO t_opcion_menu VALUES (12, 'Resolución de contenido', 'Resolución de contenido', 'ejemplos/controllerJsp', 1);
 INSERT INTO t_opcion_menu VALUES (13, 'Carga de archivo', 'Carga de archivo', 'ejemplos/cargaArchivos', 4);
 INSERT INTO t_opcion_menu VALUES (14, 'Manejo de errores', 'Manejo de errores', 'ejemplos/manejoErrores', 1);
-INSERT INTO t_opcion_menu VALUES (6, 'Ejemplos Qtx', 'Ejemplos Qtx', NULL, NULL);
+INSERT INTO t_opcion_menu VALUES (6, 'Ejemplos SmartSol', 'Ejemplos SmartSol', NULL, NULL);
 INSERT INTO t_opcion_menu VALUES (15, 'Formulario', 'Formulario', 'ejemplos/formulario', 1);
 INSERT INTO t_opcion_menu VALUES (16, 'Descarga archivo', 'Descarga archivo', 'ejemplos/descargaArchivo', 4);
 INSERT INTO t_opcion_menu VALUES (5, 'Grid simple', 'Grid simple', 'ejemplos/gridSimple', 4);
