@@ -5,11 +5,9 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 	 
 <configuration>
     <settings>
-		<setting name="lazyLoadingEnabled" value="false" />
-    </settings>
-	<!-- mappers>
-		<mapper resource="mx/sep/sajja/datos/mybatis/Ejemplo.xml" />
-	</mappers-->    
+		<setting name="lazyLoadingEnabled" value="true" />
+		<setting name="cacheEnabled" value="true"/>
+    </settings>   
 </configuration>
 
 

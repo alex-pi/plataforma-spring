@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+    Document   : ehcache.xml
+    Created on : Noviembre 2, 2012
+    Author     : Alejandro Pimentel
+    Description:
+        Configuración general de los caches
+-->
+
+<ehcache xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="http://ehcache.org/ehcache.xsd" updateCheck="false" name="cacheManagerSajja">
+        
+    <!-- Location of persistent caches on disk -->
+    <diskStore path="java.io.tmpdir/EhCacheSpringAnnotations" />
+
+    <cache name="cacheCatalogos" 
+    	eternal="false"
+        maxElementsInMemory="1500" 
+        overflowToDisk="false" 
+        diskPersistent="false"
+        timeToIdleSeconds="0" 
+        timeToLiveSeconds="0"
+        memoryStoreEvictionPolicy="LRU" />
+
+</ehcache>

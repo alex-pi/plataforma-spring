@@ -1,5 +1,7 @@
 package mx.sep.sajja.modelo;
 
+import java.io.Serializable;
+
 /**
  * Clase base para las clases de modelo/dominio.
  * 
@@ -9,7 +11,7 @@ package mx.sep.sajja.modelo;
  * @author Alejandro Pimentel
  *
  */
-public abstract class BaseModelo {
+public abstract class BaseModelo implements Serializable{
 
 	private Long id;
 	
