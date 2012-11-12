@@ -56,7 +56,7 @@
 					/**
 					 * Callback para el evento de click sobre las opciones del menú
 					 */
-					function onClickOpcion(item, node, evt){
+					 var onClickOpcion = function onClickOpcion(item, node, evt){
 			        	var url = item.url;
 			        	var idOp = item.id;
 			        	var titulo = item.opcion;
@@ -99,14 +99,17 @@
 				        		if(modulo.init && lang.isFunction(modulo.init)){
 				        			var deferred = modulo.init({
 				        				contenedor: panel, 
-				        				idContenedor: 'contentTabs_' + idOp,
+				        				idContenedor: idPanel,
 				        				template: template,
 				        				urlBase: dojo.config.app.urlBase,
 				        				standby: standby,
 				        				cerrarTab: function(){
 				        					contentTabs.closeChild(panel);
-				        				}
+				        				},
+				        				recursive: onClickOpcion,
+				        				item: item
 			        				});
+				        			//contentTabs.selectChild(panel);
 				        			
 				        			// Si el init devuelve un objeto deferred válido lo utilizamos
 				        			// para saber cupando retirar el bloqueo visual del panel.

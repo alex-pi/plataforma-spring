@@ -4,4 +4,4 @@
 <pre>
 
 </pre>
-<div id="gridEscuelas"></div>
+<select id="sltPrueba"></select>

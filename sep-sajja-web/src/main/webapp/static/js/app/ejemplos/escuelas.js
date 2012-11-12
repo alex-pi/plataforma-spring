@@ -1,6 +1,7 @@
 define(["dojox/grid/DataGrid", "dojo/store/Memory","dojo/data/ObjectStore",
-        "dojo/_base/xhr","dijit/layout/TabContainer", "dijit/layout/ContentPane"], 
-        	function(DataGrid, Memory, ObjectStore, xhr, TabContainer, ContentPane){
+        "dojo/_base/xhr","dijit/layout/TabContainer", "dijit/layout/ContentPane",
+        "dijit/form/Select", "dijit/layout/BorderContainer"], 
+        	function(DataGrid, Memory, ObjectStore, xhr, TabContainer, ContentPane, Select, BorderContainer){
 	
 	var gridEscuelas;
 	
@@ -28,21 +29,36 @@ define(["dojox/grid/DataGrid", "dojo/store/Memory","dojo/data/ObjectStore",
 		gridEscuelas.startup();
 	}
 	
-	function init(config){
-		//config.contenedor.set('content', config.template);
+	function init(config){		
 		console.log('creando tab');
-		var contentTabs = new TabContainer();		
+		//config.contenedor.set('content', config.template);
+			
+		var layoutPrincipal = new BorderContainer({
+//		    design: "headline",
+		    style: "height: 100%;"
+		});	
 		
-		contentTabs.addChild(
+		layoutPrincipal.addChild(
 		    new ContentPane({
-		        content: "<pre>Aqui un nuevo subtab.</pre>",
-		        title: "Nuevo subtab"
+		    	style: 'text-align: right;',
+		        region: "top",
+		        content: config.template
 		    })
 		);
+				
+		var contentTabs = new TabContainer({region: "center"});
+		layoutPrincipal.addChild(contentTabs);
 		
 		contentTabs.addChild(
 			new ContentPane({
-				content: config.template,
+		        content: "<pre>Aqui un nuevo subtab.</pre>",
+		        title: "Nuevo subtab"
+		    })
+		);		
+		
+		contentTabs.addChild(
+			new ContentPane({
+				content: '<div id="gridEscuelas"></div>',
 				title: "Subtab con grid.",
 				initialized: false,
 				onShow: function(){				
@@ -58,10 +74,18 @@ define(["dojox/grid/DataGrid", "dojo/store/Memory","dojo/data/ObjectStore",
 				}
 			})
 		);
+				
+//		contentTabs.startup();
+//		c1.startup();
+		//config.contenedor.startup();
 		
 		//contentTabs.selectChild(tabGrid);
 		
-		config.contenedor.set('content', contentTabs);
+		config.contenedor.set('content', layoutPrincipal);
+		
+		var slt = new Select({
+            name: "sltPrueba"
+		}, "sltPrueba");		
 	
 	}
 	
