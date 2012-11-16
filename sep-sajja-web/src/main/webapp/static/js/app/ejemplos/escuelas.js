@@ -31,16 +31,13 @@ define(["dojox/grid/DataGrid", "dojo/store/Memory","dojo/data/ObjectStore",
 	
 	function init(config){		
 		console.log('creando tab');
-		//config.contenedor.set('content', config.template);
 			
 		var layoutPrincipal = new BorderContainer({
-//		    design: "headline",
-		    style: "height: 100%;"
+		    style: "height: 50%;"
 		});	
 		
 		layoutPrincipal.addChild(
 		    new ContentPane({
-		    	style: 'text-align: right;',
 		        region: "top",
 		        content: config.template
 		    })
@@ -74,19 +71,8 @@ define(["dojox/grid/DataGrid", "dojo/store/Memory","dojo/data/ObjectStore",
 				}
 			})
 		);
-				
-//		contentTabs.startup();
-//		c1.startup();
-		//config.contenedor.startup();
-		
-		//contentTabs.selectChild(tabGrid);
 		
 		config.contenedor.set('content', layoutPrincipal);
-		
-		var slt = new Select({
-            name: "sltPrueba"
-		}, "sltPrueba");		
-	
 	}
 	
 	return {
