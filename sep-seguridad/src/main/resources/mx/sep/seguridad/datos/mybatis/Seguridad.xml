@@ -27,7 +27,7 @@
 		<result property="activo" column="l_rol_activo"/>
 	</resultMap>
 	
-	<select id="consultarUsarios" resultMap="resultUsuario">
+	<select id="consultarUsuarios" resultMap="resultUsuario">
 		select * from seguridad.t_usuario_seguridad;
 	</select>
 
@@ -42,4 +42,9 @@
 		where usu.v_username = #{username};
 	</select>
 	
+	<select id="consultarUsuariosConRoles" resultMap="resultUsuarioConRoles">
+		select * from seguridad.t_usuario_seguridad as usu
+		inner join seguridad.t_r_usuario_rol usu_rol on usu.id_t_usuario = usu_rol.id_tr_usuario
+		inner join seguridad.t_rol_seguridad rol on rol.id_t_rol = usu_rol.id_tr_rol
+	</select>	
 </mapper>

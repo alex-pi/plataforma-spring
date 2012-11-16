@@ -13,9 +13,11 @@ import mx.sep.seguridad.modelo.UsuarioSeguridad;
  */
 public interface SeguridadDao {
 
-	List<UsuarioSeguridad> consultarUsarios();
+	List<UsuarioSeguridad> consultarUsuarios();
 	
 	List<RolSeguridad> consultarRoles();
 	
 	UsuarioSeguridad consultarUsuarioConRoles(String username);
+	
+	List<UsuarioSeguridad> consultarUsuariosConRoles();
 }

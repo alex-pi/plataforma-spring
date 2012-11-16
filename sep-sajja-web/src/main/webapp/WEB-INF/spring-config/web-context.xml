@@ -14,7 +14,7 @@
        http://www.springframework.org/schema/mvc/spring-mvc-3.1.xsd
        http://www.springframework.org/schema/util
        http://www.springframework.org/schema/util/spring-util-3.1.xsd">
-              
+              	              
     <mvc:annotation-driven />
     <!-- Indicamos el paquete base bajo el cual se encontrarán todos nuestros Controllers. -->
 	<context:component-scan base-package="mx.sep.sajja.web.controller"/>
@@ -40,6 +40,11 @@
 	    <property name="prefix" value="/WEB-INF/" />
 	    <property name="suffix" value=".jsp" />
 	</bean>          
+	
+	<!-- p:location="classpath*:mx/sep/sajja/reportes/jasper-sajja-config.xml" -->
+    <bean class="org.springframework.web.servlet.view.XmlViewResolver"
+          p:location="/WEB-INF/spring-config/jasper-sajja-config.xml"
+          p:order="0"/>	
 	
 	<!-- Añadimos un convertidor de mensajes json que entran y salen de nuestros controllers. -->
 	<bean class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter">

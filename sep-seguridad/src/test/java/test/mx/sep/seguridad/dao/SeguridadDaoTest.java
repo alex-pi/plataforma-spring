@@ -24,7 +24,7 @@ public class SeguridadDaoTest extends SeguridadBaseTest {
 	@Test
 	public void consultarUsariosTest(){
 		List<UsuarioSeguridad> usuarios =
-				seguridadDao.consultarUsarios();
+				seguridadDao.consultarUsuarios();
 		
 		Assert.assertFalse(usuarios.isEmpty());
 	}
@@ -37,5 +37,15 @@ public class SeguridadDaoTest extends SeguridadBaseTest {
 		Assert.assertNotNull(usuario);
 		Assert.assertFalse(usuario.getRoles().isEmpty());
 		Assert.assertEquals(2 ,usuario.getRoles().size());
+	}
+	
+	@Test
+	public void consultarUsuariosConRolesTest(){
+		List<UsuarioSeguridad> usuarios =
+				seguridadDao.consultarUsuariosConRoles();
+		
+		Assert.assertNotNull(usuarios);
+		Assert.assertFalse(usuarios.isEmpty());
+		Assert.assertEquals(3 ,usuarios.size());
 	}
 }
