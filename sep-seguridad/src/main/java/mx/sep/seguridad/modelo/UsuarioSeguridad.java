@@ -50,5 +50,12 @@ public class UsuarioSeguridad extends BaseModelo{
 	public void setRoles(List<RolSeguridad> roles) {
 		this.roles = roles;
 	}
+	public String getListaRoles() {
+		StringBuilder sb = new StringBuilder();
+		for(RolSeguridad rs: this.getRoles()){
+			sb.append(rs.getRol()).append(",");
+		}
+		return sb.toString();
+	}	
 	
 }

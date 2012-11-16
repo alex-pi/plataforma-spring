@@ -13,6 +13,9 @@
   <packaging>war</packaging>
   <name>sep-sajja-web</name>
   <url>http://maven.apache.org</url>
+	<properties>
+	  <jasperreports.version>4.7.1</jasperreports.version>	  
+	</properties>  
 
   <profiles>
     <profile>
@@ -93,6 +96,16 @@
 		<artifactId>commons-io</artifactId>
 		<version>1.3.2</version>
 	</dependency>	
+	<dependency>
+		<groupId>net.sf.jasperreports</groupId>
+		<artifactId>jasperreports</artifactId>
+		<version>${jasperreports.version}</version>
+	</dependency>
+	<dependency>
+		<groupId>net.sf.jasperreports</groupId>
+		<artifactId>jasperreports-fonts</artifactId>
+		<version>4.0.0</version>
+	</dependency>
   </dependencies>
   
   <build>
@@ -100,7 +113,7 @@
 	    <resource>
 	        <filtering>true</filtering>
 	        <directory>src/main/resources</directory>
-	        <targetPath>.</targetPath>
+	        <targetPath>.</targetPath>	        
 	    </resource>   	
   	</resources>
     <finalName>sep-sajja-web</finalName>
@@ -136,7 +149,40 @@
                     </resource>
                     </webResources>
                 </configuration>
-            </plugin>                       
+            </plugin>   
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>jasperreports-maven-plugin</artifactId>
+                <version>1.0-beta-2</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>compile-reports</goal>
+                        </goals>
+                        <phase>compile</phase>
+                    </execution>
+                </executions>
+                <configuration>
+                    <verbose>false</verbose>
+                    <sourceDirectory>src/main/resources</sourceDirectory>
+                    <compiler>net.sf.jasperreports.engine.design.JRJavacCompiler</compiler>
+                    <systemProperties>
+                        <file.encoding>UTF-8</file.encoding>
+                    </systemProperties>
+                </configuration>
+                <dependencies>
+                    <dependency>
+                        <groupId>net.sf.jasperreports</groupId>
+                        <artifactId>jasperreports</artifactId>
+                        <version>${jasperreports.version}</version>
+                    </dependency>
+		            <dependency>
+		                <groupId>org.codehaus.groovy</groupId>
+		                <artifactId>groovy-all</artifactId>
+		                <version>${groovy.version}</version>
+		            </dependency>                    
+                </dependencies>
+            </plugin>
         </plugins>    
   </build>
 </project>

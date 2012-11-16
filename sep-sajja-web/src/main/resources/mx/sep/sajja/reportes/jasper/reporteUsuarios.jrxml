@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="reporteUsuarios" language="groovy" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="aee7cc13-71e2-4358-b906-396f96406da7">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="table">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_TH" mode="Opaque" backcolor="#8FAFCC">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_CH" mode="Opaque" backcolor="#CFDBE6">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[new Boolean($V{REPORT_COUNT}.intValue()%2==0)]]></conditionExpression>
+			<style backcolor="#F3F6F8"/>
+		</conditionalStyle>
+	</style>
+	<field name="activo" class="java.lang.Boolean"/>
+	<field name="username" class="java.lang.String"/>
+	<field name="nombre" class="java.lang.String"/>
+	<field name="listaRoles" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="42" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="aa0d476f-641c-4cba-8350-6716142f7d5c" x="244" y="11" width="327" height="20"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Listado de usuarios de la aplicación.]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="34">
+			<line>
+				<reportElement uuid="2c374e13-19ae-4601-bdf4-35ea6bf3589f" x="90" y="25" width="629" height="1"/>
+			</line>
+			<line>
+				<reportElement uuid="2c374e13-19ae-4601-bdf4-35ea6bf3589f" x="90" y="29" width="629" height="1"/>
+			</line>
+			<staticText>
+				<reportElement uuid="6e5287a2-a432-4558-a563-ce6e0d66f64c" x="90" y="0" width="100" height="20"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Nombre]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="6e5287a2-a432-4558-a563-ce6e0d66f64c" x="228" y="0" width="100" height="20"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Username]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="6e5287a2-a432-4558-a563-ce6e0d66f64c" x="358" y="0" width="125" height="20"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[¿Está activo?]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="6e5287a2-a432-4558-a563-ce6e0d66f64c" x="513" y="0" width="206" height="20"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Roles]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<detail>
+		<band height="43" splitType="Stretch">
+			<textField>
+				<reportElement uuid="fb8a8131-7f11-440a-85fe-77cd7975503f" x="90" y="5" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{nombre}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement uuid="2c374e13-19ae-4601-bdf4-35ea6bf3589f" x="90" y="25" width="629" height="1"/>
+			</line>
+			<textField>
+				<reportElement uuid="fb8a8131-7f11-440a-85fe-77cd7975503f" x="228" y="6" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{username}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="fb8a8131-7f11-440a-85fe-77cd7975503f" x="358" y="6" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{activo}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="fb8a8131-7f11-440a-85fe-77cd7975503f" x="513" y="6" width="206" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{listaRoles}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>
