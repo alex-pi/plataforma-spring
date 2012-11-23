@@ -1,5 +1,6 @@
 package mx.sep.seguridad.modelo;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class UsuarioSeguridad extends BaseModelo{
@@ -8,7 +9,7 @@ public class UsuarioSeguridad extends BaseModelo{
 	private String password;
 	private String nombre;
 	private boolean activo;
-	private List<RolSeguridad> roles;	
+	private List<RolSeguridad> roles = new ArrayList<RolSeguridad>();	
 	
 	public UsuarioSeguridad(){}
 	

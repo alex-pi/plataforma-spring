@@ -165,10 +165,7 @@
                 <configuration>
                     <verbose>false</verbose>
                     <sourceDirectory>src/main/resources</sourceDirectory>
-                    <compiler>net.sf.jasperreports.engine.design.JRJavacCompiler</compiler>
-                    <systemProperties>
-                        <file.encoding>UTF-8</file.encoding>
-                    </systemProperties>
+<!--                     <compiler>net.sf.jasperreports.engine.design.JRJavacCompiler</compiler> -->
                 </configuration>
                 <dependencies>
                     <dependency>
