@@ -1,10 +1,16 @@
 package mx.sep.sajja.servicios;
 
+import mx.sep.sajja.dao.EscuelaDao;
+import mx.sep.sajja.dao.UsuarioDao;
 import mx.sep.sajja.modelo.Ejemplo;
+import mx.sep.sajja.modelo.Escuela;
+import mx.sep.sajja.modelo.Usuario;
 import mx.sep.sajja.servicios.util.ErrorNegocio;
 
+import mx.sep.sajja.servicios.util.ExcepcionProcesoParcial;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 /**
@@ -18,6 +24,13 @@ import org.springframework.stereotype.Service;
 public class EjemploServicioImpl implements EjemploServicio {
 
 	private static final Logger log = LoggerFactory.getLogger(EjemploServicioImpl.class);
+
+    @Autowired
+    private EscuelaDao escuelaDao;
+    @Autowired
+    private UsuarioDao usuarioDao;
+    @Autowired
+    private EjemploSubServicio ejemploSubServicio;
 	
 	/**
 	 * Cuando se en encuentra un error o inconsistencia en el negocio se puede lanzar
@@ -47,4 +60,22 @@ public class EjemploServicioImpl implements EjemploServicio {
 		throw new ErrorNegocio(new Object[]{}, "codigo.mensaje.ejemplo", e);
 	}	
 
+    public void transaccionAtomica(Escuela escuela, Usuario usuario, String nombreEscuela){
+        escuelaDao.guardar(escuela);
+        usuarioDao.guardar(usuario);
+
+        ejemploSubServicio.transaccionAtomica("Escuela Secundaria No. 99");
+
+        throw new ErrorNegocio("Se lanza excepción para provocar un rollback en la transacción.");
+    }
+
+    public void transaccionRegistroParcial(Escuela escuela, String nombreEscuela){
+        Integer mods = escuelaDao.guardar(escuela);
+
+        if(true)
+            throw new ExcepcionProcesoParcial("Según está configurada, esta excepción no provoca un rollback" +
+                    ", provocando así un registro parcial de lo realizado por la capa de servicios.");
+
+        ejemploSubServicio.transaccionAtomica("Escuela Secundaria No. 99");
+    }
 }

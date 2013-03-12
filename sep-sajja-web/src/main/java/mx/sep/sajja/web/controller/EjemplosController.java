@@ -1,5 +1,7 @@
 package mx.sep.sajja.web.controller;
 
+import mx.sep.sajja.modelo.Escuela;
+import mx.sep.sajja.modelo.Usuario;
 import mx.sep.sajja.servicios.EjemploServicio;
 import mx.sep.sajja.servicios.UsuarioServicio;
 
@@ -73,5 +75,19 @@ public class EjemplosController {
 		} else if(ejemplo.equals(2)){
 			ejemploServicio.ejemploCodigoMensajeErrorNegocio();
 		}
-	}	
+	}
+
+    /**
+     *
+     */
+    @RequestMapping(value= "/error/trans/{opcion}", method = RequestMethod.POST)
+    public void ejemploManejoTransacciones(@PathVariable Integer opcion) {
+        Escuela escuela = new Escuela("Patito", 20);
+        Usuario usuario = new Usuario("Alejandro","Pimentel","apr@gmail.com","123","57895003");
+
+        if(opcion == 1)
+            ejemploServicio.transaccionAtomica(escuela, usuario, "Escuela Secundaria No. 99");
+        else
+            ejemploServicio.transaccionRegistroParcial(escuela, "Escuela Secundaria No. 99");
+    }
 }

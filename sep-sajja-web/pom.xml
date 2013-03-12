@@ -17,33 +17,6 @@
 	  <jasperreports.version>4.7.1</jasperreports.version>	  
 	</properties>  
 
-  <profiles>
-    <profile>
-      <id>testing</id>
-      <properties>     
-        <nombre.profile>testing</nombre.profile>
-        <modo.log>debug</modo.log>
-        <dir.log>/tmp</dir.log>
-      </properties>
-    </profile>
-    <profile>
-      <id>produccion</id>
-      <properties>      
-        <nombre.profile>produccion</nombre.profile>
-        <modo.log>error</modo.log>
-        <dir.log>/tmp</dir.log>
-      </properties>
-    </profile>
-    <profile>
-      <id>desarrollo</id>
-      <properties>
-        <nombre.profile>desarrollo</nombre.profile>
-        <modo.log>debug</modo.log>
-        <dir.log>/tmp</dir.log>
-      </properties>      
-    </profile>       
-  </profiles>
-  
   <dependencies>
 	<dependency>
 		<groupId>mx.sep.sajja.servicios</groupId>
@@ -126,6 +99,7 @@
                     <source>${java-version}</source>
                     <target>${java-version}</target>
                     <showDeprecation>true</showDeprecation>
+
                     <!-- compilerArgument>-verbose</compilerArgument>
                     <compilerArgument>-encoding UTF-8</compilerArgument>
                     <compilerArgument>-J-Dfile.encoding=UTF-8</compilerArgument>
@@ -163,7 +137,6 @@
                     </execution>
                 </executions>
                 <configuration>
-                    <verbose>false</verbose>
                     <sourceDirectory>src/main/resources</sourceDirectory>
 <!--                     <compiler>net.sf.jasperreports.engine.design.JRJavacCompiler</compiler> -->
                 </configuration>
@@ -179,6 +152,15 @@
 		                <version>${groovy.version}</version>
 		            </dependency>                    
                 </dependencies>
+            </plugin>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>tomcat-maven-plugin</artifactId>
+                <configuration>
+                    <url>http://127.0.0.1:8080/manager/text</url>
+                    <server>TomcatServer</server>
+                    <path>/sep-sajja-web</path>
+                </configuration>
             </plugin>
         </plugins>    
   </build>

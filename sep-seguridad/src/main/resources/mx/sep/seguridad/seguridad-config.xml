@@ -110,7 +110,7 @@
     	</constructor-arg>
     </bean>
 	    
-	<beans profile="desarrollo,testing">
+	<beans profile="desarrollo,testing,produccion">
 		<bean id="dataSourceSeguridad" class="org.apache.commons.dbcp.BasicDataSource">
 			<property name="driverClassName" value="org.postgresql.Driver" />
 			<property name="url" value="jdbc:postgresql://localhost:5432/seguridad" />
@@ -127,8 +127,8 @@
 		</security:global-method-security> 			
 	</beans>  
 	
-	<beans profile="produccion">
-		<!-- Aqui se podría agregar un datasource a un recurso JNDI -->
-	</beans>
+<!--	<beans profile="produccion">
+
+	</beans>-->
 			
 </beans>

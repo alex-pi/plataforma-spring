@@ -3,6 +3,7 @@ package test.mx.sep.sajja.servicios;
 import org.junit.runner.RunWith;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.AbstractTransactionalJUnit4SpringContextTests;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.transaction.TransactionConfiguration;
 import org.springframework.transaction.annotation.Transactional;
@@ -25,6 +26,6 @@ import org.springframework.transaction.annotation.Transactional;
 @ActiveProfiles("testing")
 @TransactionConfiguration(transactionManager="transactionManager", defaultRollback=true)
 @Transactional
-public abstract class BaseServicioTest {
+public abstract class BaseServicioTest extends AbstractTransactionalJUnit4SpringContextTests {
 
 }

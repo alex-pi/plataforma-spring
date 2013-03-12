@@ -4,8 +4,16 @@ public class Escuela extends BaseModelo {
 
 	private String nombre;
 	private Integer antiguedad;
-	
-	public String getNombre() {
+
+    public Escuela() {
+    }
+
+    public Escuela(String nombre, Integer antiguedad) {
+        this.nombre = nombre;
+        this.antiguedad = antiguedad;
+    }
+
+    public String getNombre() {
 		return nombre;
 	}
 	

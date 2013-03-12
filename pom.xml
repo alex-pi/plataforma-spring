@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <name>Sistema de Administración de Juicios Jurídico Administrativos</name>
   <groupId>mx.sep.sajja</groupId>
@@ -24,22 +26,28 @@
     <profile>
       <id>testing</id>
       <properties>     
-        <nombre-profile>testing</nombre-profile>
-        <modo-debug>debug</modo-debug>
+        <nombre.profile>testing</nombre.profile>
+        <modo.log>error</modo.log>
+        <modo.log.app>debug</modo.log.app>
+        <dir.log>/tmp</dir.log>
       </properties>
     </profile>
     <profile>
       <id>produccion</id>
       <properties>      
-        <nombre-profile>produccion</nombre-profile>
-        <modo-debug>error</modo-debug>
+        <nombre.profile>produccion</nombre.profile>
+        <modo.log>error</modo.log>
+        <modo.log.app>debug</modo.log.app>
+        <dir.log>/tmp</dir.log>
       </properties>
     </profile>
     <profile>
       <id>desarrollo</id>
       <properties>
-        <nombre-profile>desarrollo</nombre-profile>
-        <modo-debug>debug</modo-debug>
+        <nombre.profile>desarrollo</nombre.profile>
+        <modo.log>debug</modo.log>
+        <modo.log.app>debug</modo.log.app>
+        <dir.log>/tmp</dir.log>
       </properties>
     </profile>    
   </profiles>
@@ -165,7 +173,7 @@
         <artifactId>org.springframework.test</artifactId>
         <version>${spring.version}</version>
         <scope>test</scope>
-    </dependency> 	
+    </dependency>
 	<dependency>
 		<groupId>commons-beanutils</groupId>
 		<artifactId>commons-beanutils</artifactId>
@@ -195,6 +203,21 @@
   <build>
   	<pluginManagement>
   		<plugins>
+          <plugin>
+              <groupId>org.apache.maven.plugins</groupId>
+              <artifactId>maven-compiler-plugin</artifactId>
+              <version>2.3.2</version>
+              <configuration>
+                  <source>${java-version}</source>
+                  <target>${java-version}</target>
+                  <showDeprecation>true</showDeprecation>
+
+                  <!-- compilerArgument>-verbose</compilerArgument>
+                  <compilerArgument>-encoding UTF-8</compilerArgument>
+                  <compilerArgument>-J-Dfile.encoding=UTF-8</compilerArgument>
+                  <compilerArgument>-J-Dsun.jnu.encoding=CP1252</compilerArgument-->
+              </configuration>
+          </plugin>
 		<plugin>
 		    <groupId>org.apache.maven.plugins</groupId>
 		    <artifactId>maven-surefire-plugin</artifactId>

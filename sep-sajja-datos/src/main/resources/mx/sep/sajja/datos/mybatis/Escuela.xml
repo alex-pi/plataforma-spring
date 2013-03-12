@@ -4,7 +4,7 @@
 <mapper namespace="mx.sep.sajja.dao.EscuelaDao">
 
 <!-- 	<cache type="org.mybatis.caches.ehcache.EhcacheCache"/> -->
-	<cache/>
+	<!--<cache/>-->
 
 	<resultMap type="Escuela" id="EscuelaResult">
 		<id property="id" column="id_t_escuela"/>
@@ -19,5 +19,21 @@
 	<select id="consultarTodosCached" resultMap="EscuelaResult">
 		select * from t_escuela;
 	</select>
-		
+
+    <select id="consultarPorAntiguedad" parameterType="int" resultMap="EscuelaResult">
+        select * from t_escuela where v_antiguedad = #{antiguedad};
+    </select>
+
+    <insert id="guardar" parameterType="Escuela" keyProperty="id">
+        <selectKey keyProperty="id" resultType="long" order="BEFORE">
+            SELECT nextVal('t_escuela_seq')
+        </selectKey>
+        insert into t_escuela (id_t_escuela,v_nombre,v_antiguedad)
+        values (#{id},#{nombre},#{antiguedad})
+    </insert>
+
+    <update id="modificarPorNombre" parameterType="Escuela">
+        update t_escuela set v_antiguedad = #{antiguedad}
+        where v_nombre = #{nombre}
+    </update>
 </mapper>

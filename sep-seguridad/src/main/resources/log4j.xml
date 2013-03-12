@@ -9,13 +9,13 @@
         </layout>
     </appender>
 
-    <appender name="ASYNC" class="org.apache.log4j.AsyncAppender">
+    <!--appender name="ASYNC" class="org.apache.log4j.AsyncAppender">
         <param name="Blocking" value="false"/>
         <param name="BufferSize" value="10480"/>
         <appender-ref ref="SystemOut"/>
-    </appender>
+    </appender-->
 
-    <logger name="mx.sep.seguridad"><level value="${modo.log}"/></logger>
+    <logger name="mx.sep.seguridad"><level value="${modo.log.app}"/></logger>
     <logger name="org.apache.ibatis"><level value="${modo.log}"/></logger>
     
     <logger name="org.springframework.security"><level value="${modo.log}"/></logger>
@@ -24,10 +24,10 @@
     <logger name="org.springframework.security.web"><level value="${modo.log}"/></logger>
     <logger name="org.springframework.security.core"><level value="${modo.log}"/></logger>
     <logger name="org.springframework.security.config.http"><level value="${modo.log}"/></logger>
-    <logger name="org.springframework.security.config"><level value="${modo.log}"/></logger>    
+    <logger name="org.springframework.security.config"><level value="${modo.log}"/></logger>
 
     <root>
-        <priority value ="warn"/>
-        <appender-ref ref="ASYNC"/>
+        <priority value ="${modo.log}"/>
+        <appender-ref ref="SystemOut"/>
     </root>
 </log4j:configuration>

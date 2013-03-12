@@ -1,5 +1,7 @@
 package mx.sep.sajja.modelo;
 
+import java.util.Date;
+
 public class Usuario extends BaseModelo {
 	
 	String nombre;
@@ -7,8 +9,20 @@ public class Usuario extends BaseModelo {
 	String email;
 	String password;
 	String telefono;
-	
-	public String getNombre() {
+    Date fecha;
+
+    public Usuario(String nombre, String apellido, String email, String password, String telefono) {
+        this.nombre = nombre;
+        this.apellido = apellido;
+        this.email = email;
+        this.password = password;
+        this.telefono = telefono;
+    }
+
+    public Usuario() {
+    }
+
+    public String getNombre() {
 		return nombre;
 	}
 
@@ -48,7 +62,15 @@ public class Usuario extends BaseModelo {
 		this.telefono = telefono;
 	}
 
-	@Override
+    public Date getFecha() {
+        return fecha;
+    }
+
+    public void setFecha(Date fecha) {
+        this.fecha = fecha;
+    }
+
+    @Override
 	public String toString() {
 		return "Archivo [nombre=" + nombre + ", apellidoPaterno="
 				+ apellido + ", correo="	+ email 

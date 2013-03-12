@@ -37,6 +37,8 @@ pom.properties
 .settings
 .project
 .classpath
+.idea/**
+*.iml
 
 # Respaldos #
 *.bak

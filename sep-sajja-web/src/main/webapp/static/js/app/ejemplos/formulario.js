@@ -1,11 +1,10 @@
 define(["dijit/form/ValidationTextBox", "dojox/validate/web", "dojo/_base/xhr",
-        "dijit/form/Button", "dijit/form/Form", "dojo/dom", "dojo/query", "dojo/dom-form"], 
-        		function(ValidationTextBox, validate, xhr, Button, Form, dom, query, domForm) {
+        "dijit/form/Button", "dijit/form/Form", "dojo/dom", "dojo/query", "dojo/dom-form", "dojo/json"],
+        		function(ValidationTextBox, validate, xhr, Button, Form, dom, query, domForm, json) {
 
 	var modConfig;
 	
 	function registroCorrecto(data){
-		modConfig.standby.hide();
 		dojo.publish("/app/notificacion",[{
 			message: "Usuario registrado con id: " + data,
 			type: "message",
@@ -28,6 +27,7 @@ define(["dijit/form/ValidationTextBox", "dojox/validate/web", "dojo/_base/xhr",
 		
 		new ValidationTextBox({
 	    	name: 'nombre',
+            value: 'pi',
 			placeHolder: 'Nombre',
 			missingMessage: 'Obligatorio',
 			required: true,
@@ -36,6 +36,7 @@ define(["dijit/form/ValidationTextBox", "dojox/validate/web", "dojo/_base/xhr",
 		 
 		new ValidationTextBox({
 	    	name: 'apellido',
+            value: 'pi',
 			placeHolder: 'Apellido',
 			missingMessage: 'Obligatorio',
 			required: true,
@@ -43,7 +44,8 @@ define(["dijit/form/ValidationTextBox", "dojox/validate/web", "dojo/_base/xhr",
 		}, 'apellido');
 		 
 		new ValidationTextBox({
-	    	name: 'extra.email',
+	    	name: 'email',
+            value: 'pi@pi.com',
 			placeHolder: 'Ingresa tu correo electrónico',
 			missingMessage: 'Obligatorio',
 			required: true,
@@ -53,6 +55,7 @@ define(["dijit/form/ValidationTextBox", "dojox/validate/web", "dojo/_base/xhr",
 		 
 		new ValidationTextBox({
 	    	name: 'password',
+            value: '123',
 			placeHolder: 'Contraseña',
 			missingMessage: 'Obligatorio',
 			required: true,
@@ -61,6 +64,7 @@ define(["dijit/form/ValidationTextBox", "dojox/validate/web", "dojo/_base/xhr",
 		
 		new ValidationTextBox({
 			id: 'telefono',
+            value: '(12) 1236-7896',
         	name: 'telefono',
             placeHolder: '(##) ####-####',
             missingMessage: 'Obligatorio',
@@ -97,14 +101,19 @@ define(["dijit/form/ValidationTextBox", "dojox/validate/web", "dojo/_base/xhr",
 				}
 				config.standby.show();
 				console.log('Objeto json a enviar : ' + domForm.toJson(forma.domNode));
+                var data = domForm.toJson(forma.domNode);
+                var dataObj = domForm.toObject(forma.domNode);
+                dataObj.fecha = new Date().getTime();
+                var data = json.stringify(dataObj);
 				xhr.post({
 					url: dojo.config.app.urlBase + 'usuarios/guardar/json',
-					postData: dojo.formToJson(forma.domNode),
+					postData: data,
 					headers : {
 					     "Content-Type" : "application/json; charset=UTF-8"
 					},					
 					handleAs: 'json',
-					load: registroCorrecto
+					load: registroCorrecto,
+                    handle: function(){modConfig.standby.hide();}
 				});		        	
 			}
 		

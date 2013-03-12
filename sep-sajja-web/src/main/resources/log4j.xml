@@ -18,12 +18,12 @@
 		</layout>
 	</appender>       
 
-    <appender name="ASYNC" class="org.apache.log4j.AsyncAppender">
+    <!--appender name="ASYNC" class="org.apache.log4j.AsyncAppender">
         <param name="Blocking" value="false"/>
         <param name="BufferSize" value="10480"/>
         <appender-ref ref="Roller"/>
         <appender-ref ref="SystemOut"/>
-    </appender>
+    </appender-->
 
     <logger name="org.springframework.web"><level value="${modo.log}"/></logger>
     <logger name="org.springframework.web.servlet"><level value="${modo.log}"/></logger>
@@ -35,10 +35,10 @@
     <logger name="org.springframework.security.core"><level value="${modo.log}"/></logger>
     <logger name="org.springframework.security.config"><level value="${modo.log}"/></logger>
     
-    <logger name="mx.sep.sajja.web"><level value="${modo.log}"/></logger>
+    <logger name="mx.sep.sajja.web"><level value="${modo.log.app}"/></logger>
 
     <root>
         <priority value ="${modo.log}"/>
-        <appender-ref ref="ASYNC"/>
+        <appender-ref ref="Roller"/>
     </root>
 </log4j:configuration>

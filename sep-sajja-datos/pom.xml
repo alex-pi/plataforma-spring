@@ -15,31 +15,7 @@
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
   </properties>
-  
-  <profiles>
-    <profile>
-      <id>testing</id>
-      <properties>     
-        <nombre.profile>testing</nombre.profile>
-        <modo.log>debug</modo.log>
-      </properties>
-    </profile>
-    <profile>
-      <id>produccion</id>
-      <properties>      
-        <nombre.profile>produccion</nombre.profile>
-        <modo.log>error</modo.log>
-      </properties>
-    </profile>
-    <profile>
-      <id>desarrollo</id>
-      <properties>
-        <nombre.profile>desarrollo</nombre.profile>
-        <modo.log>debug</modo.log>
-      </properties>      
-    </profile>       
-  </profiles>
-    
+
   <dependencies>
   	<dependency>
 		<groupId>mx.sep.sajja.modelo</groupId>

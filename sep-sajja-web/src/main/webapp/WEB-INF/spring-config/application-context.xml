@@ -35,7 +35,7 @@
 	        <tx:method name="busca*" read-only="true"/>            
 	        <tx:method name="consulta*" read-only="true"/>
 	        <!-- todo lo demás tiene configuración default -->
-	        <tx:method name="*"/>
+	        <tx:method name="*" no-rollback-for="mx.sep.sajja.servicios.util.ExcepcionProcesoParcial"/>
 	    </tx:attributes>
 	</tx:advice>
 	
